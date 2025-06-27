@@ -13,6 +13,42 @@ import { useEffect, useState } from "react"
 
 
 
+type Upload = {
+  _id: string;
+  pic: string;
+  uploadedBy: string;
+  isApproved: boolean;
+  isHallofFame: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type EventType = {
+  _id: string;
+  title: string;
+  desc: string;
+  pic: string;
+  category: string;
+  postedBy: string[];
+  Registrations: string[];
+  uploads: Upload[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+
+type Participant = {
+  _id: string;
+  name: string;
+  email: string;
+  ip: string;
+  pic: string;
+};
+
+
+
+
 function page() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -20,12 +56,13 @@ function page() {
   const [userId, setUserId] = useState<string | null>(null);
   const [isRegistered, setIsRegistered] = useState(false);
 
-  const [event, setEvent] = useState(); // <- initialize your event state
+  const [event, setEvent] = useState<EventType | null>(null);
   const [hasUploaded, setHasUploaded] = useState(false);
 
-  const [participants, setParticipants] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [openImage, setOpenImage] = useState(null);
+
+  const [participants, setParticipants] = useState<Participant[]>([]);
+const [loading, setLoading] = useState<boolean>(true);
+const [openImage, setOpenImage] = useState<string | null>(null);
 
 
 

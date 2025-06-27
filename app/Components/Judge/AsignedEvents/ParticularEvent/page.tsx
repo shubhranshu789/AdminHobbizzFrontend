@@ -11,20 +11,66 @@ import Image from "next/image"
 
 import Navbar from "../../JudgeNavBar/page"
 
+
+// type Upload = {
+//     _id: string;
+//     pic: string;
+
+//     uploadedBy: {
+//         _id: string;
+//         name: string;
+//         email: string;
+//     };
+// };
+
+type Upload = {
+    _id: string;
+    pic: string;
+    isApproved: boolean;
+    isHallofFame: boolean;
+    uploadedBy: {
+        _id: string;
+        name: string;
+        email: string;
+    };
+    judge1: number;
+    judge2: number;
+    judge3: number;
+    judge4: number;
+    createdAt: string;
+    updatedAt: string;
+};
+type Competition = {
+    _id: string;
+    title: string;
+    desc: string;
+    pic: string;
+    postedBy: string[];
+    Registrations: string[];
+    isLive: boolean;
+    uploads: Upload[];
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    judges: string[];
+};
+
+
+
 export default function CompetitionPage() {
     const searchParams = useSearchParams()
     const competitionId = searchParams.get("id")
 
-    const [competition, setCompetition] = useState(null);
+    const [competition, setCompetition] = useState<Competition | null>(null);
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    const [selectedUpload, setSelectedUpload] = useState(null);
+    const [selectedUpload, setSelectedUpload] = useState<Upload | null>(null);
     const [markInput, setMarkInput] = useState(0);
 
-    const handleOpenModal = (upload: SetStateAction<null>) => {
+    const handleOpenModal = (upload: Upload | null) => {
         setSelectedUpload(upload);
-        setMarkInput(0); // reset or prefill with existing mark if needed
+        setMarkInput(0);
     };
 
     const handleCloseModal = () => {
@@ -197,7 +243,7 @@ export default function CompetitionPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                                        {competition.uploads.map((upload: { _id: Key | null | undefined; pic: any; uploadedBy: { name: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; email: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined } }) => (
+                                        {competition?.uploads.map((upload) => (
                                             <div
                                                 key={upload._id}
                                                 onClick={() => handleOpenModal(upload)}
@@ -218,6 +264,7 @@ export default function CompetitionPage() {
                                                 )}
                                             </div>
                                         ))}
+
 
                                         {selectedUpload && (
                                             <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center px-4">

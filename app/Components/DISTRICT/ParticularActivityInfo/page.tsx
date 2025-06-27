@@ -13,6 +13,28 @@ import { useEffect, useState } from "react"
 
 
 
+export type Competition = {
+  _id: string;
+  title: string;
+  desc: string;
+  pic: string;
+  isLive: boolean;
+  Registrations: string[];
+  category?: string;
+  postedBy: string[];
+};
+
+
+type Upload = {
+  _id: string;
+  pic: string;
+  name: string;
+  email: string;
+  uploadedBy: string;
+  createdAt: string;
+};
+
+
 function page() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -20,10 +42,10 @@ function page() {
   const [userId, setUserId] = useState<string | null>(null);
   const [isRegistered, setIsRegistered] = useState(false);
 
-  const [event, setEvent] = useState(); // <- initialize your event state
+  const [event, setEvent] = useState<Competition | null>(null); // <- initialize your event state
   const [hasUploaded, setHasUploaded] = useState(false);
 
-  const [participants, setParticipants] = useState([]);
+  const [participants, setParticipants] = useState<Upload[]>([]);
   const [loading, setLoading] = useState(true);
   const [openImage, setOpenImage] = useState(null);
 
@@ -109,7 +131,7 @@ function page() {
   }, [id]);
 
 
-  const [approvedUploads, setApprovedUploads] = useState([]);
+  const [approvedUploads, setApprovedUploads] = useState<Upload[]>([]);
   const [loadingApproved, setLoadingApproved] = useState(true);
 
   useEffect(() => {
@@ -431,6 +453,8 @@ function page() {
                     </div>
                   </li>
                 ))}
+
+
               </ul>
             )}
           </div>

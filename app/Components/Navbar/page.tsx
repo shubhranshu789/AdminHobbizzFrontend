@@ -8,10 +8,12 @@ import { useRouter } from 'next/navigation';
 
 
 
+  type NavType = "default" | "head" | "ambassador";
+
 function Navbar() {
   const [user, setUser] = useState(null)
   const [clubHead, setClubHead] = useState(null)
-  const [navType, setNavType] = useState("default") // 'default' | 'head' | 'member'
+ const [navType, setNavType] = useState<NavType>("default");// 'default' | 'head' | 'member'
   const router = useRouter();
 
 
@@ -78,7 +80,11 @@ function Navbar() {
     ],
   }
 
-  const currentNavItems = navOptions[navType]
+
+
+
+
+const currentNavItems = navOptions[navType];
 
   return (
     <div>

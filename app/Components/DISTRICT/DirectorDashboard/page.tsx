@@ -23,6 +23,7 @@ export default function Component() {
       router.push('../../../Components/DISTRICT/ReviewActivity');
     };
     const [currName, setCurrName] = useState('');
+    const [width, setWidth] = useState<number | null>(null);
   
 
   // const userData = localStorage.getItem('user');
@@ -54,19 +55,13 @@ export default function Component() {
       console.warn('No user found in localStorage');
     }
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
+   
 
     const timer = setInterval(() => {
       setCurrentTime(new Date())
     }, 1000)
 
-    window.addEventListener("scroll", handleScroll)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      clearInterval(timer)
-    }
+   
   }, [])
 
   const getGreeting = () => {
@@ -76,41 +71,13 @@ export default function Component() {
     return "Good Evening"
   }
 
-  const floatingElements = Array.from({ length: 8 }, (_, i) => (
-    <motion.div
-      key={i}
-      className="absolute opacity-20"
-      initial={{
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-      }}
-      animate={{
-        x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1200),
-        y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
-        rotate: 360,
-      }}
-      transition={{
-        duration: 10 + Math.random() * 10,
-        repeat: Number.POSITIVE_INFINITY,
-        repeatType: "reverse",
-        ease: "linear",
-      }}
-    >
-      {i % 3 === 0 ? (
-        <Sparkles className="w-6 h-6 text-white" />
-      ) : i % 3 === 1 ? (
-        <Zap className="w-5 h-5 text-blue-200" />
-      ) : (
-        <Star className="w-4 h-4 text-blue-100" />
-      )}
-    </motion.div>
-  ))
+ 
 
   return (
 
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 relative overflow-hidden">
       {/* Floating Background Elements */}
-      <div className="fixed inset-0 pointer-events-none">{floatingElements}</div>
+      {/* <div className="fixed inset-0 pointer-events-none">{floatingElements}</div> */}
 
       {/* Animated Background Shapes */}
       <motion.div

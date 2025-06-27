@@ -12,20 +12,79 @@ import { formatDistanceToNow } from "date-fns"
 import { useEffect, useState } from "react"
 
 
+type Upload = {
+  _id: string;
+  pic: string;
+  uploadedBy: string;
+  isApproved: boolean;
+  isHallofFame: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type Event = {
+  _id: string;
+  title: string;
+  desc: string;
+  pic: string;
+  category: string;
+  postedBy: string[];
+  Registrations: string[];
+  uploads: Upload[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+
+type Participant = {
+  _id: string;
+  name: string;
+  email: string;
+  ip: string;
+  pic: string;
+  uploadId: string;
+  isApproved: boolean;
+};
+
+
+type ApprovedUpload = {
+  _id: string;
+  pic: string;
+  name: string;
+  email: string;
+  uploadedBy: string;
+  createdAt: string;
+};
+
+
+
+type HallOfFameUpload = {
+  _id: string;
+  pic: string;
+  name: string;
+  email: string;
+  uploadedBy: string;
+  createdAt: string;
+  isHallofFame: boolean;
+};
 
 function page() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [token, setToken] = useState<string | null>(null);
-  const [userId, setUserId] = useState<string | null>(null);
-  const [isRegistered, setIsRegistered] = useState(false);
+  // const [userId, setUserId] = useState<string | null>(null);
+  // const [isRegistered, setIsRegistered] = useState(false);
 
-  const [event, setEvent] = useState(); // <- initialize your event state
+  // const [event, setEvent] = useState(); // <- initialize your event state
   const [hasUploaded, setHasUploaded] = useState(false);
 
-  const [participants, setParticipants] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [openImage, setOpenImage] = useState(null);
+  const [participants, setParticipants] = useState<Participant[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [openImage, setOpenImage] = useState<string | null>(null);
+  const [event, setEvent] = useState<Event | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [isRegistered, setIsRegistered] = useState(false);
 
 
 
@@ -45,16 +104,23 @@ function page() {
       }
     }
 
-    fetch(`http://localhost:5000/getactivity/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
+    const fetchEvent = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/getactivity/${id}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const result = await res.json();
         setEvent(result);
-      });
+      } catch (err) {
+        console.error("Error fetching event", err);
+      }
+    };
+
+    fetchEvent();
   }, [id]);
+
 
   // Separate effect to check registration once both event & userId are set
   useEffect(() => {
@@ -293,8 +359,8 @@ function page() {
 
 
 
-  const [approvedUploads, setApprovedUploads] = useState([]);
-  const [loadingApproved, setLoadingApproved] = useState(true);
+const [approvedUploads, setApprovedUploads] = useState<ApprovedUpload[]>([]);
+const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchApprovedUploads = async () => {
@@ -318,8 +384,8 @@ function page() {
 
 
 
-  const [hallOfFameUploads, setHallOfFameUploads] = useState([]);
-  const [loadingHallOfFame, setLoadingHallOfFame] = useState(true);
+  const [hallOfFameUploads, setHallOfFameUploads] = useState<HallOfFameUpload[]>([]);
+  const [loadingHallOfFame, setLoadingHallOfFame] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchHallOfFame = async () => {
@@ -409,7 +475,7 @@ function page() {
             </CardFooter> */}
           </Card>
 
-
+{/* 
           <div style={{ marginBottom: "30px" }}>
             {isRegistered ? (
               hasUploaded ? (
@@ -455,7 +521,7 @@ function page() {
                 </p>
               </div>
             )}
-          </div>
+          </div> */}
 
 
           {/* Registration Status Card */}
@@ -527,22 +593,6 @@ function page() {
                               {upload.isApproved ? "Approved" : "Disapproved"}
                             </span>
                           )}
-                          {/* {upload.isHallofFame !== null && (
-                            <span
-                              className={`inline-block px-2 py-1 text-xs rounded-full font-semibold ${upload.isHallofFame
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
-                                }`}
-                            >
-                              {upload.isHallofFame ? "Approved" : "Disapproved"}
-                            </span>
-                          )} */}
-
-
-
-
-
-
                           <div className="flex gap-3 pt-2">
                             <button
                               onClick={() => handleApproval(event?._id, upload.uploadId, true)}

@@ -25,7 +25,11 @@ interface EventData {
   date: string;
 }
 
-export const ContinuousCalendar = () => {
+type ContinuousCalendarProps = {
+  onClick?: (day: number, month: number, year: number) => void;
+};
+
+export const ContinuousCalendar: React.FC<ContinuousCalendarProps> = ({ onClick }) => {
   const today = new Date();
   const dayRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [year, setYear] = useState<number>(today.getFullYear());

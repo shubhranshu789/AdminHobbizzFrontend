@@ -8,11 +8,21 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../../EditorNavbar/page"
 import Footer from "../../../Footer/page"
 
+type GalleryImage = {
+  _id: string;
+  title: string;
+  imageUrl: string;
+  uploadedAt: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 
 const Gallery = () => {
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState<GalleryImage[]>([]);
+
     const [title, setTitle] = useState("");
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const sizeVariants = [
         "col-span-1 row-span-2", // tall
@@ -63,7 +73,7 @@ const Gallery = () => {
             return result.secure_url;
         } catch (error) {
             console.error("Error uploading to Cloudinary:", error);
-            toast.error(`Upload failed: ${error.message}`);
+            toast.error(`Upload failed:`);
             return null;
         }
     };

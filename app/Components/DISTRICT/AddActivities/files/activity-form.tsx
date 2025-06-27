@@ -19,7 +19,7 @@ import Navbar from "../../DirectorNavbar/page"
 export default function ActivityForm() {
    
 
-    const token = localStorage.getItem('jwt');
+    // const token = localStorage.getItem('jwt');
 
       const router = useRouter();
     
@@ -94,10 +94,10 @@ export default function ActivityForm() {
 
     useEffect(() => {
 
-    const token = localStorage.getItem("jwt");
-    if (!token) {
-    //   navigate('/signin')
-    }
+    // const token = localStorage.getItem("jwt");
+    // if (!token) {
+    // //   navigate('/signin')
+    // }
 
 
 

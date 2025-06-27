@@ -12,13 +12,28 @@ import { formatDistanceToNow } from "date-fns"
 import { useEffect, useState } from "react"
 
 
-export type Competition = {
+type Competition = {
   _id: string;
   title: string;
   desc: string;
   pic: string;
   isLive: boolean;
   Registrations: string[];
+  category?: string;
+  postedBy: string[];
+};
+
+
+type Upload = {
+  _id: string;
+  pic: string;
+  isApproved: boolean;
+  isHallofFame: boolean;
+  uploadedBy: {
+    _id: string;
+    name: string;
+    email: string;
+  };
 };
 
 
@@ -30,14 +45,14 @@ function page() {
   const [userId, setUserId] = useState<string | null>(null);
   const [isRegistered, setIsRegistered] = useState(false);
 
- const [event, setEvent] = useState<Competition | null>(null); // <- initialize your event state
   const [hasUploaded, setHasUploaded] = useState(false);
 
-  const [participants, setParticipants] = useState([]);
+  const [event, setEvent] = useState<Competition | null>(null); // <- initialize your event state
+  const [participants, setParticipants] = useState<Upload[]>([]);
   const [loading, setLoading] = useState(true);
-  const [openImage, setOpenImage] = useState(null);
+  const [openImage, setOpenImage] = useState<string | null>(null);
 
-  
+
 
 
 
@@ -247,31 +262,31 @@ function page() {
   };
 
 
-//   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
-//     try {
-//       const res = await fetch(
-//         `http://localhost:5000/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
-//         {
-//           method: "PUT",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//         }
-//       );
+  //   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
+  //     try {
+  //       const res = await fetch(
+  //         `http://localhost:5000/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
+  //         {
+  //           method: "PUT",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
 
-//       const data = await res.json();
-//       if (res.ok) {
-//         alert(`Upload ${isApproved ? "approved" : "disapproved"} successfully.`);
-//         // Optional: Refresh list
-//       } else {
-//         console.error("Error:", data.error);
-//         alert("Failed to update.");
-//       }
-//     } catch (err) {
-//       console.error("Request error:", err);
-//       alert("Server error.");
-//     }
-//   };
+  //       const data = await res.json();
+  //       if (res.ok) {
+  //         alert(`Upload ${isApproved ? "approved" : "disapproved"} successfully.`);
+  //         // Optional: Refresh list
+  //       } else {
+  //         console.error("Error:", data.error);
+  //         alert("Failed to update.");
+  //       }
+  //     } catch (err) {
+  //       console.error("Request error:", err);
+  //       alert("Server error.");
+  //     }
+  //   };
 
 
 
@@ -417,130 +432,7 @@ function page() {
 
 
           {/* Registration Status Card */}
-          <>
-            <Card className="shadow-md">
-              <CardHeader className="pb-3">
-                <h2 className="text-xl font-semibold">Registration Status</h2>
-              </CardHeader>
-              <CardContent>
-                {participants.length > 0 ? (
-                  <ul className="space-y-6">
-
-
-
-                    {/* {participants.map((user, index) => (
-                      <li key={index} className="flex gap-4 items-start">
-                        <div className="w-32 h-32 rounded-lg overflow-hidden border border-gray-300">
-                          {user.pic ? (
-                            <img
-                              src={user.pic}
-                              alt="Upload"
-                              className="w-full h-full object-cover cursor-pointer"
-                              onClick={() => setOpenImage(user.pic)}
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500 text-sm">
-                              No Photo
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex-1 space-y-1">
-                          <p className="text-base font-semibold">{user.name}</p>
-                          <p className="text-sm text-muted-foreground">{user.email}</p>
-                          <p className="text-sm text-muted-foreground">IP: {user.ip}</p>
-                          <div className="flex gap-3 pt-2">
-                            <button className="px-4 py-1 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md">
-                              Approve
-                            </button>
-                            <button className="px-4 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-md">
-                              Disapprove
-                            </button>
-                          </div>
-                        </div>
-                      </li>
-                    ))} */}
-
-                    {participants.map((upload, index) => (
-                      <li key={index} className="flex gap-4 items-start">
-                        <div className="w-32 h-32 rounded-lg overflow-hidden border border-gray-300">
-                          <img
-                            src={upload.pic}
-                            alt="Upload"
-                            className="w-full h-full object-cover cursor-pointer"
-                            onClick={() => setOpenImage(upload.pic)}
-                          />
-                        </div>
-
-                        
-                        <div className="flex-1 space-y-1">
-                          <p className="text-base font-semibold">{upload.name}</p>
-                          <p className="text-sm text-muted-foreground">{upload.email}</p>
-
-                          {/* {upload.isApproved !== null && (
-                            <span
-                              className={`inline-block px-2 py-1 text-xs rounded-full font-semibold ${upload.isApproved
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
-                                }`}
-                            >
-                              {upload.isApproved ? "Approved" : "Disapproved"}
-                            </span>
-                          )} */}
-
-                          {/* <div className="flex gap-3 pt-2">
-                            <button
-                              onClick={() => handleApproval(event?._id, upload.uploadId, true)}
-                              className="px-4 py-1 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md"
-                            >
-                              Approve
-                            </button>
-                            <button
-                              onClick={() => handleApproval(event?._id, upload.uploadId, false)}
-                              className="px-4 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-md"
-                            >
-                              Disapprove
-                            </button>
-                          </div> */}
-                        </div>
-
-
-
-                      </li>
-                    ))}
-
-
-
-
-
-                  </ul>
-                ) : (
-                  <div className="text-center py-8">
-                    <Users className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-                    <p className="text-muted-foreground">No registrations yet. Be the first to register!</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* 🔍 Enlarge Image Modal */}
-            {openImage && (
-              <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center">
-                <div className="relative">
-                  <img
-                    src={openImage}
-                    alt="Enlarged"
-                    className="max-h-[90vh] max-w-[90vw] rounded-lg shadow-xl"
-                  />
-                  <button
-                    onClick={() => setOpenImage(null)}
-                    className="absolute top-2 right-2 bg-white text-black px-3 py-1 rounded hover:bg-gray-200"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            )}
-          </>
+         
 
 
 
@@ -570,7 +462,7 @@ function page() {
 
 
 
-      
+
 
 
 

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useEffect, useState } from "react";
 import Navbar from "../JudgeNavBar/page"
@@ -10,9 +10,24 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useRouter } from 'next/navigation';
 
 // import "../../../Components/Judge/AsignedEvents/ParticularEvent"
+type Judge = {
+  _id: string;
+  name: string;
+  email: string;
+  clubName: string;
+};
+
+type Competition = {
+  _id: string;
+  title: string;
+  desc: string;
+  pic: string;
+  isLive: boolean;
+  judges: Judge[];
+};
 
 export default function AssignedEventsPage() {
-    const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState<Competition[]>([]);
     const router = useRouter();
 
     useEffect(() => {

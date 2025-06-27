@@ -1,34 +1,46 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
-import Auth from './Components/Auth/page'
-
+import React, { Suspense } from 'react';
+import Auth from './Components/Auth/page';
+import DirectorParticularCompetition from "../app/Components/DISTRICT/AddActivities/ViewCompitions/ParticularCompition/page";
+const JudgeAssignedEvents = React.lazy(() =>
+  import("../app/Components/Judge/AsignedEvents/ParticularEvent/page")
+);
+import EditorDashboard from "../app/Components/EDITOR/EditorDashboard/page";
+const DistrictParticularCompetitionParticipants = React.lazy(() =>
+  import("../app/Components/DISTRICT/AddActivities/ViewCompitions/ParticularCompitionParticipants/page")
+);
+import DistrictAddActivities from "../app/Components/DISTRICT/AddActivities/page";
+const DistrictAssignHead = React.lazy(() =>
+  import("../app/Components/DISTRICT/AssignHead/page")
+);
+import EditorArtClubParticularJournal from "../app/Components/EDITOR/Activities/ArtJournal/ArtClubParticularJournal/page";
+import EditorViewParticularHeritage from "../app/Components/EDITOR/Activities/AddHeritage/ViewParticularHeritage/page";
 
 export default function Page() {
-  const router = useRouter();
-  const data = 20;
-  const str = "shubh"
-
-  const handleClick = () => {
-   router.push(`./Components/home?data=${data}&str=${str}`);
-  };
-
-
-  const handleClick2 = () => {
-    router.push('./Components/About');
-  };
-
-
-
-
+  const shouldShowCompetition = true;
 
   return (
     <div>
-      {/* <h1>Welcome to the Main Page</h1> */}
-      {/* <button onClick={handleClick}>Go to Home</button> */}
-      <Auth/>
-      
+      <Suspense fallback={<p>Loading authentication screen...</p>}>
+        <Auth />
+        {shouldShowCompetition && (
+          <Suspense fallback={<p>Loading components...</p>}>
+            <>
+              <DirectorParticularCompetition />
+              <JudgeAssignedEvents />
+              <EditorDashboard />
+              <DistrictParticularCompetitionParticipants />
+              <DistrictAddActivities />
+              <Suspense fallback={<p>Loading Assign Head...</p>}>
+                <DistrictAssignHead />
+              </Suspense>
+              <EditorArtClubParticularJournal />
+              <EditorViewParticularHeritage />
+            </>
+          </Suspense>
+        )}
+      </Suspense>
     </div>
   );
 }

@@ -25,6 +25,16 @@ interface CompetitionDisplayProps {
   apiBaseUrl?: string
 }
 
+type Judge = {
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+  clubName: string;
+  ip: string;
+  __v: number;
+};
+
 export default function CompetitionDisplay({
 }) {
   const [competition, setCompetition] = useState<Competition | null>(null)
@@ -35,9 +45,9 @@ export default function CompetitionDisplay({
   const id = searchParams.get("id");
 
 
-  const [judges, setJudges] = useState([]);
-  const [selectedJudge, setSelectedJudge] = useState("");
-  const [assignedJudges, setAssignedJudges] = useState([]);
+  const [judges, setJudges] = useState<Judge[]>([]);
+  const [assignedJudges, setAssignedJudges] = useState<Judge[]>([]);
+  const [selectedJudge, setSelectedJudge] = useState<string>("");
 
   useEffect(() => {
     const fetchJudges = async () => {
@@ -169,30 +179,30 @@ export default function CompetitionDisplay({
 
 
   const handleRemoveJudge = async (judgeId: any) => {
-  try {
-    const res = await fetch("http://localhost:5000/removeJudge", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id, // make sure this variable is available in your component
-        judgeId,
-      }),
-    });
+    try {
+      const res = await fetch("http://localhost:5000/removeJudge", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id, // make sure this variable is available in your component
+          judgeId,
+        }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
-      setAssignedJudges(data.competition.judges); // update the list after deletion
-    } else {
-      alert(data.error || "Failed to remove judge");
+      if (res.ok) {
+        setAssignedJudges(data.competition.judges); // update the list after deletion
+      } else {
+        alert(data.error || "Failed to remove judge");
+      }
+    } catch (err) {
+      console.error("Error removing judge:", err);
+      alert("Something went wrong");
     }
-  } catch (err) {
-    console.error("Error removing judge:", err);
-    alert("Something went wrong");
-  }
-};
+  };
 
 
   return (
