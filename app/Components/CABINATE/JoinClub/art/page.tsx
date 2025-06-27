@@ -80,6 +80,31 @@ export default function ArtClubPage() {
 
   const [isMember, setIsMember] = useState(false)
 
+   const [userId, setUserId] = useState('');
+  const [district, setDistrict] = useState('');
+
+  useEffect(() => {
+    // Safe access to localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const user = JSON.parse(storedUser);
+        setUserId(user._id);
+        setDistrict(user.district);
+      } catch (err) {
+        console.error('Invalid user in localStorage:', err);
+      }
+    }
+
+    // Handle request status
+    const checkRequestStatus = () => {
+      const requested = localStorage.getItem('artClubRequested');
+      setHasRequested(requested === 'true'); // assuming 'true' means already requested
+    };
+
+    checkRequestStatus();
+  }, []);
+
   useEffect(() => {
     const checkRequestStatus = async () => {
       setTimeout(() => {
