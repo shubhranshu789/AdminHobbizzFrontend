@@ -68,9 +68,9 @@ const members = [
   { id: 5, name: "Olivia Patel", role: "Event Coordinator", avatar: "/placeholder.svg?height=40&width=40" },
 
 ]
-const user = JSON.parse(localStorage.getItem("user") || "{}");
-const userId = user._id;
-const district= user.district;
+// const user = JSON.parse(localStorage.getItem("user") || "{}");
+// const userId = user._id;
+// const district= user.district;
 
 export default function ArtClubPage() {
   const [hasRequested, setHasRequested] = useState(false)
