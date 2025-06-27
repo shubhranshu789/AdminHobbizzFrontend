@@ -12,6 +12,16 @@ import { formatDistanceToNow } from "date-fns"
 import { useEffect, useState } from "react"
 
 
+export type Competition = {
+  _id: string;
+  title: string;
+  desc: string;
+  pic: string;
+  isLive: boolean;
+  Registrations: string[];
+};
+
+
 
 function page() {
   const searchParams = useSearchParams();
@@ -20,12 +30,14 @@ function page() {
   const [userId, setUserId] = useState<string | null>(null);
   const [isRegistered, setIsRegistered] = useState(false);
 
-  const [event, setEvent] = useState(); // <- initialize your event state
+ const [event, setEvent] = useState<Competition | null>(null); // <- initialize your event state
   const [hasUploaded, setHasUploaded] = useState(false);
 
   const [participants, setParticipants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openImage, setOpenImage] = useState(null);
+
+  
 
 
 
