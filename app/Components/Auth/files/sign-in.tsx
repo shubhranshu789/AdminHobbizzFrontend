@@ -96,6 +96,7 @@ export default function SignIn() {
 
 
         //sending data to server
+        // fetch("http://localhost:5000/cabinate-signin", {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/cabinate-signin`, {
             method: "post",
             headers: {
