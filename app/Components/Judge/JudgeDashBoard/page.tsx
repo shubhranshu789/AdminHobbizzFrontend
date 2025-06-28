@@ -81,12 +81,12 @@ export default function Component() {
       key={i}
       className="absolute opacity-20"
       initial={{
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        x: typeof window !== "undefined" ? Math.random() * window.innerWidth : Math.random() * 1200,
+        y: typeof window !== "undefined" ? Math.random() * window.innerHeight : Math.random() * 800,
       }}
       animate={{
-        x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1200),
-        y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
+        x: typeof window !== "undefined" ? Math.random() * window.innerWidth : Math.random() * 1200,
+        y: typeof window !== "undefined" ? Math.random() * window.innerHeight : Math.random() * 800,
         rotate: 360,
       }}
       transition={{

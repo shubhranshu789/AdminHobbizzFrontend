@@ -76,7 +76,7 @@ const ClubNewsForm = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/clubnews", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clubnews`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newsData),
@@ -108,7 +108,7 @@ const ClubNewsForm = () => {
   const fetchNews = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/clubnewsviewallpost");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clubnewsviewallpost`);
       const data = await res.json();
 
       if (res.ok) {

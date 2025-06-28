@@ -548,7 +548,7 @@ export default function SignUp() {
     )
 
     try {
-      const response = await fetch("http://localhost:5000/director-signup", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/director-signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

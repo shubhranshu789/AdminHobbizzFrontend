@@ -116,7 +116,7 @@ export default function ArtClubPage() {
 
     const fetchClubStatus = async () => {
   try {
-    const res = await fetch("http://localhost:5000/artclub/status", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/status`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -145,7 +145,7 @@ export default function ArtClubPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch(`http://localhost:5000/artclub/requestjoin?district=${encodeURIComponent(district)}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/requestjoin?district=${encodeURIComponent(district)}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -171,7 +171,7 @@ export default function ArtClubPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch(`http://localhost:5000/artclub/requestjoinforambassador?district=${encodeURIComponent(district)}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/requestjoinforambassador?district=${encodeURIComponent(district)}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -197,7 +197,7 @@ export default function ArtClubPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch("http://localhost:5000/artclub/withdrawjoin", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/withdrawjoin`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

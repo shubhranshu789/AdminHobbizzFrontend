@@ -41,7 +41,7 @@ const Gallery = () => {
     // Fetch all images
     const fetchImages = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/viewgallerypost");
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/viewgallerypost`);
             setImages(res.data || []);
         } catch (err) {
             console.error("Error fetching images:", err);
@@ -91,7 +91,7 @@ const Gallery = () => {
         if (!uploadedUrl) return;
 
         try {
-            const res = await axios.post("http://localhost:5000/gallerypost", {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/gallerypost`, {
                 title,
                 imageUrl: uploadedUrl,
             });

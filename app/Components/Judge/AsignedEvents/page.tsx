@@ -36,7 +36,7 @@ export default function AssignedEventsPage() {
 
         const fetchEvents = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/competitions/judge/${judgeId}`);
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/competitions/judge/${judgeId}`);
                 const data = await res.json();
                 setEvents(data.competitions);
             } catch (err) {

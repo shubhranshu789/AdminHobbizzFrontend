@@ -16,29 +16,30 @@ import { useRouter } from 'next/navigation';
 export default function Component() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [currName, setCurrName] = useState('')
 
-    const router = useRouter();
+  const router = useRouter();
   
-    const gotoreviewactivity = () => {
-      router.push('../../Components/ReviewActivity');
-    };
+  const gotoreviewactivity = () => {
+    router.push('../../Components/ReviewActivity');
+  };
   
 
-  const userData = localStorage.getItem('user');
-
-  let currName = '';
-
-  if (userData) {
-    try {
-      const parsedUser = JSON.parse(userData);
-      currName = parsedUser.name;
-      // console.log('User name:', currName);
-    } catch (error) {
-      console.error('Failed to parse user data:', error);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        try {
+          const parsedUser = JSON.parse(userData);
+          setCurrName(parsedUser.name);
+        } catch (error) {
+          console.error('Failed to parse user data:', error);
+        }
+      } else {
+        console.warn('No user found in localStorage');
+      }
     }
-  } else {
-    console.warn('No user found in localStorage');
-  }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,12 +69,12 @@ export default function Component() {
       key={i}
       className="absolute opacity-20"
       initial={{
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        x: typeof window !== "undefined" ? Math.random() * window.innerWidth : Math.random() * 1200,
+        y: typeof window !== "undefined" ? Math.random() * window.innerHeight : Math.random() * 800,
       }}
       animate={{
-        x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1200),
-        y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
+        x: typeof window !== "undefined" ? Math.random() * window.innerWidth : Math.random() * 1200,
+        y: typeof window !== "undefined" ? Math.random() * window.innerHeight : Math.random() * 800,
         rotate: 360,
       }}
       transition={{

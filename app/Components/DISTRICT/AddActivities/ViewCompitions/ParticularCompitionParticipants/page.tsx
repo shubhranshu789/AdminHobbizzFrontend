@@ -2,6 +2,7 @@
 import React from 'react'
 import { useSearchParams } from "next/navigation";
 import NavBar from "../../../DirectorNavbar/page"
+import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -38,7 +39,7 @@ type Upload = {
 
 
 
-function page() {
+function ParticularCompitionParticipantsInner() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [token, setToken] = useState<string | null>(null);
@@ -72,7 +73,7 @@ function page() {
       }
     }
 
-    fetch(`http://localhost:5000/getCompitition/${id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -100,7 +101,7 @@ function page() {
 
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`http://localhost:5000/has-uploaded-compitition/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/has-uploaded-compitition/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -120,7 +121,7 @@ function page() {
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`http://localhost:5000/event-participants-compi/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants-compi/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -156,7 +157,7 @@ function page() {
 
   const registerForActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/register-compitition/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register-compitition/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -181,7 +182,7 @@ function page() {
 
   const unregisterFromActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/unregister-compitition/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/unregister-compitition/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -235,7 +236,7 @@ function page() {
 
       if (result.url) {
         const token = localStorage.getItem("jwt");
-        const response = await fetch(`http://localhost:5000/upload-photo-compitition/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload-photo-compitition/${id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -265,7 +266,7 @@ function page() {
   //   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
   //     try {
   //       const res = await fetch(
-  //         `http://localhost:5000/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
+  //         `${process.env.NEXT_PUBLIC_API_URL}/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
   //         {
   //           method: "PUT",
   //           headers: {
@@ -299,7 +300,7 @@ function page() {
     const fetchApprovedUploads = async () => {
       try {
         setLoadingApproved(true);
-        const res = await fetch(`http://localhost:5000/activity/approved-uploads/${event?._id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/approved-uploads/${event?._id}`);
         const data = await res.json();
         setApprovedUploads(data.approvedUploads || []);
       } catch (error) {
@@ -482,4 +483,10 @@ function page() {
   )
 }
 
-export default page
+export default function ParticularCompitionParticipantsPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-6"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+      <ParticularCompitionParticipantsInner />
+    </Suspense>
+  );
+}

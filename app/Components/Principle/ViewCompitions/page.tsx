@@ -37,7 +37,7 @@ export default function CompetitionsPage() {
   const fetchCompetitions = async () => {
     try {
       setLoading(true)
-      const response = await fetch("http://localhost:5000/allCompitition", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allCompitition`, {
         headers: {
           "Authorization": "Bearer " + localStorage.getItem("jwt")
         },
@@ -240,7 +240,7 @@ export default function CompetitionsPage() {
                           if (!confirmed) return;
 
                           try {
-                            const res = await fetch(`http://localhost:5000/competition/${competition._id}`, {
+                            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/competition/${competition._id}`, {
                               method: "DELETE",
                             });
 

@@ -20,13 +20,11 @@ import Navbar from "../PrincipleNavBar/page"
 export default function ActivityForm() {
    
 
-    const token = localStorage.getItem('jwt');
-
-      const router = useRouter();
+    const router = useRouter();
     
-      const gotohome = () => {
-        router.push('/Components/Principle/PrincipleDashBoard');
-      };
+    const gotohome = () => {
+      router.push('/Components/Principle/PrincipleDashBoard');
+    };
     
     
 
@@ -94,52 +92,41 @@ export default function ActivityForm() {
 
 
     useEffect(() => {
+      let token = null;
+      if (typeof window !== 'undefined') {
+        token = localStorage.getItem("jwt");
+      }
+      if (!token) {
+        //   navigate('/signin')
+      }
 
-    const token = localStorage.getItem("jwt");
-    if (!token) {
-    //   navigate('/signin')
-    }
-
-
-
-
-
-    if (url) {
-      fetch("http://localhost:5000/create-compitition", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("jwt")
-        },
-        body: JSON.stringify({
-          title: title,
-          desc: desc,
-          // category: category,
-          pic: url,
-          
-          
-        })
-      }).then(res => res.json())
-        .then(data => {
-          if (data.error) {
-            // notifyA(data.error)
-            alert(data.error)
-            console.log(data.error);
-            
-          } else {
-            // notifyB(data.message)
-            console.log(data.message);
-            //  alert(data.message)
-            // alert(data.message)
-            gotohome();
-            // navigate('/')
-          }
-          console.log(data)
-        })
-        .catch(err => console.log(err))
-    }
-
-  }, [url]);
+      if (url) {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/create-compitition`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + (typeof window !== 'undefined' ? localStorage.getItem("jwt") : "")
+          },
+          body: JSON.stringify({
+            title: title,
+            desc: desc,
+            // category: category,
+            pic: url,
+          })
+        }).then(res => res.json())
+          .then(data => {
+            if (data.error) {
+              alert(data.error)
+              console.log(data.error);
+            } else {
+              console.log(data.message);
+              gotohome();
+            }
+            console.log(data)
+          })
+          .catch(err => console.log(err))
+      }
+    }, [url]);
 
 
 

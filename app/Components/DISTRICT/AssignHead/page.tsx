@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -35,7 +35,7 @@ interface ArtClub {
   memberRequests: MemberRequest[]
 }
 
-export default function MemberRequests() {
+function MemberRequestsInner() {
   const [clubName, setClub] = useState<string | null>(null);
   const [memberRequests, setMemberRequests] = useState<MemberRequest[]>([])
   const [loading, setLoading] = useState(true)
@@ -73,7 +73,7 @@ useEffect(() => {
     const fetchMemberRequests = async () => {
       
       try {
-        const response = await fetch(`http://localhost:5000/${clubName}/head-request?district=${district}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/head-request?district=${district}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +104,7 @@ useEffect(() => {
     setProcessingIds((prev) => new Set(prev).add(userId));
 
     try {
-      const response = await fetch(`http://localhost:5000/${clubName}/approve-head/?district=${district}&userid=${userId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/approve-head/?district=${district}&userid=${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -138,7 +138,7 @@ useEffect(() => {
     setProcessingIds((prev) => new Set(prev).add(userId))
 
     try {
-      const response = await fetch(`http://localhost:5000/${clubName}/disapprove-head/?district=${district}&userid=${userId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/disapprove-head/?district=${district}&userid=${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -309,4 +309,12 @@ useEffect(() => {
       </div>
     </div>
   )
+}
+
+export default function MemberRequests() {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-6"><Card><CardHeader><CardTitle>Loading Member Requests...</CardTitle></CardHeader><CardContent><div className="flex items-center justify-center py-8"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div></CardContent></Card></div>}>
+      <MemberRequestsInner />
+    </Suspense>
+  );
 }

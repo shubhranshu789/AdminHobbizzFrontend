@@ -33,7 +33,7 @@ export default function CompetitionsPage() {
   const fetchCompetitions = async () => {
     try {
       setLoading(true)
-      const response = await fetch("http://localhost:5000/allCompitition", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allCompitition`, {
         headers: {
           "Authorization": "Bearer " + localStorage.getItem("jwt")
         },

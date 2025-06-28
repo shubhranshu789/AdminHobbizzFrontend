@@ -83,7 +83,7 @@ export default function SignIn() {
 
 
         //sending data to server
-        fetch("http://localhost:5000/judge-signin", {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/judge-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

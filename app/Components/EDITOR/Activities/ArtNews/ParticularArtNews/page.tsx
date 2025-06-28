@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useParams } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -26,7 +26,7 @@ interface Journal {
   __v: number
 }
 
-export default function JournalDetail() {
+function ParticularArtNewsInner() {
   const params = useParams()
   const [journal, setJournal] = useState<Journal | null>(null)
   const [loading, setLoading] = useState(true)
@@ -38,7 +38,7 @@ export default function JournalDetail() {
   useEffect(() => {
     const fetchJournal = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/artNews/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artNews/${id}`)
         if (!response.ok) {
           throw new Error("Journal not found")
         }
@@ -108,7 +108,6 @@ export default function JournalDetail() {
   }
 
   return (
-
     <div>
       <Navbar/>
       <div style={{marginTop : "60px"}} className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
@@ -257,6 +256,13 @@ export default function JournalDetail() {
         </div>
       </div>
     </div>
-
   )
+}
+
+export default function ParticularArtNewsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+      <ParticularArtNewsInner />
+    </Suspense>
+  );
 }

@@ -89,7 +89,7 @@ function ReviewActitvity() {
     //   return;
     // }
 
-    // fetch("http://localhost:5000/allActivities", {
+    // fetch("${process.env.NEXT_PUBLIC_API_URL}/allActivities", {
     //     headers: {
     //         Authorization: "Bearer " + localStorage.getItem("jwt"),
     //     },
@@ -103,7 +103,7 @@ function ReviewActitvity() {
 
     const fetchActivities = async () => {
       try {
-        const res = await fetch('http://localhost:5000/allActivities');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allActivities`);
         const data = await res.json();
         setActivities(data); // assuming the API returns an array directly
       } catch (error) {

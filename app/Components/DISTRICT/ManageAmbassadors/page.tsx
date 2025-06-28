@@ -68,7 +68,7 @@ export default function MemberRequests() {
     const fetchMemberRequests = async () => {
       
       try {
-        const response = await fetch(`http://localhost:5000/artclub/ambassador-requests?district=${userDistrict}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/ambassador-requests?district=${userDistrict}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -99,7 +99,7 @@ export default function MemberRequests() {
     setProcessingIds((prev) => new Set(prev).add(userId));
 
     try {
-      const response = await fetch(`http://localhost:5000/artclub/approve-ambassador/?district=${userDistrict}&userid=${userId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/approve-ambassador/?district=${userDistrict}&userid=${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +133,7 @@ export default function MemberRequests() {
     setProcessingIds((prev) => new Set(prev).add(userId))
 
     try {
-      const response = await fetch(`http://localhost:5000/artclub/disapprove-ambassador/?district=${userDistrict}&userid=${userId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/disapprove-ambassador/?district=${userDistrict}&userid=${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

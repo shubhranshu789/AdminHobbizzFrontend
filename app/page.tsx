@@ -24,22 +24,7 @@ export default function Page() {
     <div>
       <Suspense fallback={<p>Loading authentication screen...</p>}>
         <Auth />
-        {shouldShowCompetition && (
-          <Suspense fallback={<p>Loading components...</p>}>
-            <>
-              <DirectorParticularCompetition />
-              <JudgeAssignedEvents />
-              <EditorDashboard />
-              <DistrictParticularCompetitionParticipants />
-              <DistrictAddActivities />
-              <Suspense fallback={<p>Loading Assign Head...</p>}>
-                <DistrictAssignHead />
-              </Suspense>
-              <EditorArtClubParticularJournal />
-              <EditorViewParticularHeritage />
-            </>
-          </Suspense>
-        )}
+        
       </Suspense>
     </div>
   );

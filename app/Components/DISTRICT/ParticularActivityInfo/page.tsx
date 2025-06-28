@@ -2,6 +2,7 @@
 import React from 'react'
 import { useSearchParams } from "next/navigation";
 import NavBar from "../../../Components/DISTRICT/DirectorNavbar/page"
+import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -35,7 +36,7 @@ type Upload = {
 };
 
 
-function page() {
+function DistrictParticularActivityInfoInner() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [token, setToken] = useState<string | null>(null);
@@ -65,7 +66,7 @@ function page() {
       }
     }
 
-    fetch(`http://localhost:5000/getactivity/${id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/getactivity/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -93,7 +94,7 @@ function page() {
 
   //     try {
   //       const token = localStorage.getItem("jwt");
-  //       const res = await fetch(`http://localhost:5000/has-uploaded/${id}`, {
+  //       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/has-uploaded/${id}`, {
   //         headers: {
   //           Authorization: `Bearer ${token}`,
   //         },
@@ -113,7 +114,7 @@ function page() {
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`http://localhost:5000/event-participants/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -138,7 +139,7 @@ function page() {
     const fetchApprovedUploads = async () => {
       try {
         setLoadingApproved(true);
-        const res = await fetch(`http://localhost:5000/activity/approved-uploads/${event?._id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/approved-uploads/${event?._id}`);
         const data = await res.json();
         setApprovedUploads(data.approvedUploads || []);
       } catch (error) {
@@ -174,7 +175,7 @@ function page() {
 
   // const registerForActivity = async (activityId: string) => {
   //   try {
-  //     const response = await fetch(`http://localhost:5000/register-activity/${activityId}`, {
+  //     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register-activity/${activityId}`, {
   //       method: "POST",
   //       headers: {
   //         "Content-Type": "application/json",
@@ -199,7 +200,7 @@ function page() {
 
   // const unregisterFromActivity = async (activityId: string) => {
   //   try {
-  //     const response = await fetch(`http://localhost:5000/unregister-activity/${activityId}`, {
+  //     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/unregister-activity/${activityId}`, {
   //       method: "POST",
   //       headers: {
   //         "Content-Type": "application/json",
@@ -255,7 +256,7 @@ function page() {
 
       if (result.url) {
         const token = localStorage.getItem("jwt");
-        const response = await fetch(`http://localhost:5000/upload-photo/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload-photo/${id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -465,4 +466,10 @@ function page() {
   )
 }
 
-export default page
+export default function DistrictParticularActivityInfoPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-6"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+      <DistrictParticularActivityInfoInner />
+    </Suspense>
+  );
+}

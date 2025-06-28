@@ -52,7 +52,7 @@ export const ContinuousCalendar: React.FC<ContinuousCalendarProps> = ({ onClick 
   }));
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/events")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/events`)
       .then((res) => res.json())
       .then((data) => setEvents(data))
       .catch((err) => console.error("Failed to load events:", err));
@@ -122,7 +122,7 @@ export const ContinuousCalendar: React.FC<ContinuousCalendarProps> = ({ onClick 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/events", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/events`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

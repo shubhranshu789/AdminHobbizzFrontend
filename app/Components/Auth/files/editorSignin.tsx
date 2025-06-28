@@ -74,7 +74,7 @@ export default function SignIn() {
 
 
         //sending data to server
-        fetch("http://localhost:5000/editor-signin", {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/editor-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

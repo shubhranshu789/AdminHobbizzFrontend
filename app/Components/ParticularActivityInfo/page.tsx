@@ -2,6 +2,7 @@
 import React from 'react'
 import { useSearchParams } from "next/navigation";
 import NavBar from "../Navbar/page"
+import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -69,7 +70,7 @@ type HallOfFameUpload = {
   isHallofFame: boolean;
 };
 
-function page() {
+function ParticularActivityInfoInner() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [token, setToken] = useState<string | null>(null);
@@ -106,7 +107,7 @@ function page() {
 
     const fetchEvent = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/getactivity/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getactivity/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -139,7 +140,7 @@ function page() {
 
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`http://localhost:5000/has-uploaded-user/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/has-uploaded-user/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -159,7 +160,7 @@ function page() {
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`http://localhost:5000/event-participants-user/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants-user/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -195,7 +196,7 @@ function page() {
 
   const registerForActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/register-activity-user/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register-activity-user/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -220,7 +221,7 @@ function page() {
 
   const unregisterFromActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/unregister-activity-user/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/unregister-activity-user/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -274,7 +275,7 @@ function page() {
 
       if (result.url) {
         const token = localStorage.getItem("jwt");
-        const response = await fetch(`http://localhost:5000/upload-photo-user/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload-photo-user/${id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -304,7 +305,7 @@ function page() {
   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
         {
           method: "PUT",
           headers: {
@@ -332,7 +333,7 @@ function page() {
   const handleApprovalHallOfFame = async (activityId: any, uploadId: any, isHallofFame: boolean) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/activity/${isHallofFame ? "approve" : "disapprove"}-halloffame/${activityId}/${uploadId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/activity/${isHallofFame ? "approve" : "disapprove"}-halloffame/${activityId}/${uploadId}`,
         {
           method: "PUT",
           headers: {
@@ -366,7 +367,7 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
     const fetchApprovedUploads = async () => {
       try {
         setLoadingApproved(true);
-        const res = await fetch(`http://localhost:5000/activity/approved-uploads/${event?._id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/approved-uploads/${event?._id}`);
         const data = await res.json();
         setApprovedUploads(data.approvedUploads || []);
       } catch (error) {
@@ -391,7 +392,7 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
     const fetchHallOfFame = async () => {
       try {
         setLoadingHallOfFame(true);
-        const res = await fetch(`http://localhost:5000/activity/hallOfFamePosts/${event?._id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/hallOfFamePosts/${event?._id}`);
         const data = await res.json();
         setHallOfFameUploads(data.approvedUploads || []);
       } catch (error) {
@@ -785,4 +786,10 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
   )
 }
 
-export default page
+export default function ParticularActivityInfoPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-6"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+      <ParticularActivityInfoInner />
+    </Suspense>
+  );
+}

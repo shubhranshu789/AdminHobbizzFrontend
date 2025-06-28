@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -25,7 +25,7 @@ interface HeritageData {
   updatedAt: string
 }
 
-export default function ViewParticularHeritage() {
+function ViewParticularHeritageInner() {
   const [heritage, setHeritage] = useState<HeritageData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -42,7 +42,7 @@ export default function ViewParticularHeritage() {
       }
 
       try {
-        const response = await fetch(`http://localhost:5000/artHeritage/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artHeritage/${id}`)
 
         if (!response.ok) {
           throw new Error("Failed to fetch heritage data")
@@ -185,4 +185,12 @@ export default function ViewParticularHeritage() {
     </div>
 
   )
+}
+
+export default function ViewParticularHeritagePage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-6"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+      <ViewParticularHeritageInner />
+    </Suspense>
+  );
 }

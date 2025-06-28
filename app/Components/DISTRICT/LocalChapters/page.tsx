@@ -80,7 +80,7 @@ const LocalChapterPage: React.FC = () => {
     try {
       setIsLoading(true)
       setError(null)
-      const response = await fetch(`http://localhost:5000/get-events?club=${userData.club}&district=${userData.district}`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-events?club=${userData.club}&district=${userData.district}`)
 
       if (!response.ok) {
         throw new Error(`Failed to fetch chapters: ${response.statusText}`)
@@ -150,8 +150,8 @@ const LocalChapterPage: React.FC = () => {
 
       const isEditing = !!selectedChapter?.chapter_id
       const url = isEditing
-        ? `http://localhost:5000/update-event/${selectedChapter.chapter_id}`
-        : `http://localhost:5000/create-event`
+        ? `${process.env.NEXT_PUBLIC_API_URL}/update-event/${selectedChapter.chapter_id}`
+        : `${process.env.NEXT_PUBLIC_API_URL}/create-event`
       const method = isEditing ? "PUT" : "POST"
 
       const submitData = {
@@ -231,7 +231,7 @@ const LocalChapterPage: React.FC = () => {
       setIsSubmitting(true)
       setError(null)
 
-      const response = await fetch(`http://localhost:5000/delete-chapter/${chapterToDeleteId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/delete-chapter/${chapterToDeleteId}`, {
         method: "DELETE",
       })
 
@@ -260,7 +260,7 @@ const LocalChapterPage: React.FC = () => {
       try {
         setError(null)
 
-        const response = await fetch(`http://localhost:5000/update-chapter-status/${chapterId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/update-chapter-status/${chapterId}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

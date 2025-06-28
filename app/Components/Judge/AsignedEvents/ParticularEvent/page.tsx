@@ -1,7 +1,7 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import { SetStateAction, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react"
+import { SetStateAction, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState, Suspense } from "react"
 // import type { Competition } from "@/types/competition"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -57,7 +57,7 @@ type Competition = {
 
 
 
-export default function CompetitionPage() {
+function CompetitionPageInner() {
     const searchParams = useSearchParams()
     const competitionId = searchParams.get("id")
 
@@ -87,7 +87,7 @@ export default function CompetitionPage() {
             }
 
             try {
-                const response = await fetch(`http://localhost:5000/getCompitition/${competitionId}`)
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${competitionId}`)
 
                 if (!response.ok) {
                     throw new Error("Failed to fetch competition")
@@ -162,7 +162,7 @@ export default function CompetitionPage() {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/assign-mark", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/assign-mark`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -383,4 +383,12 @@ export default function CompetitionPage() {
         </div>
 
     )
+}
+
+export default function CompetitionPage() {
+    return (
+        <Suspense fallback={<div className="container mx-auto p-6 space-y-6"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+            <CompetitionPageInner />
+        </Suspense>
+    );
 }

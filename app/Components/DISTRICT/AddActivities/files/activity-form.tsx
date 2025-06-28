@@ -104,7 +104,7 @@ export default function ActivityForm() {
 
 
     if (url) {
-      fetch("http://localhost:5000/create-activity", {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/create-activity`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",

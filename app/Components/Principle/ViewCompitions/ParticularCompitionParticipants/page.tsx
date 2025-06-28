@@ -2,6 +2,7 @@
 import React from 'react'
 import { useSearchParams } from "next/navigation";
 import NavBar from "../../PrincipleNavBar/page"
+import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -49,7 +50,7 @@ type Participant = {
 
 
 
-function page() {
+function PrincipleParticularCompitionParticipantsInner() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [token, setToken] = useState<string | null>(null);
@@ -82,7 +83,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
       }
     }
 
-    fetch(`http://localhost:5000/getCompitition/${id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -110,7 +111,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
 
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`http://localhost:5000/has-uploaded-compitition/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/has-uploaded-compitition/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -130,7 +131,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`http://localhost:5000/event-participants-compi/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants-compi/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -166,7 +167,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
 
   const registerForActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/register-compitition/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register-compitition/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -191,7 +192,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
 
   const unregisterFromActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/unregister-compitition/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/unregister-compitition/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -245,7 +246,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
 
       if (result.url) {
         const token = localStorage.getItem("jwt");
-        const response = await fetch(`http://localhost:5000/upload-photo-compitition/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload-photo-compitition/${id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -275,7 +276,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
 //   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
 //     try {
 //       const res = await fetch(
-//         `http://localhost:5000/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
+//         `${process.env.NEXT_PUBLIC_API_URL}/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
 //         {
 //           method: "PUT",
 //           headers: {
@@ -309,7 +310,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
     const fetchApprovedUploads = async () => {
       try {
         setLoadingApproved(true);
-        const res = await fetch(`http://localhost:5000/activity/approved-uploads/${event?._id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/approved-uploads/${event?._id}`);
         const data = await res.json();
         setApprovedUploads(data.approvedUploads || []);
       } catch (error) {
@@ -615,4 +616,10 @@ const [openImage, setOpenImage] = useState<string | null>(null);
   )
 }
 
-export default page
+export default function PrincipleParticularCompitionParticipantsPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-6"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+      <PrincipleParticularCompitionParticipantsInner />
+    </Suspense>
+  );
+}

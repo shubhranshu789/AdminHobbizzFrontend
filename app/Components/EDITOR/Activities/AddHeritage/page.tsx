@@ -49,7 +49,7 @@ const HallOfFameForm = () => {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/heritage", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/heritage`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
@@ -72,7 +72,7 @@ const HallOfFameForm = () => {
     const fetchItems = async () => {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:5000/heritagegetallpost");
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/heritagegetallpost`);
             const data = await res.json();
             if (res.ok) setItems(data.data || []);
             else toast.error(data.message || "Error fetching data");

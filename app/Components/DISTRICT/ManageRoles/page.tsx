@@ -52,7 +52,7 @@ export default function MemberRequests() {
   useEffect(() => {
     const fetchMemberRequests = async () => {
       try {
-        const response = await fetch("http://localhost:5000/artclub/member-requests", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/member-requests`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export default function MemberRequests() {
     setProcessingIds((prev) => new Set(prev).add(userId));
 
     try {
-      const response = await fetch(`http://localhost:5000/artclub/approve/${userId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/approve/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export default function MemberRequests() {
     setProcessingIds((prev) => new Set(prev).add(userId))
 
     try {
-      const response = await fetch(`http://localhost:5000/artclub/disapprove/${userId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artclub/disapprove/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

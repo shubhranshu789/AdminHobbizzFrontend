@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Loader2 } from "lucide-react"
@@ -35,8 +35,7 @@ type Judge = {
   __v: number;
 };
 
-export default function CompetitionDisplay({
-}) {
+function ParticularCompitionInner() {
   const [competition, setCompetition] = useState<Competition | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -52,7 +51,7 @@ export default function CompetitionDisplay({
   useEffect(() => {
     const fetchJudges = async () => {
       try {
-        const res = await fetch("http://localhost:5000/allJudges"); // adjust if needed
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allJudges`); // adjust if needed
         const data = await res.json();
         setJudges(data);
       } catch (err) {
@@ -62,7 +61,7 @@ export default function CompetitionDisplay({
 
 
     // const fetchAssignedJudges = async () => {
-    //   const res = await fetch(`http://localhost:5000/competition/${id}`); // make sure this route returns populated judges
+    //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/competition/${id}`); // make sure this route returns populated judges
     //   const data = await res.json();
     //   setAssignedJudges(data.judges || []);
     // };
@@ -73,7 +72,7 @@ export default function CompetitionDisplay({
 
     const fetchAssignedJudges = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/competition/${id}/judges`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/competition/${id}/judges`);
         const data = await res.json();
         setAssignedJudges(data.judges);
       } catch (err) {
@@ -90,7 +89,7 @@ export default function CompetitionDisplay({
         setLoading(true)
         setError(null)
 
-        const response = await fetch(`http://localhost:5000/getCompitition/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${id}`)
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
@@ -148,7 +147,7 @@ export default function CompetitionDisplay({
 
 
   const toggleLive = async (value: any) => {
-    const res = await fetch(`http://localhost:5000/activity/set-live/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/set-live/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isLive: value }),
@@ -161,7 +160,7 @@ export default function CompetitionDisplay({
   const handleAssignJudge = async (judgeId: any) => {
     if (!judgeId) return;
 
-    const res = await fetch("http://localhost:5000/assignJudge", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/assignJudge`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, judgeId }),
@@ -180,7 +179,7 @@ export default function CompetitionDisplay({
 
   const handleRemoveJudge = async (judgeId: any) => {
     try {
-      const res = await fetch("http://localhost:5000/removeJudge", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/removeJudge`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -314,4 +313,12 @@ export default function CompetitionDisplay({
     </div>
 
   )
+}
+
+export default function ParticularCompitionPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-6"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+      <ParticularCompitionInner />
+    </Suspense>
+  );
 }
