@@ -17,13 +17,17 @@ const DistrictAssignHead = React.lazy(() =>
 import EditorArtClubParticularJournal from "../app/Components/EDITOR/Activities/ArtJournal/ArtClubParticularJournal/page";
 import EditorViewParticularHeritage from "../app/Components/EDITOR/Activities/AddHeritage/ViewParticularHeritage/page";
 
+
+import Welcome from "../app/HobbizzWelcomePage/page"
+
 export default function Page() {
   const shouldShowCompetition = true;
 
   return (
     <div>
       <Suspense fallback={<p>Loading authentication screen...</p>}>
-        <Auth />
+        {/* <Auth /> */}
+        <Welcome/>
         
       </Suspense>
     </div>
