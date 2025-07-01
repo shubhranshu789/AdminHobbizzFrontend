@@ -6,14 +6,32 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useRouter } from 'next/navigation';
 
 
-// import "../Components/Auth/SignUp"
+import { Leaf } from "lucide-react"
+import { Camera } from "lucide-react"
+import { PenLine, BookText } from "lucide-react"
+import { Mic, Megaphone } from "lucide-react"
+import { Briefcase, TrendingUp } from "lucide-react"
+// import { Heart, Sparkles } from "lucide-react"
+import { Utensils } from "lucide-react"
+import { Clapperboard } from "lucide-react"
+import { Globe, Landmark } from "lucide-react"
+import { Activity, HeartPulse } from "lucide-react"
+
+
+
+// import "../Components/ArtClub/WelcomePage"
 
 export default function HomePage() {
-    const router = useRouter();
+  const router = useRouter();
 
-    const AuthPageArt = () => {
-        router.push('/Components/Auth/SignUp');
-    };
+  const AuthPageArt = () => {
+    router.push('/Components/Auth/SignUp');
+  };
+
+  const ArtPageWelcome = () => {
+    router.push('/Components/ArtClub/WelcomePage');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       {/* Header */}
@@ -55,7 +73,7 @@ export default function HomePage() {
             guidance, a simple interest can evolve into a lifelong passion.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-[#357af3] hover:bg-[#2968d9] text-white px-8 py-4 text-lg">
+            {/* <Button size="lg" className="bg-[#357af3] hover:bg-[#2968d9] text-white px-8 py-4 text-lg">
               Explore Clubs
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
@@ -65,7 +83,7 @@ export default function HomePage() {
               className="border-[#357af3] text-[#357af3] hover:bg-[#357af3] hover:text-white px-8 py-4 text-lg bg-transparent"
             >
               Watch Demo
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>
@@ -82,12 +100,12 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="clubs">
-            <Card onClick={() => {AuthPageArt()}} className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+            <Card onClick={() => { ArtPageWelcome() }} className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-pink-400 to-red-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Palette className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">🎨 Art & Design</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Art Club</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Nurture imagination through painting, sketching, and digital design
                 </p>
@@ -97,9 +115,9 @@ export default function HomePage() {
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Music className="w-8 h-8 text-white" />
+                  <PenTool className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">💃 Dance & Music</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Craft & Home Decor</h3>
                 <p className="text-gray-600 leading-relaxed">Let rhythm and melody build confidence and expression</p>
               </CardContent>
             </Card>
@@ -107,9 +125,9 @@ export default function HomePage() {
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-[#357af3] to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Bot className="w-8 h-8 text-white" />
+                  <Music className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">🤖 Tech & Robotics</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Music</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Inspire the next generation of creators and problem-solvers
                 </p>
@@ -119,9 +137,9 @@ export default function HomePage() {
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <PenTool className="w-8 h-8 text-white" />
+                  <Sparkles className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">✍️ Creative Writing</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Dance</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Cultivate powerful voices and bold ideas through writing and public speaking
                 </p>
@@ -131,14 +149,115 @@ export default function HomePage() {
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Heart className="w-8 h-8 text-white" />
+                  <Bot className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">🧘 Wellness & Mindfulness</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Tech</h3>
                 <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20 md:col-span-2 lg:col-span-1">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Leaf className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Gardening & Nature</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Camera className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Photography</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <PenLine className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Literary</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Mic className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Public Speaking</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-sky-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Briefcase className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Entrepreneurship</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-fuchsia-500 to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Heart className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Beauty & Makeup</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-lime-500 to-green-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Utensils className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Foodies</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Clapperboard className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Drama</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Culture & Tradition</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-rose-500 to-red-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <HeartPulse className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Yoga & Fitness</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
+
+            {/* <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20 md:col-span-2 lg:col-span-1">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-[#357af3] to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Sparkles className="w-8 h-8 text-white" />
@@ -148,7 +267,9 @@ export default function HomePage() {
                   Whether it's a hobby or a hidden talent — at HOBBIZZ, every interest has a home
                 </p>
               </CardContent>
-            </Card>
+            </Card> */}
+
+
           </div>
         </div>
       </section>
