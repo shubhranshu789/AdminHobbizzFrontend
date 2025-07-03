@@ -11,6 +11,10 @@ import Navbar from "../../PrincipleNavBar/page"
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast"
 
+
+import { Button } from "@/components/ui/button"
+import { Trophy, Medal, Award, User, Calendar, Star } from "lucide-react"
+
 interface Competition {
   _id: string
   title: string
@@ -35,13 +39,37 @@ type Judge = {
   __v: number;
 };
 
+
+interface ContestResult {
+  uploadId: string
+  pic: string
+  totalScore: number
+  breakdown: {
+    judge1: number
+    judge2: number
+    judge3: number
+    judge4: number
+  }
+  uploadedBy: {
+    _id: string
+    name: string
+    email: string
+  }
+  createdAt: string
+  rank: number
+}
+
 function ParticularCompitionInner() {
   const [competition, setCompetition] = useState<Competition | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [results, setResults] = useState<ContestResult[]>([])
+
 
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+
+  const [success, setSuccess] = useState(false);
 
 
   const [judges, setJudges] = useState<Judge[]>([]);
@@ -204,8 +232,85 @@ function ParticularCompitionInner() {
   };
 
 
+
+  const generateResults = async (id: any) => {
+    setLoading(true)
+    setError(null)
+
+    try {
+      // Replace with your actual contest ID
+      // const contestId = "685828ce20a1a9e01b628608"
+      const response = await fetch(`http://localhost:5000/${id}/results`)
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch results")
+      }
+
+      const data = await response.json()
+      setResults(data)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred")
+    } finally {
+      setLoading(false)
+    }
+
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`http://localhost:5000/${id}/generate-result`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error || "Failed to generate result");
+
+      setSuccess(true);
+      console.log("Result Live:", data.resultLive);
+    } catch (err) {
+      console.error("Error:");
+      // setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+
+
+
+
+  }
+
+  const getRankIcon = (rank: number) => {
+    switch (rank) {
+      case 1:
+        return <Trophy className="w-6 h-6 text-yellow-500" />
+      case 2:
+        return <Medal className="w-6 h-6 text-gray-400" />
+      case 3:
+        return <Award className="w-6 h-6 text-amber-600" />
+      default:
+        return <span className="w-6 h-6 flex items-center justify-center text-sm font-bold text-gray-600">#{rank}</span>
+    }
+  }
+
+  const getRankColor = (rank: number) => {
+    switch (rank) {
+      case 1:
+        return "bg-gradient-to-r from-yellow-400 to-yellow-600"
+      case 2:
+        return "bg-gradient-to-r from-gray-300 to-gray-500"
+      case 3:
+        return "bg-gradient-to-r from-amber-400 to-amber-600"
+      default:
+        return "bg-gradient-to-r from-blue-400 to-blue-600"
+    }
+  }
+
+
   return (
-    <div style={{ marginTop: "80px" }}>
+    <div style={{ marginTop: "60px" }}>
       <Navbar />
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
@@ -306,10 +411,129 @@ function ParticularCompitionInner() {
 
           <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t">
             <span>Competition ID: {competition._id}</span>
-            <span>Posted by: {competition.postedBy.length} user(s)</span>
+            {/* <span>Posted by: {competition.postedBy.length} user(s)</span> */}
+
+            {/* <button>Generate Result</button> */}
           </div>
         </CardContent>
       </Card>
+
+
+      <div>
+        <div className="max-w-4xl mx-auto p-6 space-y-6">
+          <div className="text-center space-y-4">
+            <h1 className="text-3xl font-bold text-gray-900">Contest Results</h1>
+            <Button
+              onClick={() => generateResults(id)}
+              disabled={loading}
+              size="lg"
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+            >
+              {loading ? "Generating Results..." : "Generate Result"}
+            </Button>
+          </div>
+
+          {error && (
+            <Card className="border-red-200 bg-red-50">
+              <CardContent className="pt-6">
+                <p className="text-red-600 text-center">Error: {error}</p>
+              </CardContent>
+            </Card>
+          )}
+
+          {results.length > 0 && (
+            <div className="space-y-4">
+              <h2 className="text-2xl font-semibold text-center mb-6">🏆 Leaderboard</h2>
+
+              {results.map((result) => (
+                <Card
+                  key={result.uploadId}
+                  className={`relative overflow-hidden ${result.rank <= 3 ? "ring-2 ring-offset-2" : ""} ${result.rank === 1
+                    ? "ring-yellow-400"
+                    : result.rank === 2
+                      ? "ring-gray-400"
+                      : result.rank === 3
+                        ? "ring-amber-400"
+                        : ""
+                    }`}
+                >
+                  <div className={`absolute top-0 left-0 right-0 h-1 ${getRankColor(result.rank)}`} />
+
+                  <CardHeader className="pb-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        {getRankIcon(result.rank)}
+                        <div>
+                          <CardTitle className="text-lg">{result.uploadedBy.name}</CardTitle>
+                          <p className="text-sm text-gray-500">{result.uploadedBy.email}</p>
+                        </div>
+                      </div>
+                      <Badge variant="secondary" className="text-lg px-3 py-1">
+                        <Star className="w-4 h-4 mr-1" />
+                        {result.totalScore} pts
+                      </Badge>
+                    </div>
+                  </CardHeader>
+
+                  <CardContent className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Image */}
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-gray-700">Submission</h4>
+                        <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-100">
+                          <Image
+                            src={result.pic || "/placeholder.svg"}
+                            alt={`Submission by ${result.uploadedBy.name}`}
+                            fill
+                            className="object-cover"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement
+                              target.src = "/placeholder.svg?height=300&width=300"
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Scores and Details */}
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-medium text-gray-700 mb-2">Judge Scores</h4>
+                          <div className="grid grid-cols-2 gap-2">
+                            {Object.entries(result.breakdown).map(([judge, score]) => (
+                              <div key={judge} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                <span className="text-sm capitalize">{judge.replace("judge", "Judge ")}</span>
+                                <Badge variant={score > 0 ? "default" : "secondary"}>{score}</Badge>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center space-x-2 text-sm text-gray-500">
+                          <Calendar className="w-4 h-4" />
+                          <span>Submitted: {new Date(result.createdAt).toLocaleDateString()}</span>
+                        </div>
+
+                        <div className="flex items-center space-x-2 text-sm text-gray-500">
+                          <User className="w-4 h-4" />
+                          <span>ID: {result.uploadId}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {results.length === 0 && !loading && !error && (
+            <Card>
+              <CardContent className="pt-6">
+                <p className="text-center text-gray-500">Click "Generate Result" to view the contest leaderboard</p>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </div>
     </div>
 
   )
