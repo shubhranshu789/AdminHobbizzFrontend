@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 import { useSearchParams } from "next/navigation";
-import NavBar from "../Navbar/page"
+import NavBar from "../../PrincipleNavBar/page"
 import { Suspense } from "react";
 
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,7 @@ import { Calendar, Clock, User, Users } from "lucide-react"
 import Image from "next/image"
 import { formatDistanceToNow } from "date-fns"
 import { useEffect, useState } from "react"
+
 
 
 type Upload = {
@@ -23,7 +24,7 @@ type Upload = {
   updatedAt: string;
 };
 
-type Event = {
+type EventType = {
   _id: string;
   title: string;
   desc: string;
@@ -44,48 +45,25 @@ type Participant = {
   email: string;
   ip: string;
   pic: string;
-  uploadId: string;
-  isApproved: boolean;
-};
-
-
-type ApprovedUpload = {
-  _id: string;
-  pic: string;
-  name: string;
-  email: string;
-  uploadedBy: string;
-  createdAt: string;
 };
 
 
 
-type HallOfFameUpload = {
-  _id: string;
-  pic: string;
-  name: string;
-  email: string;
-  uploadedBy: string;
-  createdAt: string;
-  isHallofFame: boolean;
-};
 
-function ParticularActivityInfoInner() {
+function PrincipleParticularCompitionParticipantsInner() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [token, setToken] = useState<string | null>(null);
-  // const [userId, setUserId] = useState<string | null>(null);
-  // const [isRegistered, setIsRegistered] = useState(false);
-
-  // const [event, setEvent] = useState(); // <- initialize your event state
-  const [hasUploaded, setHasUploaded] = useState(false);
-
-  const [participants, setParticipants] = useState<Participant[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [openImage, setOpenImage] = useState<string | null>(null);
-  const [event, setEvent] = useState<Event | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [isRegistered, setIsRegistered] = useState(false);
+
+  const [event, setEvent] = useState<EventType | null>(null);
+  const [hasUploaded, setHasUploaded] = useState(false);
+
+
+  const [participants, setParticipants] = useState<Participant[]>([]);
+const [loading, setLoading] = useState<boolean>(true);
+const [openImage, setOpenImage] = useState<string | null>(null);
 
 
 
@@ -105,23 +83,16 @@ function ParticularActivityInfoInner() {
       }
     }
 
-    const fetchEvent = async () => {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getactivity/${id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const result = await res.json();
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
         setEvent(result);
-      } catch (err) {
-        console.error("Error fetching event", err);
-      }
-    };
-
-    fetchEvent();
+      });
   }, [id]);
-
 
   // Separate effect to check registration once both event & userId are set
   useEffect(() => {
@@ -140,7 +111,7 @@ function ParticularActivityInfoInner() {
 
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/has-uploaded-user/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/has-uploaded-compitition/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -160,7 +131,7 @@ function ParticularActivityInfoInner() {
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants-user/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants-compi/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -196,7 +167,7 @@ function ParticularActivityInfoInner() {
 
   const registerForActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register-activity-user/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register-compitition/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -221,7 +192,7 @@ function ParticularActivityInfoInner() {
 
   const unregisterFromActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/unregister-activity-user/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/unregister-compitition/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -275,7 +246,7 @@ function ParticularActivityInfoInner() {
 
       if (result.url) {
         const token = localStorage.getItem("jwt");
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload-photo-user/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload-photo-compitition/${id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -302,66 +273,38 @@ function ParticularActivityInfoInner() {
   };
 
 
-  const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+//   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
+//     try {
+//       const res = await fetch(
+//         `${process.env.NEXT_PUBLIC_API_URL}/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
+//         {
+//           method: "PUT",
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//         }
+//       );
 
-      const data = await res.json();
-      if (res.ok) {
-        alert(`Upload ${isApproved ? "approved" : "disapproved"} successfully.`);
-        // Optional: Refresh list
-      } else {
-        console.error("Error:", data.error);
-        alert("Failed to update.");
-      }
-    } catch (err) {
-      console.error("Request error:", err);
-      alert("Server error.");
-    }
-  };
-
-
-
-  const handleApprovalHallOfFame = async (activityId: any, uploadId: any, isHallofFame: boolean) => {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/activity/${isHallofFame ? "approve" : "disapprove"}-halloffame/${activityId}/${uploadId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const data = await res.json();
-      if (res.ok) {
-        alert(`${isHallofFame ? "Added to hall of fame" : "Remove from hall of fame"} successfully.`);
-        // Optional: Refresh list
-      } else {
-        console.error("Error:", data.error);
-        alert("Failed to update.");
-      }
-    } catch (err) {
-      console.error("Request error:", err);
-      alert("Server error.");
-    }
-  };
+//       const data = await res.json();
+//       if (res.ok) {
+//         alert(`Upload ${isApproved ? "approved" : "disapproved"} successfully.`);
+//         // Optional: Refresh list
+//       } else {
+//         console.error("Error:", data.error);
+//         alert("Failed to update.");
+//       }
+//     } catch (err) {
+//       console.error("Request error:", err);
+//       alert("Server error.");
+//     }
+//   };
 
 
 
 
 
-const [approvedUploads, setApprovedUploads] = useState<ApprovedUpload[]>([]);
-const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
+  const [approvedUploads, setApprovedUploads] = useState([]);
+  const [loadingApproved, setLoadingApproved] = useState(true);
 
   useEffect(() => {
     const fetchApprovedUploads = async () => {
@@ -384,42 +327,14 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
 
 
 
-
-  const [hallOfFameUploads, setHallOfFameUploads] = useState<HallOfFameUpload[]>([]);
-  const [loadingHallOfFame, setLoadingHallOfFame] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchHallOfFame = async () => {
-      try {
-        setLoadingHallOfFame(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/hallOfFamePosts/${event?._id}`);
-        const data = await res.json();
-        setHallOfFameUploads(data.approvedUploads || []);
-      } catch (error) {
-        console.error("Error fetching approved uploads", error);
-      } finally {
-        setLoadingHallOfFame(false);
-      }
-    };
-
-    if (event?._id) {
-      fetchHallOfFame();
-    }
-  }, [event?._id]);
-
-
-
-
   return (
     <div style={{ marginTop: "50px" }}>
       <NavBar />
-
-      
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Hero Section with Event Image */}
           <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-xl">
-            <Image src={event?.pic || "/placeholder.svg"} alt={event?.title || "/placeholder.svg"} fill className="object-cover" priority />
+            <Image src={event?.pic || ""} alt={event?.title || ""} fill className="object-cover" priority />
             <div className="absolute inset-0 bg-black/30 flex items-end">
               <div className="p-6 w-full">
                 <Badge className="mb-2 bg-primary hover:bg-primary/90 capitalize">{event?.category}</Badge>
@@ -447,10 +362,10 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
 
-                  {/* <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2">
                     <User className="h-5 w-5 text-muted-foreground" />
                     <span>Posted by: {event?.postedBy[0].substring(0, 8)}...</span>
-                  </div> */}
+                  </div>
                   <div className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-muted-foreground" />
                     <span>{event?.Registrations.length} Registrations</span>
@@ -478,8 +393,8 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
             </CardFooter> */}
           </Card>
 
-{/* 
-          <div style={{ marginBottom: "30px" }}>
+
+          {/* <div style={{ marginBottom: "30px" }}>
             {isRegistered ? (
               hasUploaded ? (
                 <div className="w-full max-w-md mx-auto p-4 bg-white dark:bg-gray-900 shadow-lg rounded-lg">
@@ -581,12 +496,13 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
                             onClick={() => setOpenImage(upload.pic)}
                           />
                         </div>
+
+                        
                         <div className="flex-1 space-y-1">
                           <p className="text-base font-semibold">{upload.name}</p>
                           <p className="text-sm text-muted-foreground">{upload.email}</p>
 
-                          {/* ✅ Approval Status Tag */}
-                          {upload.isApproved !== null && (
+                          {/* {upload.isApproved !== null && (
                             <span
                               className={`inline-block px-2 py-1 text-xs rounded-full font-semibold ${upload.isApproved
                                 ? "bg-green-100 text-green-800"
@@ -595,8 +511,9 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
                             >
                               {upload.isApproved ? "Approved" : "Disapproved"}
                             </span>
-                          )}
-                          <div className="flex gap-3 pt-2">
+                          )} */}
+
+                          {/* <div className="flex gap-3 pt-2">
                             <button
                               onClick={() => handleApproval(event?._id, upload.uploadId, true)}
                               className="px-4 py-1 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md"
@@ -609,30 +526,8 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
                             >
                               Disapprove
                             </button>
-                          </div>
-
-
-                          <div className="flex gap-3 pt-2">
-                            <button
-                              onClick={() => handleApprovalHallOfFame(event?._id, upload.uploadId, true)}
-                              className="px-4 py-1 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md"
-                            >
-                              Add to Hall of Fame
-                            </button>
-                            <button
-                              onClick={() => handleApprovalHallOfFame(event?._id, upload.uploadId, false)}
-                              className="px-4 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-md"
-                            >
-                              Remove from hall of Fame
-                            </button>
-                          </div>
+                          </div> */}
                         </div>
-
-
-
-
-
-
 
 
 
@@ -701,76 +596,9 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
 
 
 
-      <div className="mt-10">
-        <h2 className="text-xl font-semibold mb-4">✅ Approved Uploads</h2>
-
-        {loadingApproved ? (
-          <p className="text-sm text-muted-foreground">Loading approved uploads...</p>
-        ) : approvedUploads?.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No uploads approved yet.</p>
-        ) : (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {approvedUploads.map((upload) => (
-              <li
-                key={upload._id}
-                className="bg-white rounded-lg shadow-md border p-4 space-y-2"
-              >
-                <div className="w-full h-48 overflow-hidden rounded">
-                  <img
-                    src={upload.pic}
-                    alt="Approved Upload"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">{upload.name}</p>
-                  <p className="text-sm text-gray-600">{upload.email}</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Uploaded on {new Date(upload.createdAt).toLocaleDateString()}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      
 
 
-
-
-      <div className="mt-10">
-        <h2 className="text-xl font-semibold mb-4">✅ Hall Of Fame</h2>
-
-        {loadingHallOfFame ? (
-          <p className="text-sm text-muted-foreground">Loading Hall of Fame...</p>
-        ) : hallOfFameUploads.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No Hall of Fame entries yet.</p>
-        ) : (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {hallOfFameUploads.map((upload) => (
-              <li
-                key={upload._id}
-                className="bg-white rounded-lg shadow-md border p-4 space-y-2"
-              >
-                <div className="w-full h-48 overflow-hidden rounded">
-                  <img
-                    src={upload.pic}
-                    alt={`Upload by ${upload.name}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">{upload.name}</p>
-                  <p className="text-sm text-gray-600">{upload.email}</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Uploaded on {new Date(upload.createdAt).toLocaleDateString()}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
 
 
 
@@ -788,10 +616,10 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
   )
 }
 
-export default function ParticularActivityInfoPage() {
+export default function PrincipleParticularCompitionParticipantsPage() {
   return (
     <Suspense fallback={<div className="container mx-auto p-6"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
-      <ParticularActivityInfoInner />
+      <PrincipleParticularCompitionParticipantsInner />
     </Suspense>
   );
 }

@@ -459,7 +459,7 @@ export default function ArtClubPage() {
                     </div>
                   ) : (
                     <Button className="mt-4 w-full" onClick={handleJoinRequest} disabled={isLoading}>
-                      {isLoading ? "Processing..." : "Apply For Head"}
+                      {isLoading ? "Processing..." : "Request to Join"}
                     </Button>
                   )}
 
@@ -470,11 +470,11 @@ export default function ArtClubPage() {
                     </Button>
                   </div>
 
-                  {/* <div>
+                  <div>
                     <Button className="mt-4 w-full">
                       Apply For Editor
                     </Button>
-                  </div> */}
+                  </div>
 
                   <div className="mt-6 border-t pt-4">
                     <h4 className="font-medium">Club Details</h4>
@@ -506,7 +506,7 @@ export default function ArtClubPage() {
                 </CardContent>
               </Card>
 
-              {/* <div className="mt-6">
+              <div className="mt-6">
                 <h3 className="mb-3 font-semibold">Recent Gallery</h3>
                 <div className="grid grid-cols-3 gap-2">
                   {Array.from({ length: 6 }).map((_, i) => (
@@ -522,10 +522,7 @@ export default function ArtClubPage() {
                 <Button variant="link" className="mt-2 h-auto p-0 text-sm">
                   View full gallery →
                 </Button>
-              </div> */}
-
-
-
+              </div>
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ import { Activity, HeartPulse } from "lucide-react"
 
 
 
-// import "../Components/ArtClub/WelcomePage"
+// import "../CraftClub/home"
 
 export default function HomePage() {
   const router = useRouter();
@@ -31,6 +31,13 @@ export default function HomePage() {
   const ArtPageWelcome = () => {
     router.push('/Components/ArtClub/WelcomePage');
   };
+
+  const CraftPageWelcome = () => {
+    router.push('/CraftClub/home');
+  };
+
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
@@ -112,7 +119,7 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+            <Card onClick={() => {CraftPageWelcome()}} className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <PenTool className="w-8 h-8 text-white" />
