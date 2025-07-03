@@ -24,7 +24,7 @@ export default function Component() {
     router.push('../../Components/ReviewActivity');
   };
   
-
+// ffgfgfg
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const userData = localStorage.getItem('user');
