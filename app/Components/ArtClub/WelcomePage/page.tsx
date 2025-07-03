@@ -48,7 +48,7 @@ import {
 import Navbar from "../../Navbar/page"
 
 
-// import "../../../../public/LOGO.png"
+// import "../../../Components/Auth/SignIn"
 
 
 
@@ -177,7 +177,7 @@ export default function ArtClubHomepage() {
 
 
   const GoToArtAuthPage = () => {
-    router.push("/Components/Auth/SignUp")
+    router.push("/Components/Auth/SignIn")
   }
   return (
     <div className="min-h-screen bg-white relative overflow-hidden" style={{ userSelect: "text" }}>
