@@ -229,7 +229,7 @@ export default function ArtClubHomepage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <Badge className="bg-blue-600 text-white px-4 py-2 text-sm">🎨 Welcome to Art Club</Badge>
+                <Badge className="bg-blue-600 text-white px-4 py-2 text-sm">🎨 Welcome to Craft Club</Badge>
                 <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                   <span className="text-blue-600 animate-pulse">Color Your</span>{" "}
                   <span className="text-blue-700 animate-pulse">Imagination.</span>
@@ -251,7 +251,7 @@ export default function ArtClubHomepage() {
                   onClick={() => { GoToArtAuthPage() }}
                 >
                   <Sparkles className="w-5 h-5 mr-2" />
-                  Join the Art Club
+                  Join the Craft Club
                 </Button>
 
               </div>
