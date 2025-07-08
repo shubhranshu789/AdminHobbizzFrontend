@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Trophy, Calendar, Tag, CheckCircle, XCircle, Loader2, Award } from "lucide-react"
 import Image from "next/image"
 
-import Navbar from "../Navbar/page"
+import Navbar from "../../Navbar/WelcomePageNavBar/page"
 
 import Footer from "../../Footer/page"
 

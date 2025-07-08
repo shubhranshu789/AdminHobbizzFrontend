@@ -1,17 +1,19 @@
+"use client"
+
 import React from 'react'
 import { useRouter } from 'next/navigation';
 
 function page() {
-    const router = useRouter();
+  const router = useRouter();
 
 
-    const GoToArtAuthPage = () => {
+  const GoToArtAuthPage = () => {
     router.push("/CraftClub/Auth/SignIn")
   }
 
   return (
     <div>
-        <nav
+      <nav
         style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem 2rem" }}
         className={`relative z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200 sticky top-0 shadow-lg transition-all duration-1000`}
       >
