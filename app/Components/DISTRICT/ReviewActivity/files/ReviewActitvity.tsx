@@ -89,29 +89,29 @@ function ReviewActitvity() {
     //   return;
     // }
 
-    // fetch("${process.env.NEXT_PUBLIC_API_URL}/allActivities", {
-    //     headers: {
-    //         Authorization: "Bearer " + localStorage.getItem("jwt"),
-    //     },
-    // })
-    //     .then((res) => res.json())
-    //     .then((result) => {
-    //         setPic(result);
-    //         // setPosts(result)
-    //         console.log(pic);
-    //     });
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/allActivities`, {
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+    })
+        .then((res) => res.json())
+        .then((result) => {
+            setActivities(result);
+            // setPosts(result)
+            console.log(pic);
+        });
 
-    const fetchActivities = async () => {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allActivities`);
-        const data = await res.json();
-        setActivities(data); // assuming the API returns an array directly
-      } catch (error) {
-        console.error('Error fetching activities:', error);
-      }
-    };
+    // const fetchActivities = async () => {
+    //   try {
+    //     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allActivities`);
+    //     const data = await res.json();
+    //     setActivities(data); // assuming the API returns an array directly
+    //   } catch (error) {
+    //     console.error('Error fetching activities:', error);
+    //   }
+    // };
 
-    fetchActivities();
+    // fetchActivities();
   }, []);
 
 

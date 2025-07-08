@@ -574,7 +574,7 @@ export default function ArtClubHomepage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
+            <Card onClick={() => {goToHallofFame()}} className="bg-white hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <Award className="w-8 h-8 text-blue-600" />
