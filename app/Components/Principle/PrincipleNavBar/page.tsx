@@ -8,7 +8,7 @@ import Link from "next/link"
 
 import { useRouter } from 'next/navigation';
 
-// import "../../../Components/Principle/PrincipleDashBoard"
+// import "../../../Components/DISTRICT/ManageRoles/CreateEditor"
 
 
 
@@ -35,6 +35,9 @@ function page() {
   }
   const manageRoles = () => {
     router.push('/Components/DISTRICT/ManageRoles');
+  }
+  const AddEditor = () => {
+    router.push('/Components/DISTRICT/ManageRoles/CreateEditor');
   }
 //   const gotoabout = () => {
 //     // router.push('../../Components/ParticipateInActivity');
@@ -85,6 +88,7 @@ function page() {
               {[
                 { name: "Create Compitition", icon: Home , id : "Home"},
                 { name: "View Compitition", icon: Settings , id : "Add" },
+                { name: "Add Editor", icon: Settings , id : "AddEditor" },
                 // { name: "Participate", icon: User , id : "About" },
                 // { name: "Contact", icon: Bell },
                 // { name: "manage district", icon: Zap, id: "Manage" },
@@ -115,8 +119,8 @@ function page() {
                         if (item.id === "Manage") {
                            manageDistrict();
                         }
-                        if (item.id === "ManageRole") {
-                           manageRoles();
+                        if (item.id === "AddEditor") {
+                           AddEditor();
                         }
                       }}
                     >

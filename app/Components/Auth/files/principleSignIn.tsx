@@ -322,7 +322,7 @@ export default function SignIn() {
                     </Button>
                   </motion.div>
 
-                  <motion.div
+                  {/* <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
@@ -334,7 +334,7 @@ export default function SignIn() {
                         Sign up
                       </span>
                     </p>
-                  </motion.div>
+                  </motion.div> */}
                 </form>
               </CardContent>
             </Card>

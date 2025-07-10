@@ -8,7 +8,7 @@ import Link from "next/link"
 
 import { useRouter } from 'next/navigation';
 
-// import "../../../Components/EDITOR/Activities/Calendar"
+// import "../../../Components/EDITOR/Activities/AddLEGACY"
 
 
 
@@ -45,6 +45,9 @@ function page() {
   }
   const gotoaddcalendar = () => {
     router.push('/Components/EDITOR/Activities/Calendar');
+  }
+  const gotoaddLegacy = () => {
+    router.push('/Components/EDITOR/Activities/AddLEGACY');
   }
 
 //   const gotoabout = () => {
@@ -92,6 +95,7 @@ function page() {
                 { name: "Add Gallery", icon: Zap, id: "Gallery" },
                 { name: "Add Heritage", icon: Zap, id: "Heritage" },
                 { name: "Calendar", icon: Zap, id: "Calendar" },
+                { name: "Add Legacy", icon: Zap, id: "Legacy" },
                 // { name: "Manage Role", icon: Zap, id: "ManageRole" },
               ].map((item, index) => (
                 <motion.div
@@ -127,6 +131,9 @@ function page() {
                         }
                         if (item.id === "Calendar") {
                            gotoaddcalendar();
+                        }
+                        if (item.id === "Legacy") {
+                           gotoaddLegacy();
                         }
                       }}
                     >

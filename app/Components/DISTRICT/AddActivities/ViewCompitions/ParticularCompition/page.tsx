@@ -7,6 +7,7 @@ import { Loader2 } from "lucide-react"
 import Image from "next/image"
 
 import Navbar from "../../../DirectorNavbar/page"
+import Footer from "../../../../Footer/page"
 
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast"
@@ -107,9 +108,9 @@ function DistrictParticularCompitionInner() {
   };
 
   return (
-    <div style={{ marginTop: "80px" }}>
+    <div style={{ marginTop: "65px" }}>
       <Navbar />
-      <Card className="max-w-2xl mx-auto">
+      <Card style={{marginBottom : "50px"}} className="max-w-2xl mx-auto">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="text-2xl font-bold">{competition.title}</CardTitle>
@@ -159,6 +160,8 @@ function DistrictParticularCompitionInner() {
           </div>
         </CardContent>
       </Card>
+
+      <Footer/>
     </div>
   )
 }
