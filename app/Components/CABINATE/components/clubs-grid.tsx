@@ -34,8 +34,8 @@ const clubs = [
     image: "/placeholder.svg?height=200&width=300",
   },
   {
-    id: "dance",
-    name: "Dance Club",
+    id: "craft",
+    name: "Craft Club",
     description: "Move to the rhythm of your heart",
     members: 92,
     meetingDays: "Tue, Thu, Sat",

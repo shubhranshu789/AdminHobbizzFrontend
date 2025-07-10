@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation"
 
 
 // import "../../../Components/Auth/DistricctSignUp"
+import Navbar from "../../Navbar/AuthNavbar/page"
 
 // Indian States and Districts data
 const statesAndDistricts = {
@@ -564,266 +565,269 @@ export default function CompleteRegistrationForm() {
   }
 
   return (
-    <div style={{background : "#2577ff"}} className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">Create Account</h1>
+    <div>
+      <Navbar/>
+      <div style={{background : "#2577ff"}} className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+          <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">Create Account</h1>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Full Name */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 }}
-            className="space-y-2"
-          >
-            <Label htmlFor="fullName" className="text-sm font-medium text-gray-700">
-              Full Name
-            </Label>
-            <div className="relative">
-              <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Input
-                id="fullName"
-                type="text"
-                placeholder="Enter your full name"
-                value={formData.fullName}
-                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-            </div>
-          </motion.div>
-
-          {/* Email */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="space-y-2"
-          >
-            <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-              Email
-            </Label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-            </div>
-          </motion.div>
-
-          {/* Password */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-2"
-          >
-            <Label htmlFor="password" className="text-sm font-medium text-gray-700">
-              Password
-            </Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="pl-10 pr-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-3 h-4 w-4 text-gray-400 hover:text-gray-600"
-              >
-                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Confirm Password */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            className="space-y-2"
-          >
-            <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
-              Confirm Password
-            </Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Input
-                id="confirmPassword"
-                type={showConfirmPassword ? "text" : "password"}
-                placeholder="Confirm your password"
-                value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                className="pl-10 pr-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-3 h-4 w-4 text-gray-400 hover:text-gray-600"
-              >
-                {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-              </button>
-            </div>
-          </motion.div>
-
-          {/* State */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5 }}
-            className="space-y-2"
-          >
-            <Label htmlFor="state" className="text-sm font-medium text-gray-700">
-              State
-            </Label>
-            <div className="relative">
-              <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400 z-10" />
-              <Select value={formData.state} onValueChange={handleStateChange}>
-                <SelectTrigger className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500">
-                  <SelectValue placeholder="Select your state" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Object.keys(statesAndDistricts).map((state) => (
-                    <SelectItem key={state} value={state}>
-                      {state}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </motion.div>
-
-          {/* District */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 }}
-            className="space-y-2"
-          >
-            <Label htmlFor="district" className="text-sm font-medium text-gray-700">
-              District
-            </Label>
-            <div className="relative">
-              <Building className="absolute left-3 top-3 h-4 w-4 text-gray-400 z-10" />
-              <Select value={formData.district} onValueChange={handleDistrictChange} disabled={!formData.state}>
-                <SelectTrigger className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50">
-                  <SelectValue placeholder={formData.state ? "Select your district" : "First select a state"} />
-                </SelectTrigger>
-                <SelectContent>
-                  {availableDistricts.map((district) => (
-                    <SelectItem key={district} value={district}>
-                      {district}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </motion.div>
-
-          {/* School */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.7 }}
-            className="space-y-2"
-          >
-            <Label htmlFor="school" className="text-sm font-medium text-gray-700">
-              School
-            </Label>
-            <div className="relative">
-              <GraduationCap className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Input
-                id="school"
-                type="text"
-                placeholder="Enter your school name"
-                value={formData.school}
-                onChange={(e) => setFormData({ ...formData, school: e.target.value })}
-                className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-            </div>
-          </motion.div>
-
-          {/* Terms and Conditions */}
-          {/* <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex items-center space-x-2"
-          >
-            <Checkbox
-              id="terms"
-              checked={agreedToTerms}
-              onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
-            />
-            <Label htmlFor="terms" className="text-sm text-gray-600">
-              I agree to the{" "}
-              <a href="#" className="text-blue-600 hover:underline">
-                Terms and Conditions
-              </a>
-            </Label>
-          </motion.div> */}
-
-          {/* Submit Button */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}>
-            <Button
-              type="submit"
-              disabled={isLoading}
-              className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium disabled:opacity-50"
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Full Name */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="space-y-2"
             >
-              {isLoading ? "Creating Account..." : "Create Account"}
-            </Button>
-          </motion.div>
-        </form>
+              <Label htmlFor="fullName" className="text-sm font-medium text-gray-700">
+                Full Name
+              </Label>
+              <div className="relative">
+                <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Input
+                  id="fullName"
+                  type="text"
+                  placeholder="Enter your full name"
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+            </motion.div>
 
-        {/* Display selected values for testing */}
-        {formData.state && formData.district && (
+            {/* Email */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="space-y-2"
+            >
+              <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                Email
+              </Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+            </motion.div>
+
+            {/* Password */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="space-y-2"
+            >
+              <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+                Password
+              </Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  className="pl-10 pr-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 h-4 w-4 text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Confirm Password */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+              className="space-y-2"
+            >
+              <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
+                Confirm Password
+              </Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Input
+                  id="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm your password"
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                  className="pl-10 pr-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-3 h-4 w-4 text-gray-400 hover:text-gray-600"
+                >
+                  {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+            </motion.div>
+
+            {/* State */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              className="space-y-2"
+            >
+              <Label htmlFor="state" className="text-sm font-medium text-gray-700">
+                State
+              </Label>
+              <div className="relative">
+                <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400 z-10" />
+                <Select value={formData.state} onValueChange={handleStateChange}>
+                  <SelectTrigger className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500">
+                    <SelectValue placeholder="Select your state" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.keys(statesAndDistricts).map((state) => (
+                      <SelectItem key={state} value={state}>
+                        {state}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </motion.div>
+
+            {/* District */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 }}
+              className="space-y-2"
+            >
+              <Label htmlFor="district" className="text-sm font-medium text-gray-700">
+                District
+              </Label>
+              <div className="relative">
+                <Building className="absolute left-3 top-3 h-4 w-4 text-gray-400 z-10" />
+                <Select value={formData.district} onValueChange={handleDistrictChange} disabled={!formData.state}>
+                  <SelectTrigger className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50">
+                    <SelectValue placeholder={formData.state ? "Select your district" : "First select a state"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableDistricts.map((district) => (
+                      <SelectItem key={district} value={district}>
+                        {district}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </motion.div>
+
+            {/* School */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7 }}
+              className="space-y-2"
+            >
+              <Label htmlFor="school" className="text-sm font-medium text-gray-700">
+                School
+              </Label>
+              <div className="relative">
+                <GraduationCap className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Input
+                  id="school"
+                  type="text"
+                  placeholder="Enter your school name"
+                  value={formData.school}
+                  onChange={(e) => setFormData({ ...formData, school: e.target.value })}
+                  className="pl-10 h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+            </motion.div>
+
+            {/* Terms and Conditions */}
+            {/* <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8 }}
+              className="flex items-center space-x-2"
+            >
+              <Checkbox
+                id="terms"
+                checked={agreedToTerms}
+                onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
+              />
+              <Label htmlFor="terms" className="text-sm text-gray-600">
+                I agree to the{" "}
+                <a href="#" className="text-blue-600 hover:underline">
+                  Terms and Conditions
+                </a>
+              </Label>
+            </motion.div> */}
+
+            {/* Submit Button */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}>
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium disabled:opacity-50"
+              >
+                {isLoading ? "Creating Account..." : "Create Account"}
+              </Button>
+            </motion.div>
+          </form>
+
+          {/* Display selected values for testing */}
+          {formData.state && formData.district && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0 }}
+              className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200"
+            >
+              <p className="text-xs text-blue-800">
+                <strong>Location:</strong> {formData.district}, {formData.state}
+              </p>
+            </motion.div>
+          )}
+
+
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0 }}
-            className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="text-center"
           >
-            <p className="text-xs text-blue-800">
-              <strong>Location:</strong> {formData.district}, {formData.state}
+            <p className="text-sm text-gray-600">
+              Already have an account?
+              <span 
+                onClick={() => { router.push("/CraftClub/Auth/SignIn") }} 
+                style={{ cursor: 'pointer' }} className="text-blue-600 hover:text-blue-700 font-medium">
+                Sign in
+              </span>
             </p>
+            {/* <span 
+              onClick={() => { router.push("/Components/Auth/DistricctSignUp") }} 
+              style={{ cursor: 'pointer', display: 'block', marginTop: '8px' }} className="text-blue-600 hover:text-blue-700 font-medium">
+              Director Sign Up
+            </span> */}
           </motion.div>
-        )}
-
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="text-center"
-        >
-          <p className="text-sm text-gray-600">
-            Already have an account?
-            <span 
-              onClick={() => { router.push("/CraftClub/Auth/SignIn") }} 
-              style={{ cursor: 'pointer' }} className="text-blue-600 hover:text-blue-700 font-medium">
-              Sign in
-            </span>
-          </p>
-          <span 
-            onClick={() => { router.push("/CraftClub/Auth/DistricctSignUp") }} 
-            style={{ cursor: 'pointer', display: 'block', marginTop: '8px' }} className="text-blue-600 hover:text-blue-700 font-medium">
-            Director Sign Up
-          </span>
-        </motion.div>
+        </div>
       </div>
     </div>
   )

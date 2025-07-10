@@ -48,9 +48,7 @@ import {
 import Navbar from "../../Navbar/page"
 
 
-// import "../../../Components/Views/Affairs"
-// import "../../../Components/Views/Contest"
-// import "../../../Components/Views/HallOfFame"
+// import "../../../Components/Auth/SignIn"
 
 
 
@@ -107,23 +105,44 @@ export default function ArtClubHomepage() {
     return () => observer.disconnect()
   }, [])
 
-
-  const goToHeritage = () => {
-    router.push("/Components/Views/Heritage");
-  }
-  const goToGallery = () => {
-    router.push("/Components/Views/Gallery");
-  }
-  const goToAffair = () => {
-    router.push("/Components/Views/Affairs");
-  }
-  const goToCopition = () => {
-    router.push("/Components/Views/Contest");
-  }
-  const goToHallofFame = () => {
-    router.push("/Components/Views/HallOfFame");
-  }
-
+  const artworks = [
+    { id: 1, title: "Sunset Dreams", artist: "Sarah Chen", likes: 24, image: "/placeholder.svg?height=300&width=300" },
+    {
+      id: 2,
+      title: "Abstract Emotions",
+      artist: "Mike Johnson",
+      likes: 18,
+      image: "/placeholder.svg?height=300&width=300",
+    },
+    {
+      id: 3,
+      title: "Nature's Harmony",
+      artist: "Priya Sharma",
+      likes: 32,
+      image: "/placeholder.svg?height=300&width=300",
+    },
+    {
+      id: 4,
+      title: "Digital Fusion",
+      artist: "Alex Rivera",
+      likes: 27,
+      image: "/placeholder.svg?height=300&width=300",
+    },
+    {
+      id: 5,
+      title: "Watercolor Magic",
+      artist: "Emma Wilson",
+      likes: 21,
+      image: "/placeholder.svg?height=300&width=300",
+    },
+    {
+      id: 6,
+      title: "Pencil Portraits",
+      artist: "David Kim",
+      likes: 35,
+      image: "/placeholder.svg?height=300&width=300",
+    },
+  ]
 
   const events = [
     { id: 1, title: "Digital Art Workshop", date: "2024-01-15", time: "2:00 PM", type: "Workshop" },
@@ -158,7 +177,7 @@ export default function ArtClubHomepage() {
 
 
   const GoToArtAuthPage = () => {
-    router.push("/Components/Auth/SignIn")
+    router.push("/CraftClub/Auth/SignIn")
   }
   return (
     <div className="min-h-screen bg-white relative overflow-hidden" style={{ userSelect: "text" }}>
@@ -210,7 +229,7 @@ export default function ArtClubHomepage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <Badge className="bg-blue-600 text-white px-4 py-2 text-sm">🎨 Welcome to Art Club</Badge>
+                <Badge className="bg-blue-600 text-white px-4 py-2 text-sm">🎨 Welcome to Craft Club</Badge>
                 <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                   <span className="text-blue-600 animate-pulse">Color Your</span>{" "}
                   <span className="text-blue-700 animate-pulse">Imagination.</span>
@@ -232,7 +251,7 @@ export default function ArtClubHomepage() {
                   onClick={() => { GoToArtAuthPage() }}
                 >
                   <Sparkles className="w-5 h-5 mr-2" />
-                  Join the Art Club
+                  Join the Craft Club
                 </Button>
 
               </div>
@@ -294,7 +313,7 @@ export default function ArtClubHomepage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card onClick={() => {goToHeritage()}} className="bg-white border-gray-200 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
+            <Card className="bg-white border-gray-200 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
               <CardHeader>
                 <Brush className="w-12 h-12 text-blue-600 mb-4" />
                 <CardTitle className="text-black">Traditional Art</CardTitle>
@@ -306,7 +325,7 @@ export default function ArtClubHomepage() {
               </CardContent>
             </Card>
 
-            <Card onClick={() => {goToGallery()}} className="bg-white border-gray-200 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
+            <Card className="bg-white border-gray-200 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
               <CardHeader>
                 <Camera className="w-12 h-12 text-blue-600 mb-4" />
                 <CardTitle className="text-black">Digital Art</CardTitle>
@@ -318,7 +337,7 @@ export default function ArtClubHomepage() {
               </CardContent>
             </Card>
 
-            <Card onClick={() => {goToAffair()}} className="bg-white border-gray-200 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
+            <Card className="bg-white border-gray-200 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
               <CardHeader>
                 <Users className="w-12 h-12 text-blue-600 mb-4" />
                 <CardTitle className="text-black">Community</CardTitle>
@@ -547,7 +566,7 @@ export default function ArtClubHomepage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card onClick={() => {goToCopition()}} className="bg-white hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
+            <Card className="bg-white hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <Trophy className="w-8 h-8 text-blue-600" />
@@ -574,7 +593,7 @@ export default function ArtClubHomepage() {
               </CardContent>
             </Card>
 
-            <Card onClick={() => {goToHallofFame()}} className="bg-white hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
+            <Card className="bg-white hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <Award className="w-8 h-8 text-blue-600" />

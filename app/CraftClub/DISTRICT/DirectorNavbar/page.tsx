@@ -47,7 +47,7 @@ function page() {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/Components/Auth/SignIn');
+    router.push('/CraftClub/Auth/SignIn');
     // window.location.reload();
   }
 

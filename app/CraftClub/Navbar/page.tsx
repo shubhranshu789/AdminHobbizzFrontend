@@ -50,7 +50,7 @@ function Navbar() {
   }, [])
 
   const logout = () => {
-    router.push('/Components/Auth/SignIn')
+    router.push('/CraftClub/Auth/SignIn')
     localStorage.clear()
   }
 
