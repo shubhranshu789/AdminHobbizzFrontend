@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 
 
 // import "../../../../Components/EDITOR/Activities/AddHeritage/ViewParticularHeritage"
+// import "../../../../Components/EDITOR/Activities/AddHeritage/Update"
 
 interface HallOfFameItem {
     _id: string;
@@ -86,6 +87,36 @@ const HallOfFameForm = () => {
     const handleClickSubmitId = (id: any) => {
         router.push(`/Components/EDITOR/Activities/AddHeritage/ViewParticularHeritage?id=${id}`);
     };
+    const gotoUpdate = (id: any) => {
+        router.push(`/Components/EDITOR/Activities/AddHeritage/Update?id=${id}`);
+    };
+
+
+    const handleDelete = async (id: any) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this journal?");
+    if (!confirmDelete) return;
+
+    try {
+      // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-news/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-heritage/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Deleted successfully!");
+      } else {
+        alert(data.message || "Delete failed.");
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
+      alert("Something went wrong while deleting.");
+    }
+  };
 
     useEffect(() => {
         fetchItems();
@@ -342,11 +373,27 @@ const HallOfFameForm = () => {
                                                 </span>
                                             </div>
                                             <button
-                                            style={{cursor : "pointer"}}
-                                            onClick={() => { handleClickSubmitId(item._id) }} className="text-amber-600 hover:text-amber-700 text-sm font-medium transition-colors duration-200">
+                                                style={{ cursor: "pointer" }}
+                                                onClick={() => { handleClickSubmitId(item._id) }} className="text-amber-600 hover:text-amber-700 text-sm font-medium transition-colors duration-200">
                                                 Learn more →
                                             </button>
                                         </div>
+
+
+                                        <div>
+                                            <div style={{ marginBottom: "20px" }} className="flex space-x-2 mt-4">
+                                                <button onClick={() => { gotoUpdate(item._id) }} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+                                                    Update
+                                                </button>
+                                                <button
+                                                    onClick={() => { handleDelete(item._id) }}
+                                                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200">
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             )

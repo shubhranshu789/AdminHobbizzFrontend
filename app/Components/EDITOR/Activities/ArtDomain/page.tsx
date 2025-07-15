@@ -10,7 +10,7 @@ import Navbar from "../../EditorNavbar/page"
 
 import Footer from "../../../Footer/page";
 
-// import "../../../../Components/EDITOR/Activities/ArtNews/ParticularArtNews"
+// import "../../../../Components/EDITOR/Activities/ArtDomain/Update"
 
 interface NewsItem {
   _id: string;
@@ -44,6 +44,9 @@ const ClubNewsForm = () => {
 
   const handleClickSubmitId = (id: any) => {
     router.push(`/Components/EDITOR/Activities/ArtNews/ParticularArtNews?id=${id}`);
+  };
+  const gotoUpdate = (id: any) => {
+    router.push(`/Components/EDITOR/Activities/ArtDomain/Update?id=${id}`);
   };
 
 
@@ -120,6 +123,32 @@ const ClubNewsForm = () => {
       toast.error("Error: " + error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id: any) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this journal?");
+    if (!confirmDelete) return;
+
+    try {
+      // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-news/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-domain/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Deleted successfully!");
+      } else {
+        alert(data.message || "Delete failed.");
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
+      alert("Something went wrong while deleting.");
     }
   };
 
@@ -352,12 +381,12 @@ const ClubNewsForm = () => {
                   </p>
 
 
-                  <a 
+                  <a
                     href={news.author}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block text-sm text-blue-600 hover:text-blue-800 font-medium hover:underline"
-                    style={{marginBottom : "20px"}}
+                    style={{ marginBottom: "20px" }}
                   >
                     Learn More
                   </a>
@@ -380,6 +409,16 @@ const ClubNewsForm = () => {
                   )} */}
 
                   <div className="mt-auto text-xs text-gray-400">
+                    <div style={{ marginBottom: "20px" }} className="flex space-x-2 mt-4">
+                      <button onClick={() => { gotoUpdate(news._id) }} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+                        Update
+                      </button>
+                      <button
+                        onClick={() => { handleDelete(news._id) }}
+                        className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200">
+                        Delete
+                      </button>
+                    </div>
                     🕒 {new Date(news.publishedAt).toLocaleString()}
                   </div>
                 </div>

@@ -18,7 +18,7 @@ import Link from "next/link"
 import toast, { Toaster } from 'react-hot-toast';
 
 import { useRouter } from 'next/navigation';
-// import SignIn from "../../../Components/Auth/EditorSignIn"
+// import SignIn from "../../../../Components/DISTRICT/DirectorDashboard"
 import Navbar from "../../../Principle/PrincipleNavBar/page"
 
 const statesAndDistricts = {
@@ -577,7 +577,7 @@ export default function SignUp() {
       }
 
       console.log(data)
-      router.push("/Components/Auth/SignIn")
+      router.push("/Components/DISTRICT/DirectorDashboard")
 
     } catch (error) {
       console.error("Network error:", error)
@@ -956,7 +956,7 @@ export default function SignUp() {
                     )}
 
 
-                    <motion.div
+                    {/* <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 1 }}
@@ -969,13 +969,16 @@ export default function SignUp() {
                           style={{ cursor: 'pointer' }} className="text-blue-600 hover:text-blue-700 font-medium">
                           Sign in
                         </span>
-                        {/* <p
+                        <p
                           onClick={() => { router.push("/Components/Auth/DistrictSignIn") }}
                           style={{ cursor: 'pointer' }} className="text-blue-600 hover:text-blue-700 font-medium">
                           Director Sign In
-                        </p> */}
+                        </p>
                       </p>
-                    </motion.div>
+                    </motion.div> */}
+
+
+
                   </div>
                 </div>
               </CardContent>

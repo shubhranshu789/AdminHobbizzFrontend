@@ -11,6 +11,7 @@ import Navbar from "../../EditorNavbar/page"
 import Footer from "../../../Footer/page";
 
 // import "../../../../Components/EDITOR/Activities/ArtJournal/ArtClubParticularJournal"
+// import "../../../../Components/EDITOR/Activities/ArtJournal/UpdateJournal"
 
 interface NewsItem {
   _id: string;
@@ -43,7 +44,10 @@ const ClubNewsForm = () => {
 
 
   const handleClickSubmitId = (id: any) => {
-   router.push(`/Components/EDITOR/Activities/ArtJournal/ArtClubParticularJournal?id=${id}`);
+    router.push(`/Components/EDITOR/Activities/ArtJournal/ArtClubParticularJournal?id=${id}`);
+  };
+  const gotoUpdate = (id: any) => {
+    router.push(`/Components/EDITOR/Activities/ArtJournal/UpdateJournal?id=${id}`);
   };
 
 
@@ -122,6 +126,35 @@ const ClubNewsForm = () => {
       setLoading(false);
     }
   };
+
+
+
+  const handleDelete = async (id: any) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this journal?");
+    if (!confirmDelete) return;
+
+    try {
+      // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-journal/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-journal/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Deleted successfully!");
+      } else {
+        alert(data.message || "Delete failed.");
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
+      alert("Something went wrong while deleting.");
+    }
+  };
+
 
   useEffect(() => {
     fetchNews();
@@ -325,7 +358,7 @@ const ClubNewsForm = () => {
 
                 {/* Image Section */}
                 {news.imageUrl && (
-                  <div style={{cursor : "pointer"}} className="h-48 w-full overflow-hidden" onClick={() => {handleClickSubmitId(news._id)}}>
+                  <div style={{ cursor: "pointer" }} className="h-48 w-full overflow-hidden" onClick={() => { handleClickSubmitId(news._id) }}>
                     <img
                       src={news.imageUrl}
                       alt="News"
@@ -365,7 +398,18 @@ const ClubNewsForm = () => {
                     </div>
                   )}
 
+
+
+
                   <div className="mt-auto text-xs text-gray-400">
+                    <div style={{ marginBottom: "20px" }} className="flex space-x-2 mt-4">
+                      <button onClick={() => { gotoUpdate(news._id) }} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+                        Update
+                      </button>
+                      <button onClick={() => {handleDelete(news._id)}} className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200">
+                        Delete
+                      </button>
+                    </div>
                     🕒 {new Date(news.publishedAt).toLocaleString()}
                   </div>
                 </div>
@@ -377,7 +421,7 @@ const ClubNewsForm = () => {
 
       <div>
         {/* Footer */}
-        <Footer/>
+        <Footer />
       </div>
 
       <ToastContainer position="top-center" autoClose={2000} />
