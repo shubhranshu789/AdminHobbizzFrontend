@@ -11,11 +11,11 @@ import Navbar from "../../Navbar/page"
 interface Event {
   event_id: string;
   title: string;
+  image:string;
   date: string;
   venue: string;
   description?: string;
   status: string;
-  image?: string;
 }
 
 const LocalEventsDisplayPage = () => {
@@ -120,7 +120,7 @@ const LocalEventsDisplayPage = () => {
                       alt={event.title}
                       width={240}
                       height={120}
-                      className="object-cover w-full h-full"
+                      className=" h-full"
                     />
                   ) : (
                     <span className="text-2xl text-gray-400">No image</span>

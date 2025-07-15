@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState, useEffect, useCallback } from "react"
 import Navbar from "../../Navbar/page"
+import { toast } from "react-toastify"
 
 // Types
 enum EventStatus {
@@ -17,6 +18,7 @@ interface UserData {
 
 interface Event {
   event_id: string
+  image:string
   title: string
   date: string
   venue: string
@@ -57,6 +59,7 @@ const LocalChapterPage: React.FC = () => {
     date: "",
     venue: "",
     description: "",
+    image:"",
     status: EventStatus.ACTIVE,
   })
 
@@ -117,6 +120,7 @@ const LocalChapterPage: React.FC = () => {
         date: event.date || "",
         venue: event.venue || "",
         description: event.description || "",
+        image: event.image || "",
         status: event.status || EventStatus.ACTIVE,
       })
     } else {
@@ -126,6 +130,7 @@ const LocalChapterPage: React.FC = () => {
         date: "",
         venue: "",
         description: "",
+        image: "",
         status: EventStatus.ACTIVE,
       })
     }
@@ -563,6 +568,46 @@ const LocalChapterPage: React.FC = () => {
                     <option value={EventStatus.ACTIVE}>Active</option>
                     <option value={EventStatus.INACTIVE}>Inactive</option>
                   </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Upload Image
+                        </label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={async (e) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                    const data = new FormData();
+                                    data.append("file", file);
+                                    data.append("upload_preset", "hobbizz");
+                                    data.append("cloud_name", "dvg17xl1i");
+
+                                    try {
+                                        const res = await fetch(
+                                            "https://api.cloudinary.com/v1_1/dvg17xl1i/image/upload",
+                                            { method: "POST", body: data }
+                                        );
+
+                                        const uploadResult = await res.json();
+                                        if (uploadResult.secure_url) {
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                image: uploadResult.secure_url,
+                                            }));
+                                            toast.success("Image uploaded successfully!");
+                                        } else {
+                                            toast.error("Image upload failed!");
+                                        }
+                                    } catch (err) {
+                                        toast.error("Error uploading image");
+                                        console.error(err);
+                                    }
+                                }
+                            }}
+                            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        />
                 </div>
 
                 {userData && (
