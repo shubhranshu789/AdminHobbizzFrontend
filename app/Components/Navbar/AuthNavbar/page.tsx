@@ -10,10 +10,10 @@ import { useRouter } from 'next/navigation';
 // import "../../../Components/Auth/DistrictSignIn"
 
 const navigationItems = [
-  { name: "Director",  id : "Director"},
-  { name: "Teacher", id : "Teacher" },
-  { name: "Principle", id : "Principle"},
-  { name: "Editor",  id : "Editor"},
+  { name: "Director", id: "Director" },
+  { name: "Teacher", id: "Teacher" },
+  { name: "Principle", id: "Principle" },
+  { name: "Editor", id: "Editor" },
   // { name: "Judge",  id : "Judge"},
   // { name: "Team", href: "#team" },
   // { name: "Blog", href: "#blog" },
@@ -31,24 +31,24 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false)
 
 
-    const router = useRouter();
-  
-    const GoToCabinateSignIn = () => {
-      router.push('/Components/Auth/SignIn');
-    };
-    const GoToPrincipleSignIn = () => {
-      router.push('/Components/Auth/PrincipleSignIn');
-    };
+  const router = useRouter();
 
-    const GoToEditorSignIn = () => {
-      router.push('/Components/Auth/EditorSignIn');
-    };
-    const GoToJudgeSignIn = () => {
-      router.push('/Components/Auth/JudgeSignIn');
-    };
-    const GoToDirectorSignIn = () => {
-      router.push('/Components/Auth/DistrictSignIn');
-    };
+  const GoToCabinateSignIn = () => {
+    router.push('/Components/Auth/SignIn');
+  };
+  const GoToPrincipleSignIn = () => {
+    router.push('/Components/Auth/PrincipleSignIn');
+  };
+
+  const GoToEditorSignIn = () => {
+    router.push('/Components/Auth/EditorSignIn');
+  };
+  const GoToJudgeSignIn = () => {
+    router.push('/Components/Auth/JudgeSignIn');
+  };
+  const GoToDirectorSignIn = () => {
+    router.push('/Components/Auth/DistrictSignIn');
+  };
 
 
 
@@ -59,7 +59,7 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <img style={{height : "40px"}} src="/LOGO.png" alt="" />
+            <img style={{ height: "40px" }} src="/LOGO.png" alt="" />
           </div>
 
           {/* Desktop Navigation */}
@@ -71,19 +71,19 @@ export default function Navbar() {
                 asChild
                 className="text-sm font-medium transition-colors hover:text-primary"
                 onClick={() => {
-                  if(item.id == "Teacher"){
+                  if (item.id == "Teacher") {
                     GoToCabinateSignIn()
                   }
-                  if(item.id == "Director"){
+                  if (item.id == "Director") {
                     GoToDirectorSignIn()
                   }
-                  if(item.id == "Principle"){
+                  if (item.id == "Principle") {
                     GoToPrincipleSignIn()
                   }
-                  if(item.id == "Editor"){
+                  if (item.id == "Editor") {
                     GoToEditorSignIn()
                   }
-                  if(item.id == "Judge"){
+                  if (item.id == "Judge") {
                     GoToJudgeSignIn()
                   }
                 }}
@@ -102,23 +102,37 @@ export default function Navbar() {
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
+
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <div className="flex flex-col space-y-4 mt-8">
-                  {navigationItems.map((item) => (
-                    <Button
-                      key={item.name}
-                      variant="ghost"
-                      asChild
-                      className="justify-start text-base font-medium"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <p>{item.name}</p>
-                    </Button>
-                  ))}
+                  {navigationItems.map((item) => {
+                    const handleClick = () => {
+                      setIsOpen(false)
+
+                      // Call corresponding navigation function
+                      if (item.id === "Teacher") GoToCabinateSignIn()
+                      else if (item.id === "Director") GoToDirectorSignIn()
+                      else if (item.id === "Principle") GoToPrincipleSignIn()
+                      else if (item.id === "Editor") GoToEditorSignIn()
+                      else if (item.id === "Judge") GoToJudgeSignIn()
+                    }
+
+                    return (
+                      <Button
+                        key={item.name}
+                        variant="ghost"
+                        className="justify-start text-base font-medium"
+                        onClick={handleClick}
+                      >
+                        {item.name}
+                      </Button>
+                    )
+                  })}
                 </div>
               </SheetContent>
             </Sheet>
           </div>
+
         </div>
       </div>
     </nav>

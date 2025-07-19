@@ -461,6 +461,7 @@ export default function CompleteRegistrationForm() {
     state: "",
     district: "",
     school: "",
+    // club : "artclub"
   })
 
   const [ip, setIp] = useState("")
@@ -519,10 +520,12 @@ export default function CompleteRegistrationForm() {
       formData.state,
       formData.district,
       formData.school,
+      // formData.club,
     )
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cabinate-signup`, {
+      // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cabinate-signup`, {
+      const response = await fetch(`http://localhost:5000/cabinate-signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -535,6 +538,7 @@ export default function CompleteRegistrationForm() {
           state: formData.state,
           district: formData.district,
           school: formData.school,
+          // club : formData.club
         }),
       })
 

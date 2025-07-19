@@ -222,7 +222,7 @@ export default function Component() {
             transition={{ duration: 0.8, delay: 1.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
                 onClick={() => {gotoreviewactivity()}}
                 size="lg"
@@ -231,7 +231,7 @@ export default function Component() {
                 Get Started
                 <Sparkles className="w-5 h-5 ml-2" />
               </Button>
-            </motion.div>
+            </motion.div> */}
 
             {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button

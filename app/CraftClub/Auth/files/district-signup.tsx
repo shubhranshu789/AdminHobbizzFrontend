@@ -561,7 +561,7 @@ export default function SignUp() {
           ip: ip,
           state: formData.state,
           district: formData.district,
-          clubName: formData.clubName
+          club: formData.clubName
           // school: formData.school,
         }),
       })
@@ -577,7 +577,7 @@ export default function SignUp() {
       }
 
       console.log(data)
-      router.push("/CraftClub/Auth/DistrictSignIn")
+      router.push("/Components/Auth/SignIn")
 
     } catch (error) {
       console.error("Network error:", error)
@@ -835,7 +835,7 @@ export default function SignUp() {
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>
                             <SelectContent>
-                              {["artclub", "Photography", "dance" , "craft"].map((category) => (
+                              {["artclub", "Photography", "dance"].map((category) => (
                                 <SelectItem key={category} value={category}>
                                   {category}
                                 </SelectItem>

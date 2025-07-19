@@ -8,7 +8,7 @@ import Link from "next/link"
 
 import { useRouter } from 'next/navigation';
 
-// import "../../../Components/DISTRICT/AddActivities/AllActivities"
+// import "../../../Components/DISTRICT/ManageRoles/CreateEditor"
 
 
 
@@ -36,6 +36,9 @@ function page() {
   const manageRoles = () => {
     router.push('/Components/DISTRICT/ManageRoles');
   }
+  const manageEditor = () => {
+    router.push('/Components/DISTRICT/ManageRoles/CreateEditor');
+  }
 //   const gotoabout = () => {
 //     // router.push('../../Components/ParticipateInActivity');
 //   }
@@ -47,7 +50,7 @@ function page() {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/CraftClub/Auth/SignIn');
+    router.push('/Components/Auth/SignIn');
     // window.location.reload();
   }
 
@@ -79,7 +82,8 @@ function page() {
                 // { name: "Participate", icon: User , id : "About" },
                 { name: "Contact", icon: Bell },
                 { name: "manage district", icon: Zap, id: "Manage" },
-                { name: "Manage Role", icon: Zap, id: "ManageRole" },
+                { name: "Create Principle", icon: Zap, id: "ManageRole" },
+                // { name: "Create Editor", icon: Zap, id: "CreateEditor" },
               ].map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -108,6 +112,9 @@ function page() {
                         }
                         if (item.id === "ManageRole") {
                            manageRoles();
+                        }
+                        if (item.id === "CreateEditor") {
+                           manageEditor();
                         }
                       }}
                     >

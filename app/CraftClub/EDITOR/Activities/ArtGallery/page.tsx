@@ -9,12 +9,12 @@ import Navbar from "../../EditorNavbar/page"
 import Footer from "../../../Footer/page"
 
 type GalleryImage = {
-  _id: string;
-  title: string;
-  imageUrl: string;
-  uploadedAt: string;
-  createdAt: string;
-  updatedAt: string;
+    _id: string;
+    title: string;
+    imageUrl: string;
+    uploadedAt: string;
+    createdAt: string;
+    updatedAt: string;
 };
 
 
@@ -41,7 +41,7 @@ const Gallery = () => {
     // Fetch all images
     const fetchImages = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/viewgallerypost`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/craftviewgallerypost`);
             setImages(res.data || []);
         } catch (err) {
             console.error("Error fetching images:", err);
@@ -91,7 +91,7 @@ const Gallery = () => {
         if (!uploadedUrl) return;
 
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/gallerypost`, {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/craftgallerypost`, {
                 title,
                 imageUrl: uploadedUrl,
             });
@@ -104,6 +104,33 @@ const Gallery = () => {
         } catch (err) {
             console.error("Error adding image to DB:", err);
             toast.error("Error saving image to DB");
+        }
+    };
+
+
+    const handleDelete = async (id: any) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this journal?");
+        if (!confirmDelete) return;
+
+        try {
+            // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-news/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclub-gallery/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                alert("Deleted successfully!");
+            } else {
+                alert(data.message || "Delete failed.");
+            }
+        } catch (err) {
+            console.error("Delete error:", err);
+            alert("Something went wrong while deleting.");
         }
     };
 
@@ -265,6 +292,13 @@ const Gallery = () => {
 
                                             {/* Decorative corner accent */}
                                             <div className="absolute top-3 right-3 w-2 h-2 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" , marginBottom : "5px" }}>
+                                                <button
+                                                    onClick={() => { handleDelete(img._id) }}
+                                                    className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200">
+                                                    Delete
+                                                </button>
+                                            </div>
                                         </div>
                                     </motion.div>
                                 )

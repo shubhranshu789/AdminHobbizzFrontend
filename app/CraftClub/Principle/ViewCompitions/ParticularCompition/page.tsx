@@ -240,7 +240,7 @@ function ParticularCompitionInner() {
     try {
       // Replace with your actual contest ID
       // const contestId = "685828ce20a1a9e01b628608"
-      const response = await fetch(`http://localhost:5000/${id}/results`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}/results`)
 
       if (!response.ok) {
         throw new Error("Failed to fetch results")
@@ -257,7 +257,7 @@ function ParticularCompitionInner() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`http://localhost:5000/${id}/generate-result`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}/generate-result`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

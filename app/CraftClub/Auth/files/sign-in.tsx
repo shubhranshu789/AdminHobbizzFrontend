@@ -72,7 +72,7 @@ export default function SignIn() {
 
 
   const GotoDashBoard = () => {
-    router.push('../../../CraftClub/home');
+    router.push('/CraftClub/home');
   }
 
 
@@ -100,7 +100,8 @@ export default function SignIn() {
 
         //sending data to server
         // fetch("http://localhost:5000/cabinate-signin", {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTCABINATE-signin`, {
+        // fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTCABINATE-signin`, {
+        fetch(`http://localhost:5000/CRAFTCABINATE-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

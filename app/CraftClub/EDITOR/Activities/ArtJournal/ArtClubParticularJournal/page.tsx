@@ -38,7 +38,7 @@ function ArtClubParticularJournalInner() {
   useEffect(() => {
     const fetchJournal = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artJournal/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftJournal/${id}`)
         if (!response.ok) {
           throw new Error("Journal not found")
         }

@@ -14,7 +14,7 @@ const navigationItems = [
   { name: "Teacher", id : "Teacher" },
   { name: "Principle", id : "Principle"},
   { name: "Editor",  id : "Editor"},
-  { name: "Judge",  id : "Judge"},
+  // { name: "Judge",  id : "Judge"},
   // { name: "Team", href: "#team" },
   // { name: "Blog", href: "#blog" },
   // { name: "Contact", href: "#contact" },
@@ -23,7 +23,7 @@ const navigationItems = [
 ]
 
 
-// import "../../../CraftClub/Auth/SignIn"
+
 
 
 
@@ -50,6 +50,12 @@ export default function Navbar() {
       router.push('/CraftClub/Auth/DistrictSignIn');
     };
 
+    const GoToStartPage = () => {
+      router.push('/');
+    };
+
+
+
 
 
 
@@ -58,7 +64,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
+          <div onClick={() => {GoToStartPage()}} className="flex items-center">
             <img style={{height : "40px"}} src="/LOGO.png" alt="" />
           </div>
 

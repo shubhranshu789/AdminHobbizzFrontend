@@ -225,9 +225,10 @@ const ClubNewsForm = () => {
                 onChange={handleChange}
                 className="w-full border rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="Book">Book</option>
-                <option value="Article">Article</option>
-                <option value="Research">Research</option>
+                <option value="Achievements">Achievements</option>
+                <option value="Notices">Notices</option>
+                <option value="Events">Events</option>
+                <option value="Press Coverage">Press Coverage</option>
                 {/* <option value="Press Coverage">Press Coverage</option>s */}
                 <option value="Other">Other</option>
               </select>

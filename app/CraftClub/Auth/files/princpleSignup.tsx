@@ -561,7 +561,7 @@ export default function SignUp() {
           ip: ip,
           state: formData.state,
           district: formData.district,
-          clubName: formData.clubName
+          club: formData.clubName
           // school: formData.school,
         }),
       })

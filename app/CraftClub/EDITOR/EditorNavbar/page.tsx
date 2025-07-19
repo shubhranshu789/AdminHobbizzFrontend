@@ -8,7 +8,7 @@ import Link from "next/link"
 
 import { useRouter } from 'next/navigation';
 
-// import "../../../Components/EDITOR/Activities/Calendar"
+// import "../../../Components/EDITOR/Activities/AddLEGACY"
 
 
 
@@ -22,29 +22,32 @@ function page() {
   // };
 
   const gotoAddActivity = () => {
-    router.push('/Components/EDITOR/Activities/ArtJournal');
+    router.push('/CraftClub/EDITOR/Activities/ArtJournal');
   }
 
 
   const gotohome = () => {
-    router.push('/Components/EDITOR/EditorDashboard');
+    router.push('/CraftClub/EDITOR/EditorDashboard');
   }
 
   const gotoaddnews = () => {
-    router.push('/Components/EDITOR/Activities/ArtNews');
+    router.push('/CraftClub/EDITOR/Activities/ArtNews');
   }
   const gotoadddomain = () => {
-    router.push('/Components/EDITOR/Activities/ArtDomain');
+    router.push('/CraftClub/EDITOR/Activities/ArtDomain');
   }
 
   const gotoaddgallery = () => {
-    router.push('/Components/EDITOR/Activities/ArtGallery');
+    router.push('/CraftClub/EDITOR/Activities/ArtGallery');
   }
   const gotoaddheritage = () => {
-    router.push('/Components/EDITOR/Activities/AddHeritage');
+    router.push('/CraftClub/EDITOR/Activities/AddHeritage');
   }
   const gotoaddcalendar = () => {
-    router.push('/Components/EDITOR/Activities/Calendar');
+    router.push('/CraftClub/EDITOR/Activities/Calendar');
+  }
+  const gotoaddLegacy = () => {
+    router.push('/CraftClub/EDITOR/Activities/AddLEGACY');
   }
 
 //   const gotoabout = () => {
@@ -58,7 +61,7 @@ function page() {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/Components/Auth/SignIn');
+    router.push('/CraftClub/Auth/SignIn');
     // window.location.reload();
   }
 
@@ -92,6 +95,7 @@ function page() {
                 { name: "Add Gallery", icon: Zap, id: "Gallery" },
                 { name: "Add Heritage", icon: Zap, id: "Heritage" },
                 { name: "Calendar", icon: Zap, id: "Calendar" },
+                { name: "Add Legacy", icon: Zap, id: "Legacy" },
                 // { name: "Manage Role", icon: Zap, id: "ManageRole" },
               ].map((item, index) => (
                 <motion.div
@@ -127,6 +131,9 @@ function page() {
                         }
                         if (item.id === "Calendar") {
                            gotoaddcalendar();
+                        }
+                        if (item.id === "Legacy") {
+                           gotoaddLegacy();
                         }
                       }}
                     >
