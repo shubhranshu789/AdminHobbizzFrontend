@@ -73,7 +73,7 @@ const HallOfFameForm = () => {
   const fetchItems = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/heritagegetallpost`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftheritagegetallpost`);
       const data = await res.json();
       if (res.ok) setItems(data.data || []);
       else toast.error(data.message || "Error fetching data");
@@ -85,7 +85,7 @@ const HallOfFameForm = () => {
   };
 
   const handleClickSubmitId = (id: any) => {
-    router.push(`/Components/Views/Heritage/ViewParticularHeritage?id=${id}`);
+    router.push(`/CraftClub/Views/Heritage/ViewParticularHeritage?id=${id}`);
   };
 
   useEffect(() => {
@@ -102,7 +102,7 @@ const HallOfFameForm = () => {
 
         {/* Content */}
         <h1 className="text-5xl font-extrabold text-gray-800 mb-3 drop-shadow-md z-10">
-          Art Club Heritage
+          Craft Club Heritage
         </h1>
         <p className="text-lg sm:text-xl text-gray-700 max-w-xl z-10">
           Stay updated with the latest announcements, achievements, and press coverage.

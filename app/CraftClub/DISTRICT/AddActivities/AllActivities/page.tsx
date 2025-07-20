@@ -23,7 +23,7 @@ export default function FullScreenButtons() {
             <Button
             variant="outline"
             className="h-full min-h-[200px] md:min-h-[300px] bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-4 text-lg md:text-xl font-semibold shadow-lg hover:shadow-xl group"
-            onClick={() => {router.push("/Components/DISTRICT/AddActivities")}}
+            onClick={() => {router.push("/CraftClub/DISTRICT/AddActivities")}}
             >
             <Sparkles className="w-12 h-12 md:w-16 md:h-16 group-hover:rotate-12 transition-transform duration-300" />
             <span className="text-center">Create New Affair</span>
@@ -36,7 +36,7 @@ export default function FullScreenButtons() {
             <Button
             variant="outline"
             className="h-full min-h-[200px] md:min-h-[300px] bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-4 text-lg md:text-xl font-semibold shadow-lg hover:shadow-xl group"
-            onClick={() => {router.push("/Components/DISTRICT/ReviewActivity")}}
+            onClick={() => {router.push("/CraftClub/DISTRICT/ReviewActivity")}}
             >
             <Upload className="w-12 h-12 md:w-16 md:h-16 group-hover:-translate-y-2 transition-transform duration-300" />
             <span className="text-center">All Affairs</span>
@@ -47,7 +47,7 @@ export default function FullScreenButtons() {
             {/* <Button
             variant="outline"
             className="h-full min-h-[200px] md:min-h-[300px] bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-4 text-lg md:text-xl font-semibold shadow-lg hover:shadow-xl group"
-            onClick={() => {router.push("/Components/DISTRICT/AddActivities/AddCompitition")}}
+            onClick={() => {router.push("/CraftClub/DISTRICT/AddActivities/AddCompitition")}}
             >
             <Users className="w-12 h-12 md:w-16 md:h-16 group-hover:scale-110 transition-transform duration-300" />
             <span className="text-center">Add Competition</span>
@@ -58,7 +58,7 @@ export default function FullScreenButtons() {
             <Button
             variant="outline"
             className="h-full min-h-[200px] md:min-h-[300px] bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center gap-4 text-lg md:text-xl font-semibold shadow-lg hover:shadow-xl group"
-            onClick={() => {router.push("/Components/DISTRICT/AddActivities/ViewCompitions")}}
+            onClick={() => {router.push("/CraftClub/DISTRICT/AddActivities/ViewCompitions")}}
             >
             <Settings className="w-12 h-12 md:w-16 md:h-16 group-hover:rotate-90 transition-transform duration-300" />
             <span className="text-center">View all Compititions</span>

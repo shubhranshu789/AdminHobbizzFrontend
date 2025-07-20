@@ -22,22 +22,22 @@ function page() {
   // };
 
   const gotoAddActivity = () => {
-    router.push('/Components/DISTRICT/AddActivities/AllActivities');
+    router.push('/CraftClub/DISTRICT/AddActivities/AllActivities');
   }
 
 
   const gotohome = () => {
-    router.push('/Components/Principle/PrincipleDashBoard');
+    router.push('/CraftClub/Principle/PrincipleDashBoard');
   }
 
   const manageDistrict = () => {
-    router.push('/Components/DISTRICT/Districts');
+    router.push('/CraftClub/DISTRICT/Districts');
   }
   const manageRoles = () => {
-    router.push('/Components/DISTRICT/ManageRoles');
+    router.push('/CraftClub/DISTRICT/ManageRoles');
   }
   const AddEditor = () => {
-    router.push('/Components/DISTRICT/ManageRoles/CreateEditor');
+    router.push('/CraftClub/DISTRICT/ManageRoles/CreateEditor');
   }
 //   const gotoabout = () => {
 //     // router.push('../../Components/ParticipateInActivity');
@@ -46,11 +46,11 @@ function page() {
 
 
   const gotoCreateCompitition = () => {
-    router.push('/Components/Principle/CreateCompitition');
+    router.push('/CraftClub/Principle/CreateCompitition');
   }
 
     const gotoViewCompitition = () => {
-    router.push('/Components/Principle/ViewCompitions');
+    router.push('/CraftClub/Principle/ViewCompitions');
   }
 
 
@@ -59,7 +59,7 @@ function page() {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/Components/Auth/SignIn');
+    router.push('/CraftClub/Auth/SignIn');
     // window.location.reload();
   }
 

@@ -50,7 +50,7 @@ function Page() {
       }
 
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/artHeritage/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftHeritage/${id}`)
 
         if (!response.ok) {
           throw new Error("Failed to fetch heritage data")

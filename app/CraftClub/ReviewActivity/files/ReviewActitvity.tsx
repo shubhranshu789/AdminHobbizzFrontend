@@ -31,7 +31,7 @@ function ReviewActitvity() {
   const router = useRouter();
 
   const gotohome = () => {
-    router.push('../../../Components/home');
+    router.push('../../../CraftClub/home');
   };
 
   const [approvals, setApprovals] = useState({})
@@ -53,13 +53,13 @@ function ReviewActitvity() {
 
 
   const handleClickSubmitId = (id: any) => {
-    router.push(`../../../Components/ParticularActivityInfo?id=${id}`);
+    router.push(`../../../CraftClub/ParticularActivityInfo?id=${id}`);
   };
 
 
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/allActivities`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftallActivities`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },

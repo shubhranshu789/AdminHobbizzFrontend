@@ -81,7 +81,7 @@ const Gallery = () => {
     if (!uploadedUrl) return;
 
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL_USER}/gallerypost`, {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/craftviewgallerypost`, {
         title,
         imageUrl: uploadedUrl,
       });
@@ -108,7 +108,7 @@ const Gallery = () => {
 
         {/* Content */}
         <h1 className="text-5xl font-extrabold text-gray-800 mb-3 drop-shadow-md z-10">
-          Art Club Gallery
+          Craft Club Gallery
         </h1>
         <p className="text-lg sm:text-xl text-gray-700 max-w-xl z-10">
           Stay updated with the latest announcements, achievements, and press coverage.

@@ -73,7 +73,7 @@ function ParticularCompitionParticipantsInner() {
       }
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftgetCompitition/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -101,7 +101,7 @@ function ParticularCompitionParticipantsInner() {
 
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/has-uploaded-compitition/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/crafthas-uploaded-compitition/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -121,7 +121,7 @@ function ParticularCompitionParticipantsInner() {
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants-compi/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftevent-participants-compi/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -352,10 +352,10 @@ function ParticularCompitionParticipantsInner() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
 
-                  <div className="flex items-center gap-2">
+                  {/* <div className="flex items-center gap-2">
                     <User className="h-5 w-5 text-muted-foreground" />
                     <span>Posted by: {event?.postedBy[0].substring(0, 8)}...</span>
-                  </div>
+                  </div> */}
                   <div className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-muted-foreground" />
                     <span>{event?.Registrations.length} Registrations</span>

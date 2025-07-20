@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
-import Navbar from "../../../../Components/DISTRICT/DirectorNavbar/page"
+import Navbar from "../../../../CraftClub/DISTRICT/DirectorNavbar/page"
 
 
 // import "../../../Components/ParticularActivityInfo"
@@ -49,7 +49,7 @@ function ReviewActitvity() {
   const router = useRouter();
 
   const gotohome = () => {
-    router.push('../../../Components/home');
+    router.push('/CraftClub/home');
   };
 
   const [approvals, setApprovals] = useState({})
@@ -71,7 +71,7 @@ function ReviewActitvity() {
 
 
   const handleClickSubmitId = (id: any) => {
-    router.push(`../../../../Components/DISTRICT/ParticularActivityInfo?id=${id}`);
+    router.push(`/CraftClub/DISTRICT/ParticularActivityInfo?id=${id}`);
   };
 
   const [token, setToken] = useState<string | null>(null);
@@ -89,7 +89,7 @@ function ReviewActitvity() {
     //   return;
     // }
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/allActivities`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftallActivities`, {
         headers: {
             Authorization: "Bearer " + localStorage.getItem("jwt"),
         },

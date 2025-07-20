@@ -107,7 +107,7 @@ function ParticularActivityInfoInner() {
 
     const fetchEvent = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getactivity/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftgetactivity/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -140,7 +140,7 @@ function ParticularActivityInfoInner() {
 
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/has-uploaded-user/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/crafthas-uploaded-user/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -160,7 +160,7 @@ function ParticularActivityInfoInner() {
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants-user/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftevent-participants-user/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -196,7 +196,7 @@ function ParticularActivityInfoInner() {
 
   const registerForActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register-activity-user/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftregister-activity-user/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -221,7 +221,7 @@ function ParticularActivityInfoInner() {
 
   const unregisterFromActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/unregister-activity-user/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftunregister-activity-user/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -275,7 +275,7 @@ function ParticularActivityInfoInner() {
 
       if (result.url) {
         const token = localStorage.getItem("jwt");
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload-photo-user/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftupload-photo-user/${id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -305,7 +305,7 @@ function ParticularActivityInfoInner() {
   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/craftactivity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
         {
           method: "PUT",
           headers: {
@@ -333,7 +333,7 @@ function ParticularActivityInfoInner() {
   const handleApprovalHallOfFame = async (activityId: any, uploadId: any, isHallofFame: boolean) => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/activity/${isHallofFame ? "approve" : "disapprove"}-halloffame/${activityId}/${uploadId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/craftactivity/${isHallofFame ? "approve" : "disapprove"}-halloffame/${activityId}/${uploadId}`,
         {
           method: "PUT",
           headers: {
@@ -367,7 +367,7 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
     const fetchApprovedUploads = async () => {
       try {
         setLoadingApproved(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/approved-uploads/${event?._id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftactivity/approved-uploads/${event?._id}`);
         const data = await res.json();
         setApprovedUploads(data.approvedUploads || []);
       } catch (error) {
@@ -392,7 +392,7 @@ const [loadingApproved, setLoadingApproved] = useState<boolean>(true);
     const fetchHallOfFame = async () => {
       try {
         setLoadingHallOfFame(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/hallOfFamePosts/${event?._id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftactivity/hallOfFamePosts/${event?._id}`);
         const data = await res.json();
         setHallOfFameUploads(data.approvedUploads || []);
       } catch (error) {

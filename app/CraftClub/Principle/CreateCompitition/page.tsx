@@ -23,7 +23,7 @@ export default function ActivityForm() {
     const router = useRouter();
     
     const gotohome = () => {
-      router.push('/Components/Principle/PrincipleDashBoard');
+      router.push('/CraftClub/Principle/PrincipleDashBoard');
     };
     
     
@@ -101,7 +101,7 @@ export default function ActivityForm() {
       }
 
       if (url) {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/create-compitition`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftcreate-compitition`, {
           method: "post",
           headers: {
             "Content-Type": "application/json",

@@ -79,7 +79,7 @@ function ParticularCompitionInner() {
   useEffect(() => {
     const fetchJudges = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allJudges`); // adjust if needed
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftallJudges`); // adjust if needed
         const data = await res.json();
         setJudges(data);
       } catch (err) {
@@ -89,7 +89,7 @@ function ParticularCompitionInner() {
 
 
     // const fetchAssignedJudges = async () => {
-    //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/competition/${id}`); // make sure this route returns populated judges
+    //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftcompetition/${id}`); // make sure this route returns populated judges
     //   const data = await res.json();
     //   setAssignedJudges(data.judges || []);
     // };
@@ -100,7 +100,7 @@ function ParticularCompitionInner() {
 
     const fetchAssignedJudges = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/competition/${id}/judges`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftcompetition/${id}/judges`);
         const data = await res.json();
         setAssignedJudges(data.judges);
       } catch (err) {
@@ -117,7 +117,7 @@ function ParticularCompitionInner() {
         setLoading(true)
         setError(null)
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftgetCompitition/${id}`)
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
@@ -175,7 +175,7 @@ function ParticularCompitionInner() {
 
 
   const toggleLive = async (value: any) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/set-live/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftactivity/set-live/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isLive: value }),
@@ -188,7 +188,7 @@ function ParticularCompitionInner() {
   const handleAssignJudge = async (judgeId: any) => {
     if (!judgeId) return;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/assignJudge`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftassignJudge`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, judgeId }),
@@ -207,7 +207,7 @@ function ParticularCompitionInner() {
 
   const handleRemoveJudge = async (judgeId: any) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/removeJudge`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftremoveJudge`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -240,7 +240,7 @@ function ParticularCompitionInner() {
     try {
       // Replace with your actual contest ID
       // const contestId = "685828ce20a1a9e01b628608"
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}/results`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}/craftresults`)
 
       if (!response.ok) {
         throw new Error("Failed to fetch results")
@@ -257,7 +257,7 @@ function ParticularCompitionInner() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}/generate-result`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}/craftgenerate-result`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

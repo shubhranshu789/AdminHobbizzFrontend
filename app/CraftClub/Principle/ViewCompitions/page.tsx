@@ -37,7 +37,7 @@ export default function CompetitionsPage() {
   const fetchCompetitions = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allCompitition`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftallCompitition`, {
         headers: {
           "Authorization": "Bearer " + localStorage.getItem("jwt")
         },
@@ -98,11 +98,11 @@ export default function CompetitionsPage() {
   const router = useRouter();
 
   const handleClickSubmitId = (id: any) => {
-    router.push(`/Components/Principle/ViewCompitions/ParticularCompition?id=${id}`);
+    router.push(`/CraftClub/Principle/ViewCompitions/ParticularCompition?id=${id}`);
 
   };
   const handleClickSubmitId2 = (id: any) => {
-    router.push(`/Components/Principle/ViewCompitions/ParticularCompitionParticipants?id=${id}`);
+    router.push(`/CraftClub/Principle/ViewCompitions/ParticularCompitionParticipants?id=${id}`);
   };
 
 

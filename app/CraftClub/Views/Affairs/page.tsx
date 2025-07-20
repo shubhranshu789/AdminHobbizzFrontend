@@ -70,7 +70,7 @@ function ReviewActitvity() {
 
 
   const handleClickSubmitId = (id: any) => {
-   router.push(`/Components/Views/Affairs/ParticularAffair?id=${id}`);
+   router.push(`/CraftClub/Views/Affairs/ParticularAffair?id=${id}`);
   };
 
 

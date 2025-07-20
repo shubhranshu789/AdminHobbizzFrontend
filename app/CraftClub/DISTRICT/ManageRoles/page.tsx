@@ -549,7 +549,7 @@ export default function SignUp() {
     )
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/principle-signup`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTPRINCIPLE-signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -834,7 +834,7 @@ export default function SignUp() {
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>
                             <SelectContent>
-                              {["artclub", "Photography", "dance"].map((category) => (
+                              {[ "craft"].map((category) => (
                                 <SelectItem key={category} value={category}>
                                   {category}
                                 </SelectItem>

@@ -22,22 +22,22 @@ function page() {
   // };
 
   const gotoAddActivity = () => {
-    router.push('/Components/DISTRICT/AddActivities/AllActivities');
+    router.push('/CraftClub/DISTRICT/AddActivities/AllActivities');
   }
 
 
   const gotohome = () => {
-    router.push('/Components/DISTRICT/DirectorDashboard');
+    router.push('/CraftClub/DISTRICT/DirectorDashboard');
   }
 
   const manageDistrict = () => {
-    router.push('/Components/DISTRICT/Districts');
+    router.push('/CraftClub/DISTRICT/Districts');
   }
   const manageRoles = () => {
-    router.push('/Components/DISTRICT/ManageRoles');
+    router.push('/CraftClub/DISTRICT/ManageRoles');
   }
   const manageEditor = () => {
-    router.push('/Components/DISTRICT/ManageRoles/CreateEditor');
+    router.push('/CraftClub/DISTRICT/ManageRoles/CreateEditor');
   }
 //   const gotoabout = () => {
 //     // router.push('../../Components/ParticipateInActivity');
@@ -50,7 +50,7 @@ function page() {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/Components/Auth/SignIn');
+    router.push('/CraftClub/Auth/SignIn');
     // window.location.reload();
   }
 
@@ -80,7 +80,7 @@ function page() {
                 { name: "Home", icon: Home , id : "Home"},
                 { name: "Add Activity", icon: Settings , id : "Add" },
                 // { name: "Participate", icon: User , id : "About" },
-                { name: "Contact", icon: Bell },
+                // { name: "Contact", icon: Bell },
                 { name: "manage district", icon: Zap, id: "Manage" },
                 { name: "Create Principle", icon: Zap, id: "ManageRole" },
                 // { name: "Create Editor", icon: Zap, id: "CreateEditor" },

@@ -49,6 +49,9 @@ export default function Navbar() {
   const GoToDirectorSignIn = () => {
     router.push('/Components/Auth/DistrictSignIn');
   };
+  const GoToMainPage = () => {
+    router.push('/');
+  };
 
 
 
@@ -58,7 +61,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
+          <div onClick={() => {GoToMainPage()}} className="flex items-center">
             <img style={{ height: "40px" }} src="/LOGO.png" alt="" />
           </div>
 

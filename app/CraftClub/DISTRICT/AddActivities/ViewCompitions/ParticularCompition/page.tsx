@@ -40,7 +40,7 @@ function DistrictParticularCompitionInner() {
         setLoading(true)
         setError(null)
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftgetCompitition/${id}`)
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
@@ -97,7 +97,7 @@ function DistrictParticularCompitionInner() {
   }
 
   const toggleLive = async (value: any) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activity/set-live/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftactivity/set-live/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isLive: value }),
@@ -154,10 +154,10 @@ function DistrictParticularCompitionInner() {
             </button>
           </div>
 
-          <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t">
+          {/* <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t">
             <span>Competition ID: {competition._id}</span>
             <span>Posted by: {competition.postedBy.length} user(s)</span>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
 
