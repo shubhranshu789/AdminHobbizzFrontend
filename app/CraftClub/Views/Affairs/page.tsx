@@ -83,7 +83,7 @@ function ReviewActitvity() {
         //     return;
         // }
 
-        fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/allActivities`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftallActivities`, {
             headers: {
                 // Authorization: "Bearer " + localStorage.getItem("jwt"),
             },
@@ -141,7 +141,7 @@ function ReviewActitvity() {
                                 alt={activity.title}
                                 className="w-full h-48 object-cover hover:opacity-90 transition-opacity duration-200"
                               />
-                              <Badge className="absolute top-3 right-3 bg-blue-600 hover:bg-blue-700">{activity.category}</Badge>
+                              {/* <Badge className="absolute top-3 right-3 bg-blue-600 hover:bg-blue-700">{activity.category}</Badge> */}
                               
                             </div>
                             <CardContent className="p-5">

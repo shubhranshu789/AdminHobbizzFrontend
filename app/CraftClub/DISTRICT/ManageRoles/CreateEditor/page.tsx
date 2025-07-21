@@ -577,7 +577,7 @@ export default function SignUp() {
       }
 
       console.log(data)
-      router.push("/Components/DISTRICT/DirectorDashboard")
+      router.push("/CraftClub/DISTRICT/DirectorDashboard")
 
     } catch (error) {
       console.error("Network error:", error)

@@ -210,7 +210,7 @@ export default function ArtClubHomepage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <Badge className="bg-blue-600 text-white px-4 py-2 text-sm">🎨 Welcome to Art Club</Badge>
+                <Badge className="bg-blue-600 text-white px-4 py-2 text-sm">🎨 Welcome to Craft Club</Badge>
                 <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                   <span className="text-blue-600 animate-pulse">Color Your</span>{" "}
                   <span className="text-blue-700 animate-pulse">Imagination.</span>
@@ -232,7 +232,7 @@ export default function ArtClubHomepage() {
                   onClick={() => { GoToArtAuthPage() }}
                 >
                   <Sparkles className="w-5 h-5 mr-2" />
-                  Join the Art Club
+                  Join the Craft Club
                 </Button>
 
               </div>
@@ -285,7 +285,7 @@ export default function ArtClubHomepage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
-              <span className="text-blue-600">About Our Art Club</span>
+              <span className="text-blue-600">About Our Craft Club</span>
             </h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto" style={{ userSelect: "text" }}>
               Our mission is to help students explore and express their creativity through painting, sketching, digital
@@ -297,7 +297,7 @@ export default function ArtClubHomepage() {
             <Card onClick={() => {goToHeritage()}} className="bg-white border-gray-200 hover:shadow-xl hover:shadow-blue-200/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-transparent hover:border-blue-400 hover:bg-blue-50/30">
               <CardHeader>
                 <Brush className="w-12 h-12 text-blue-600 mb-4" />
-                <CardTitle className="text-black">Traditional Art</CardTitle>
+                <CardTitle className="text-black">Traditional Craft</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700" style={{ userSelect: "text" }}>
@@ -332,7 +332,7 @@ export default function ArtClubHomepage() {
           </div>
 
           {/* Famous Artists Inspiration */}
-          <div className="bg-blue-50 rounded-3xl p-8">
+          {/* <div className="bg-blue-50 rounded-3xl p-8">
             <h3 className="text-2xl font-bold text-center mb-8 text-black">Draw Inspiration from the Masters</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center hover:scale-105 transition-all duration-300 cursor-pointer p-4 rounded-lg hover:bg-white/50 border-2 border-transparent hover:border-blue-400 hover:shadow-lg hover:shadow-blue-200/50">
@@ -357,7 +357,7 @@ export default function ArtClubHomepage() {
                 <p className="text-sm text-gray-700">Post-Impressionist</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -416,10 +416,10 @@ export default function ArtClubHomepage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
-              <span className="text-blue-600">Art Forms & Heritage</span>
+              <span className="text-blue-600">Craft Forms & Heritage</span>
             </h2>
             <p className="text-xl text-gray-700" style={{ userSelect: "text" }}>
-              Celebrating traditional Indian art forms
+              Celebrating traditional Indian craft forms
             </p>
           </div>
 

@@ -79,7 +79,7 @@ function Page() {
       }
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/getactivity/${id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftgetactivity/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -107,7 +107,7 @@ function Page() {
 
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/has-uploaded/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/crafthas-uploaded/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -127,7 +127,7 @@ function Page() {
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/event-participants/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftevent-participants/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -152,7 +152,7 @@ function Page() {
     const fetchApprovedUploads = async () => {
       try {
         setLoadingApproved(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/activity/approved-uploads/${event?._id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftactivity/approved-uploads/${event?._id}`);
         const data = await res.json();
         setApprovedUploads(data.approvedUploads || []);
       } catch (error) {
@@ -188,7 +188,7 @@ function Page() {
 
   const registerForActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/register-activity/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftregister-activity/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -214,7 +214,7 @@ function Page() {
 
   const unregisterFromActivity = async (activityId: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/unregister-activity/${activityId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftunregister-activity/${activityId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -270,7 +270,7 @@ function Page() {
 
       if (result.url) {
         const token = localStorage.getItem("jwt");
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/upload-photo/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftupload-photo/${id}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -311,7 +311,7 @@ function Page() {
             <Image src={event?.pic || "/placeholder.svg"} alt={event?.title || "/placeholder.svg"} fill className="object-cover" priority />
             <div className="absolute inset-0 bg-black/30 flex items-end">
               <div className="p-6 w-full">
-                <Badge className="mb-2 bg-primary hover:bg-primary/90 capitalize">{event?.category}</Badge>
+                {/* <Badge className="mb-2 bg-primary hover:bg-primary/90 capitalize">{event?.category}</Badge> */}
                 <h1 className="text-3xl sm:text-4xl font-bold text-white">{event?.title}</h1>
               </div>
             </div>
@@ -336,10 +336,10 @@ function Page() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
 
-                  <div className="flex items-center gap-2">
+                  {/* <div className="flex items-center gap-2">
                     <User className="h-5 w-5 text-muted-foreground" />
                     <span>Posted by: {event?.postedBy[0].substring(0, 8)}...</span>
-                  </div>
+                  </div> */}
                   <div className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-muted-foreground" />
                     <span>{event?.Registrations.length} Registrations</span>
@@ -351,7 +351,7 @@ function Page() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button
+              {/* <Button
                 onClick={() => {
                   if (!event?._id) return;
 
@@ -362,7 +362,7 @@ function Page() {
                 className="w-full"
               >
                 {isRegistered ? "Unregister" : "Register for Event"}
-              </Button>
+              </Button> */}
 
 
 

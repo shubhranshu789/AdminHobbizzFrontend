@@ -34,7 +34,7 @@ export default function CompetitionsPage() {
   const fetchCompetitions = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/allCompitition`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftallCompitition`, {
         headers: {
           // "Authorization": "Bearer " + localStorage.getItem("jwt")
         },
@@ -98,10 +98,10 @@ export default function CompetitionsPage() {
     // router.push(`/Components/DISTRICT/AddActivities/ViewCompitions/ParticularCompition?id=${id}`);
   };
   const handleClickSubmitId2 = (id: any) => {
-    router.push(`/Components/Views/Contest/ParticularCompitition?id=${id}`);
+    router.push(`/CraftClub/Views/Contest/ParticularCompitition?id=${id}`);
   };
   const handleClickSubmitId3 = (id: any) => {
-    router.push(`/Components/Views/Contest/ContestResult?id=${id}`);
+    router.push(`/CraftClub/Views/Contest/ContestResult?id=${id}`);
   };
 
 

@@ -173,8 +173,8 @@ const HallOfFameForm = () => {
                                 <option value="Select" disabled>
                                     Select category
                                 </option>
-                                <option value="Traditional Art">Traditional Art</option>
-                                <option value="Modern Art">Modern Art</option>
+                                <option value="Traditional Craft">Traditional Craft</option>
+                                <option value="Modern Craft">Modern Craft</option>
                                 <option value="Sculpture">Sculpture</option>
                                 <option value="Photography">Photography</option>
                                 <option value="Other">Other</option>
