@@ -76,7 +76,7 @@ function CompetitionResults() {
     setError(null)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/competitions/${id}`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftcompetitions/${id}`)
       if (!response.ok) {
         throw new Error("Failed to fetch competition data")
       }

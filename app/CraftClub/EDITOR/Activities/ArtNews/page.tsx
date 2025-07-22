@@ -171,7 +171,7 @@ const ClubNewsForm = () => {
 
         {/* Content */}
         <h1 className="text-5xl font-extrabold text-gray-800 mb-3 drop-shadow-md z-10">
-          Art Club NEWS
+          Craft Club NEWS
         </h1>
         <p className="text-lg sm:text-xl text-gray-700 max-w-xl z-10">
           Stay updated with the latest announcements, achievements, and press coverage.
@@ -181,7 +181,7 @@ const ClubNewsForm = () => {
       {/* Form Section */}
       <div className="max-w-2xl mx-auto mt-8 px-6 py-6 bg-white shadow-lg rounded-xl border border-gray-200">
         <h2 className="text-xl font-bold text-center text-gray-800 mb-4">
-          📰 Post Art Club News
+          📰 Post Craft Club News
         </h2>
         <form onSubmit={handleSubmit} className="space-y-3">
           <div>

@@ -218,7 +218,7 @@ const Gallery = () => {
                         className="text-center mb-12"
                     >
                         <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-4">
-                            🎨 Art Gallery
+                            🎨 Craft Gallery
                         </h1>
                         <p className="text-gray-600 text-lg max-w-2xl mx-auto">
                             Discover a curated collection of stunning artworks from talented artists around the world

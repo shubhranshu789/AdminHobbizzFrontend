@@ -8,7 +8,7 @@ function page() {
 
 
   const GoToArtAuthPage = () => {
-    router.push("/Components/Auth/SignIn")
+    router.push("/CraftClub/Auth/SignIn")
   }
 
   return (
