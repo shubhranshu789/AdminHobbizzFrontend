@@ -151,7 +151,7 @@ export function ClubsGrid() {
                   <span>{club.meetingDays}</span>
                 </div>
               </div>
-              <Link href={`../../../Components/CABINATE/JoinClub/${club.id}`}>
+              <Link href={`../CABINATE/JoinClub/craft`}>
                 <Button variant="outline" className="mt-4 w-full">
                   View Club
                 </Button>

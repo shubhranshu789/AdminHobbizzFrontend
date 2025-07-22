@@ -46,7 +46,7 @@ export default function DistrictPage() {
   const [districtStates, setDistrictStates] = useState<Record<string, DistrictState>>({})
   const [dialogOpen, setDialogOpen] = useState(false)
   const [userInfo, setUserInfo] = useState<UserInfo>({
-    clubName: "artclub",
+    clubName: "craftclub",
     loading: false,
     error: null,
   })
@@ -86,7 +86,8 @@ export default function DistrictPage() {
         const timeoutId = setTimeout(() => controller.abort(), 10000) // 10s timeout
 
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/${userInfo.clubName}/info?district=${encodeURIComponent(districtName)}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/${userInfo.clubName}/info?district=${encodeURIComponent(districtName)}`,
+          //`http://localhost:5000/${userInfo.clubName}/info?district=${encodeURIComponent(districtName)}`,
           {
             signal: controller.signal,
             headers: {
@@ -287,7 +288,7 @@ export default function DistrictPage() {
                     className="w-half"
                     size="lg"
                     onClick={() => {
-                      router.push(`../../../Components/DISTRICT/AssignHead?district=${encodeURIComponent(selectedDistrict)}`)
+                      router.push(`../DISTRICT/AssignHead?district=${encodeURIComponent(selectedDistrict)}`)
                     }}
                   >
                     Assign Head

@@ -35,7 +35,8 @@ const LocalEventsDisplayPage = () => {
     setIsLoading(true);
     setError(null);
     fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/get-events?club=${userData.club}&district=${userData.district}`
+     `${process.env.NEXT_PUBLIC_API_URL}/get-events?club=${userData.club}&district=${userData.district}`
+      //`http://localhost:5000/get-events?club=${userData.club}&district=${userData.district}`
     )
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch");
@@ -154,7 +155,7 @@ const LocalEventsDisplayPage = () => {
                     <MapPin className="w-4 h-4" />
                     <span className="text-sm">Venue: {event.venue}</span>
                   </div>
-                  <Link href={`/Components/DISTRICT/LocalEventOverview?event_id=${encodeURIComponent(event.event_id)}`}>
+                  <Link href={`/CraftClub/DISTRICT/LocalEventOverview?event_id=${encodeURIComponent(event.event_id)}`}>
                     <Button
                       className={`w-full ${
                         isPast

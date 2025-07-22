@@ -58,8 +58,8 @@ useEffect(() => {
   const storedUser = localStorage.getItem("user");
   if (storedUser) {
     const parsedUser = JSON.parse(storedUser);
-    if (parsedUser.clubName) {
-      setClub(parsedUser.clubName);
+    if (parsedUser.club) {
+      setClub(parsedUser.club);
     }
   }
 }, []);
@@ -74,6 +74,7 @@ useEffect(() => {
       
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/head-request?district=${district}`, {
+        //const response = await fetch(`http://localhost:5000/${clubName}/head-request?district=${district}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -105,6 +106,7 @@ useEffect(() => {
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/approve-head/?district=${district}&userid=${userId}`, {
+      //const response = await fetch(`http://localhost:5000/${clubName}/approve-head/?district=${district}&userid=${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -139,6 +141,7 @@ useEffect(() => {
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/disapprove-head/?district=${district}&userid=${userId}`, {
+      //const response = await fetch(`http://localhost:5000/${clubName}/disapprove-head/?district=${district}&userid=${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

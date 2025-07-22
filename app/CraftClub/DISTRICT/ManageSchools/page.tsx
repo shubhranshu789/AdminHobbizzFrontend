@@ -70,7 +70,8 @@ export default function ManageSchool() {
       setError(null)
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/get-school?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/get-school-craft?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}`,
+        //`http://localhost:5000/get-school-craft?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}`,
       )
 
       if (!response.ok) {

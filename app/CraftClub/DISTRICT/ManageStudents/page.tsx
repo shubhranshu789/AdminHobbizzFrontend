@@ -55,16 +55,7 @@ export default function Students() {
     if (UserData && token) {
       const parsedUserData = JSON.parse(UserData)
       setUserdata(parsedUserData)
-    } else {
-      // Mock data for development
-      setUserdata({
-        club: "alub",
-        district: "Varanasi",
-        school: "St. Mary's High School",
-        name: "Tony Stark",
-        email: "tony@example.com",
-      })
-    }
+    } 
   }, [])
 
   useEffect(() => {
@@ -85,13 +76,16 @@ export default function Students() {
       // Fetch all data concurrently
       const [studentsRes, captainRes, correspondentRes] = await Promise.all([
         fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/get-students?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/get-students-craft?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+          //`http://localhost:5000/get-students-craft?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
         ),
         fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/get-captain?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/get-captain-craft?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+         // `http://localhost:5000/get-captain-craft?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
         ),
         fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/get-correspondent?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/get-correspondent-craft?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+         // `http://localhost:5000/get-correspondent-craft?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
         ),
       ])
 
@@ -132,7 +126,8 @@ export default function Students() {
     try {
       setMakingCaptain(studentId)
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/make-captain`, {
+     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/make-captain-craft`, {
+      //const response = await fetch(`http://localhost:5000/make-captain-craft`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

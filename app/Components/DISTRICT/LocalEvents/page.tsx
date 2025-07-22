@@ -237,7 +237,7 @@ const LocalChapterPage: React.FC = () => {
       setIsSubmitting(true)
       setError(null)
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/delete-event/?eventId=${eventToDeleteId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/delete-event/?eventId=${eventToDeleteId}&club=${"artclub"}`, {
         method: "DELETE",
       })
 

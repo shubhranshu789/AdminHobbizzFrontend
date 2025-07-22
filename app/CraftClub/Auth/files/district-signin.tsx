@@ -76,7 +76,8 @@ export default function SignIn() {
 
 
         //sending data to server
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTDIRECTOR-signin`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/director-signin`, {
+        //fetch(`http://localhost:5000/director-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

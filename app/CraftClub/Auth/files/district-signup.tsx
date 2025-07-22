@@ -549,8 +549,9 @@ export default function SignUp() {
     )
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTDIRECTOR-signup`, {
-        method: "POST",
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/director-signup`, {
+      //const response = await fetch(`http://localhost:5000/director-signup`, {
+      method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -835,7 +836,7 @@ export default function SignUp() {
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>
                             <SelectContent>
-                              {["artclub", "Photography", "dance"].map((category) => (
+                              {["artclub", "Photography", "craftclub"].map((category) => (
                                 <SelectItem key={category} value={category}>
                                   {category}
                                 </SelectItem>

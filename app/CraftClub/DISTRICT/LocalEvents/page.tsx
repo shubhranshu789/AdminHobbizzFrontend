@@ -85,6 +85,7 @@ const LocalChapterPage: React.FC = () => {
       setIsLoading(true)
       setError(null)
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-events?club=${userData.club}&district=${userData.district}`)
+      //const response = await fetch(`http://localhost:5000/get-events?club=${userData.club}&district=${userData.district}`)
 
       if (!response.ok) {
         throw new Error(`Failed to fetch chapters: ${response.statusText}`)
@@ -156,8 +157,10 @@ const LocalChapterPage: React.FC = () => {
 
       const isEditing = !!selectedEvent?.event_id
       const url = isEditing
-        ? `${process.env.NEXT_PUBLIC_API_URL}/update-event/${selectedEvent.event_id}`
+       ? `${process.env.NEXT_PUBLIC_API_URL}/update-event/${selectedEvent.event_id}`
+        //? `http://localhost:5000/update-event/${selectedEvent.event_id}`
         : `${process.env.NEXT_PUBLIC_API_URL}/create-event`
+        //: `http://localhost:5000/create-event`
       const method = isEditing ? "PUT" : "POST"
 
       const submitData = {
@@ -237,7 +240,8 @@ const LocalChapterPage: React.FC = () => {
       setIsSubmitting(true)
       setError(null)
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/delete-event/?eventId=${eventToDeleteId}`, {
+     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/delete-event/?eventId=${eventToDeleteId}&club=${"craftclub"}`, {
+      //const response = await fetch(`http://localhost:5000/delete-event/?eventId=${eventToDeleteId}&club=${"craftclub"}`, {
         method: "DELETE",
       })
 
