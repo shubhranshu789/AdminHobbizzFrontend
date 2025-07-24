@@ -27,7 +27,7 @@ const clubs = [
   },
   {
     id: "tech",
-    name: "Robotics Club",
+    name: "Tech Club",
     description: "Build the future with innovation",
     members: 79,
     meetingDays: "Wed, Fri",
@@ -151,7 +151,7 @@ export function ClubsGrid() {
                   <span>{club.meetingDays}</span>
                 </div>
               </div>
-              <Link href={`../../../Components/CABINATE/JoinClub/${club.id}`}>
+              <Link href={`../CABINATE/JoinClub/${club.id}`}>
                 <Button variant="outline" className="mt-4 w-full">
                   View Club
                 </Button>

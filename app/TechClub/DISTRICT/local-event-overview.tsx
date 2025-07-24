@@ -52,7 +52,7 @@ function LocalEventOverviewContent() {
         setError(null)
 
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/event-details?event_id=${encodeURIComponent(event_id)}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/event-details?event_id=${encodeURIComponent(event_id)}&club=${"Techclub"}}`,
         )
 
         if (!response.ok) {
@@ -153,7 +153,7 @@ function LocalEventOverviewContent() {
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen mt-16 bg-gray-50">
+      <div className="min-h-screen  bg-gray-50">
         {/* Header with Gradient */}
         <div className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-white">
           <Image
@@ -161,7 +161,7 @@ function LocalEventOverviewContent() {
             alt={event.title}
             width={1920}
             height={400}
-            className="w-full h-64 object-cover" 
+            className="w-full h-80 object-cover" 
           />
         </div>
 
