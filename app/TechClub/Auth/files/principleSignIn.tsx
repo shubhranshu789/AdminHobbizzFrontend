@@ -14,8 +14,7 @@ import Link from "next/link"
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 
-// import "../../../Components/DISTRICT/DirectorDashboard"
-
+// import "../../../Components/Auth/PrincipleSignUp"
 import Navbar from "../../Navbar/AuthNavbar/page"
 
 
@@ -62,22 +61,36 @@ export default function SignIn() {
 
 
   const GotoDashBoard = () => {
-    router.push('/CraftClub/home');
+    router.push('/TechClub/EDITOR/EditorDashboard');
   }
   const GotoDashBoardDirector = () => {
-    router.push('/CraftClub/DISTRICT/DirectorDashboard');
+    router.push('/TechClub/EDITOR/EditorDashboard');
   }
   const GotoDistrictSignup = () => {
-    router.push('/CraftClub/Auth/DistricctSignUp');
+    router.push('/TechClub/Auth/DistricctSignUp');
   }
 
+
+  const GotoJudgeDashBoard = () => {
+    router.push('/TechClub/Judge/JudgeDashBoard');
+  }
+
+
+  const GotoPrincipleSignUp = () => {
+    router.push('/TechClub/Auth/PrincipleSignUp');
+  }
+
+
+   const GotoPrincipleDashBoard = () => {
+    router.push('/TechClub/Principle/PrincipleDashBoard');
+  }
 
   const postData = () => {
 
 
         //sending data to server
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTDIRECTOR-signin`, {
-        //fetch(`http://localhost:5000/CRAFTDIRECTOR-signin`, {
+        // fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHPRINCIPLE-signin`, {
+        fetch(`http://localhost:5000/TECHPRINCIPLE-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -101,7 +114,7 @@ export default function SignIn() {
                     localStorage.setItem("jwt", data.token);
                     localStorage.setItem("user", JSON.stringify(data.user));
                     // setUserLogin(true);
-                    GotoDashBoardDirector();
+                    GotoPrincipleDashBoard();
                 }
 
                 console.log(data);
@@ -201,7 +214,7 @@ export default function SignIn() {
                     <Sparkles className="w-8 h-8 text-white" />
                   </motion.div>
                 </motion.div>
-                <CardTitle className="text-2xl font-bold text-gray-900">Director Login</CardTitle>
+                <CardTitle className="text-2xl font-bold text-gray-900">Principle Login</CardTitle>
                 <CardTitle className="text-2xl font-bold text-gray-900">Welcome Back</CardTitle>
                 <CardDescription className="text-gray-600">Sign in to your BOOSTUP account</CardDescription>
               </CardHeader>
@@ -318,7 +331,7 @@ export default function SignIn() {
                   >
                     <p className="text-sm text-gray-600">
                       {"Don't have an account? "}
-                      <span onClick={() => {GotoDistrictSignup()}} style={{cursor : "pointer"}} className="text-blue-600 hover:text-blue-700 font-medium">
+                      <span onClick={() => {GotoPrincipleSignUp()}} style={{cursor : "pointer"}} className="text-blue-600 hover:text-blue-700 font-medium">
                         Sign up
                       </span>
                     </p>

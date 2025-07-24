@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+// import "../../../TechClub/DISTRICT/DirectorDashboard"
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -18,8 +19,8 @@ import Link from "next/link"
 import toast, { Toaster } from 'react-hot-toast';
 
 import { useRouter } from 'next/navigation';
-// import SignIn from "../../../Components/Auth/DistrictSignIn"
-import Navbar from "../../Navbar/AuthNavbar/page"
+// import SignIn from "../../../Components/Auth/PrincipleSignIn"
+import Navbar from "../DirectorNavbar/page"
 
 const statesAndDistricts = {
   "Uttar Pradesh": [
@@ -549,9 +550,8 @@ export default function SignUp() {
     )
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTDIRECTOR-signup`, {
-      //const response = await fetch(`http://localhost:5000/CRAFTDIRECTOR-signup`, {
-      method: "POST",
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHPRINCIPLE-signup`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -562,7 +562,7 @@ export default function SignUp() {
           ip: ip,
           state: formData.state,
           district: formData.district,
-          club: formData.clubName
+          clubName: formData.clubName
           // school: formData.school,
         }),
       })
@@ -578,7 +578,8 @@ export default function SignUp() {
       }
 
       console.log(data)
-      router.push("/Components/Auth/SignIn")
+      // router.push("/TechClub/Auth/SignIn")
+      router.push("/TechClub/DISTRICT/DirectorDashboard")
 
     } catch (error) {
       console.error("Network error:", error)
@@ -599,10 +600,9 @@ export default function SignUp() {
   }
 
   return (
-
     <div>
       <Navbar/>
-      <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700">
+      <div style={{marginTop : "60px"}} className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <FloatingElement delay={0} duration={4}>
@@ -695,8 +695,8 @@ export default function SignUp() {
                     <Rocket className="w-8 h-8 text-white" />
                   </motion.div>
                 </motion.div>
-                <CardTitle className="text-2xl font-bold text-gray-900">Director SignUp</CardTitle>
-                <CardTitle className="text-2xl font-bold text-gray-900">Join BOOSTUP</CardTitle>
+                <CardTitle className="text-2xl font-bold text-gray-900">Create Principle</CardTitle>
+                {/* <CardTitle className="text-2xl font-bold text-gray-900">Join BOOSTUP</CardTitle> */}
                 <CardDescription className="text-gray-600">Create your account and start your journey</CardDescription>
               </CardHeader>
               <CardContent>
@@ -836,7 +836,7 @@ export default function SignUp() {
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>
                             <SelectContent>
-                              {["artclub", "Photography", "craftclub"].map((category) => (
+                              {[ "Tech"].map((category) => (
                                 <SelectItem key={category} value={category}>
                                   {category}
                                 </SelectItem>
@@ -967,7 +967,7 @@ export default function SignUp() {
                       <p className="text-sm text-gray-600">
                         Already have an account?
                         <span
-                          onClick={() => { router.push("/CraftClub/Auth/DistrictSignIn") }}
+                          onClick={() => { router.push("/Components/Auth/PrincipleSignIn") }}
                           style={{ cursor: 'pointer' }} className="text-blue-600 hover:text-blue-700 font-medium">
                           Sign in
                         </span>
@@ -986,5 +986,6 @@ export default function SignUp() {
         </div>
       </div>
     </div>
+
   )
 }

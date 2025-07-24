@@ -62,13 +62,13 @@ export default function SignIn() {
 
 
   const GotoDashBoard = () => {
-    router.push('/CraftClub/home');
+    router.push('/TechClub/home');
   }
   const GotoDashBoardDirector = () => {
-    router.push('/CraftClub/DISTRICT/DirectorDashboard');
+    router.push('/TechClub/DISTRICT/DirectorDashboard');
   }
   const GotoDistrictSignup = () => {
-    router.push('/CraftClub/Auth/DistricctSignUp');
+    router.push('/TechClub/Auth/DistricctSignUp');
   }
 
 
@@ -76,8 +76,8 @@ export default function SignIn() {
 
 
         //sending data to server
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTDIRECTOR-signin`, {
-        //fetch(`http://localhost:5000/CRAFTDIRECTOR-signin`, {
+        // fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHDIRECTOR-signin`, {
+        fetch(`http://localhost:5000/TECHDIRECTOR-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

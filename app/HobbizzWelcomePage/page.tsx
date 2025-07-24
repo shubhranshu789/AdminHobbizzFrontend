@@ -36,6 +36,12 @@ export default function HomePage() {
     router.push('/CraftClub/ArtClub/WelcomePage');
   };
 
+  const TechPageWelcome = () => {
+    router.push('/TechClub/ArtClub/WelcomePage');
+  };
+
+
+
 
 
 
@@ -131,6 +137,18 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
+            <Card
+            onClick={()=>{TechPageWelcome()}}
+            className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Bot className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Tech</h3>
+                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
+              </CardContent>
+            </Card>
+
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-[#357af3] to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
@@ -155,15 +173,6 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Bot className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Tech</h3>
-                <p className="text-gray-600 leading-relaxed">Build inner strength, focus, and balance</p>
-              </CardContent>
-            </Card>
 
             <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-[#357af3]/20">
               <CardContent className="p-8 text-center">

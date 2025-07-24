@@ -14,8 +14,7 @@ import Link from "next/link"
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 
-// import "../../../Components/DISTRICT/DirectorDashboard"
-
+// import "../../../Components/Auth/JudgeSignup"
 import Navbar from "../../Navbar/AuthNavbar/page"
 
 
@@ -62,22 +61,31 @@ export default function SignIn() {
 
 
   const GotoDashBoard = () => {
-    router.push('/CraftClub/home');
+    router.push('/TechClub/EDITOR/EditorDashboard');
   }
   const GotoDashBoardDirector = () => {
-    router.push('/CraftClub/DISTRICT/DirectorDashboard');
+    router.push('/TechClub/EDITOR/EditorDashboard');
   }
   const GotoDistrictSignup = () => {
-    router.push('/CraftClub/Auth/DistricctSignUp');
+    router.push('/TechClub/Auth/DistricctSignUp');
   }
 
+
+  const GotoJudgeDashBoard = () => {
+    router.push('/TechClub/Judge/JudgeDashBoard');
+  }
+
+
+  const GotoJudgeSignUp = () => {
+    router.push('/TechClub/Auth/JudgeSignup');
+  }
 
   const postData = () => {
 
 
         //sending data to server
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTDIRECTOR-signin`, {
-        //fetch(`http://localhost:5000/CRAFTDIRECTOR-signin`, {
+        // fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHJUDGE-signin`, {
+        fetch(`https://localhost:5000/TECHJUDGE-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -101,7 +109,7 @@ export default function SignIn() {
                     localStorage.setItem("jwt", data.token);
                     localStorage.setItem("user", JSON.stringify(data.user));
                     // setUserLogin(true);
-                    GotoDashBoardDirector();
+                    GotoJudgeDashBoard();
                 }
 
                 console.log(data);
@@ -201,7 +209,7 @@ export default function SignIn() {
                     <Sparkles className="w-8 h-8 text-white" />
                   </motion.div>
                 </motion.div>
-                <CardTitle className="text-2xl font-bold text-gray-900">Director Login</CardTitle>
+                <CardTitle className="text-2xl font-bold text-gray-900">Judge Login</CardTitle>
                 <CardTitle className="text-2xl font-bold text-gray-900">Welcome Back</CardTitle>
                 <CardDescription className="text-gray-600">Sign in to your BOOSTUP account</CardDescription>
               </CardHeader>
@@ -310,7 +318,7 @@ export default function SignIn() {
                     </Button>
                   </motion.div>
 
-                  {/* <motion.div
+                  <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
@@ -318,11 +326,11 @@ export default function SignIn() {
                   >
                     <p className="text-sm text-gray-600">
                       {"Don't have an account? "}
-                      <span onClick={() => {GotoDistrictSignup()}} style={{cursor : "pointer"}} className="text-blue-600 hover:text-blue-700 font-medium">
+                      <span onClick={() => {GotoJudgeSignUp()}} style={{cursor : "pointer"}} className="text-blue-600 hover:text-blue-700 font-medium">
                         Sign up
                       </span>
                     </p>
-                  </motion.div> */}
+                  </motion.div>
                 </form>
               </CardContent>
             </Card>

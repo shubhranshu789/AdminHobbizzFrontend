@@ -14,8 +14,7 @@ import Link from "next/link"
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 
-// import "../../../Components/DISTRICT/DirectorDashboard"
-
+// import "../../../Components/Auth/EditorSignup"
 import Navbar from "../../Navbar/AuthNavbar/page"
 
 
@@ -62,13 +61,13 @@ export default function SignIn() {
 
 
   const GotoDashBoard = () => {
-    router.push('/CraftClub/home');
+    router.push('/TechClub/EDITOR/EditorDashboard');
   }
   const GotoDashBoardDirector = () => {
-    router.push('/CraftClub/DISTRICT/DirectorDashboard');
+    router.push('/TechClub/EDITOR/EditorDashboard');
   }
-  const GotoDistrictSignup = () => {
-    router.push('/CraftClub/Auth/DistricctSignUp');
+  const GotoEditorSignup = () => {
+    router.push('/TechClub/Auth/EditorSignup');
   }
 
 
@@ -76,8 +75,8 @@ export default function SignIn() {
 
 
         //sending data to server
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTDIRECTOR-signin`, {
-        //fetch(`http://localhost:5000/CRAFTDIRECTOR-signin`, {
+        // fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHEDITOR-signin`, {
+        fetch(`http://localhost:5000/TECHEDITOR-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -118,6 +117,7 @@ export default function SignIn() {
   }
 
   return (
+
     <div>
       <Navbar/>
       <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700">
@@ -201,7 +201,7 @@ export default function SignIn() {
                     <Sparkles className="w-8 h-8 text-white" />
                   </motion.div>
                 </motion.div>
-                <CardTitle className="text-2xl font-bold text-gray-900">Director Login</CardTitle>
+                <CardTitle className="text-2xl font-bold text-gray-900">Editor Login</CardTitle>
                 <CardTitle className="text-2xl font-bold text-gray-900">Welcome Back</CardTitle>
                 <CardDescription className="text-gray-600">Sign in to your BOOSTUP account</CardDescription>
               </CardHeader>
@@ -318,7 +318,7 @@ export default function SignIn() {
                   >
                     <p className="text-sm text-gray-600">
                       {"Don't have an account? "}
-                      <span onClick={() => {GotoDistrictSignup()}} style={{cursor : "pointer"}} className="text-blue-600 hover:text-blue-700 font-medium">
+                      <span onClick={() => {GotoEditorSignup()}} style={{cursor : "pointer"}} className="text-blue-600 hover:text-blue-700 font-medium">
                         Sign up
                       </span>
                     </p>
@@ -330,6 +330,5 @@ export default function SignIn() {
         </div>
       </div>
     </div>
-
   )
 }

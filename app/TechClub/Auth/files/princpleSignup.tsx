@@ -18,7 +18,7 @@ import Link from "next/link"
 import toast, { Toaster } from 'react-hot-toast';
 
 import { useRouter } from 'next/navigation';
-// import SignIn from "../../../Components/Auth/DistrictSignIn"
+// import SignIn from "../../../Components/Auth/PrincipleSignIn"
 import Navbar from "../../Navbar/AuthNavbar/page"
 
 const statesAndDistricts = {
@@ -549,9 +549,9 @@ export default function SignUp() {
     )
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTDIRECTOR-signup`, {
-      //const response = await fetch(`http://localhost:5000/CRAFTDIRECTOR-signup`, {
-      method: "POST",
+      // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTPRINCIPLE-signup`, {
+      const response = await fetch(`http://localhost:5000/CRAFTPRINCIPLE-signup`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -578,7 +578,7 @@ export default function SignUp() {
       }
 
       console.log(data)
-      router.push("/Components/Auth/SignIn")
+      router.push("/CraftClub/Auth/SignIn")
 
     } catch (error) {
       console.error("Network error:", error)
@@ -599,7 +599,6 @@ export default function SignUp() {
   }
 
   return (
-
     <div>
       <Navbar/>
       <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700">
@@ -695,7 +694,7 @@ export default function SignUp() {
                     <Rocket className="w-8 h-8 text-white" />
                   </motion.div>
                 </motion.div>
-                <CardTitle className="text-2xl font-bold text-gray-900">Director SignUp</CardTitle>
+                <CardTitle className="text-2xl font-bold text-gray-900">Principle SignUp</CardTitle>
                 <CardTitle className="text-2xl font-bold text-gray-900">Join BOOSTUP</CardTitle>
                 <CardDescription className="text-gray-600">Create your account and start your journey</CardDescription>
               </CardHeader>
@@ -836,7 +835,7 @@ export default function SignUp() {
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>
                             <SelectContent>
-                              {["artclub", "Photography", "craftclub"].map((category) => (
+                              {["Tech"].map((category) => (
                                 <SelectItem key={category} value={category}>
                                   {category}
                                 </SelectItem>
@@ -967,7 +966,7 @@ export default function SignUp() {
                       <p className="text-sm text-gray-600">
                         Already have an account?
                         <span
-                          onClick={() => { router.push("/CraftClub/Auth/DistrictSignIn") }}
+                          onClick={() => { router.push("/CraftClub/Auth/PrincipleSignIn") }}
                           style={{ cursor: 'pointer' }} className="text-blue-600 hover:text-blue-700 font-medium">
                           Sign in
                         </span>
@@ -986,5 +985,6 @@ export default function SignUp() {
         </div>
       </div>
     </div>
+
   )
 }
