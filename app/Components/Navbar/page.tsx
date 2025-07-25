@@ -9,6 +9,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LogOut, Bell, Search, Sparkles, HomeIcon, School, Flag } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+// import "../../Components/CABINATE/JoinClub/art"
+
+
 interface NavItem {
   name: string
   icon: React.ComponentType<{ className?: string }>
@@ -60,7 +63,7 @@ function Navbar() {
   }, [])
 
   const logout = () => {
-    router.push("/Components/Auth/SignIn")
+    router.push("/")
     localStorage.clear()
   }
 
@@ -73,7 +76,7 @@ function Navbar() {
       { name: "Home", icon: HomeIcon, action: () => router.push("/Components/home") },
       { name: "Local Events", icon: Flag, action: () => router.push("/Components/DISTRICT/LocalEventsDisplayPage") },
       { name: "Participate", icon: School, action: () => router.push("/Components/ParticipateInActivity") },
-      { name: "Apply for Club", icon: Bell, action: () => router.push("/Components/CABINATE/JoinClub") },
+      { name: "Apply for Club", icon: Bell, action: () => router.push("/Components/CABINATE/JoinClub/art") },
     ],
     head: [
       { name: "Home", icon: HomeIcon, action: () => router.push("/Components/home") },
