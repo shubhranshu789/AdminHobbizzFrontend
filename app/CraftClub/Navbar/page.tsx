@@ -9,6 +9,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LogOut, Bell, Search, Sparkles, HomeIcon, School, Flag } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+// import "../../CraftClub/CABINATE/JoinClub/craft"
+
 interface NavItem {
   name: string
   icon: React.ComponentType<{ className?: string }>
@@ -60,7 +62,7 @@ function Navbar() {
   }, [])
 
   const logout = () => {
-    router.push("/CraftClub/Auth/SignIn")
+    router.push("/")
     localStorage.clear()
   }
 
@@ -73,7 +75,7 @@ function Navbar() {
       { name: "Home", icon: HomeIcon, action: () => router.push("/CraftClub/home") },
       { name: "Local Events", icon: Flag, action: () => router.push("/CraftClub/DISTRICT/LocalEventsDisplayPage") },
       { name: "Participate", icon: School, action: () => router.push("/CraftClub/ParticipateInActivity") },
-      { name: "Apply for Club", icon: Bell, action: () => router.push("/CraftClub/CABINATE/JoinClub") },
+      { name: "Apply for Club", icon: Bell, action: () => router.push("/CraftClub/CABINATE/JoinClub/craft") },
     ],
     head: [
       { name: "Home", icon: HomeIcon, action: () => router.push("/CraftClub/home") },
