@@ -549,8 +549,8 @@ export default function SignUp() {
     )
 
     try {
-      // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTPRINCIPLE-signup`, {
-      const response = await fetch(`http://localhost:5000/CRAFTPRINCIPLE-signup`, {
+       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHPRINCIPLE-signup`, {
+      //const response = await fetch(`http://localhost:5000/TECHPRINCIPLE-signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -75,8 +75,8 @@ export default function SignIn() {
 
 
         //sending data to server
-        // fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHEDITOR-signin`, {
-        fetch(`http://localhost:5000/TECHEDITOR-signin`, {
+         fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHEDITOR-signin`, {
+        //fetch(`http://localhost:5000/TECHEDITOR-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
