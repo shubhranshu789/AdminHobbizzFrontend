@@ -549,13 +549,8 @@ export default function SignUp() {
     )
 
     try {
-<<<<<<< HEAD
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHEDITOR-signup`, {
-      // const response = await fetch(`http://localhost:5000/TECHEDITOR-signup`, {
-=======
        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHEDITOR-signup`, {
       //const response = await fetch(`http://localhost:5000/TECHEDITOR-signup`, {
->>>>>>> 1aad8ae8b2d2473bf0d248184800bce9e11eafbb
         method: "POST",
         headers: {
           "Content-Type": "application/json",
