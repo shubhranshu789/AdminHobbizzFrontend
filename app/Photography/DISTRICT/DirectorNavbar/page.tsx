@@ -50,7 +50,7 @@ function page() {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/Photography/Auth/SignIn');
+    router.push('/');
     // window.location.reload();
   }
 

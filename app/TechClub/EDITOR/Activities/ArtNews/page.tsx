@@ -43,12 +43,12 @@ const ClubNewsForm = () => {
 
 
   const handleClickSubmitId = (id: any) => {
-    router.push(`/CraftClub/EDITOR/Activities/ArtNews/ParticularArtNews?id=${id}`);
+    router.push(`/TechClub/EDITOR/Activities/ArtNews/ParticularArtNews?id=${id}`);
   };
 
   
   const gotoUpdate = (id: any) => {
-    router.push(`/CraftClub/EDITOR/Activities/ArtNews/Update?id=${id}`);
+    router.push(`/TechClub/EDITOR/Activities/ArtNews/Update?id=${id}`);
   }
 
 
@@ -81,7 +81,7 @@ const ClubNewsForm = () => {
     };
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclubnews`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclubnews`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newsData),
@@ -114,7 +114,7 @@ const ClubNewsForm = () => {
   const fetchNews = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclubnewsviewallpost`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclubnewsviewallpost`);
       const data = await res.json();
 
       if (res.ok) {
@@ -136,7 +136,7 @@ const ClubNewsForm = () => {
 
     try {
       // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-news/${id}`, {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-news/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-news/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

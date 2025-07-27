@@ -41,7 +41,7 @@ const Gallery = () => {
     // Fetch all images
     const fetchImages = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/craftviewgallerypost`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/techviewgallerypost`);
             setImages(res.data || []);
         } catch (err) {
             console.error("Error fetching images:", err);
@@ -91,7 +91,7 @@ const Gallery = () => {
         if (!uploadedUrl) return;
 
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/craftgallerypost`, {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/techgallerypost`, {
                 title,
                 imageUrl: uploadedUrl,
             });
@@ -114,7 +114,7 @@ const Gallery = () => {
 
         try {
             // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-news/${id}`, {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclub-gallery/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-gallery/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

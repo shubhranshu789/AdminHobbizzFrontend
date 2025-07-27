@@ -53,10 +53,11 @@ interface Heritage {
 
   // Category options based on your schema enum
   const categoryOptions = [
-    { value: "Traditional Art", label: "Traditional Art" },
-    { value: "Modern Art", label: "Modern Art" },
-    { value: "Sculpture", label: "Sculpture" },
-    { value: "Photography", label: "Photography" },
+    { value: "Software", label: "Software" },
+    { value: "Hardware", label: "Hardware" },
+    { value: "Robotics", label: "Robotics" },
+    { value: "AI/ML", label: "AI/ML" },
+    { value: "Cybersecurity", label: "Cybersecurity" },
     { value: "Other", label: "Other" },
   ]
 

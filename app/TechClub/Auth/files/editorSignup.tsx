@@ -549,8 +549,8 @@ export default function SignUp() {
     )
 
     try {
-      // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/editor-signup`, {
-      const response = await fetch(`http://localhost:5000/TECHEDITOR-signup`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHEDITOR-signup`, {
+      // const response = await fetch(`http://localhost:5000/TECHEDITOR-signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -578,7 +578,7 @@ export default function SignUp() {
       }
 
       console.log(data)
-      router.push("/TechClub/Auth/SignIn")
+      // router.push("/TechClub/Auth/SignIn")
 
     } catch (error) {
       console.error("Network error:", error)

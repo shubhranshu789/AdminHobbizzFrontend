@@ -58,7 +58,7 @@ interface Domain {
 
       try {
         // Replace with your actual fetch endpoint for getting a single domain item
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftDomain/${domainId}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techDomain/${domainId}`)
         if (!response.ok) {
           throw new Error("Failed to fetch domain")
         }
@@ -99,7 +99,7 @@ interface Domain {
     setUpdating(true)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclub-domain-update/${domainId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-domain-update/${domainId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -119,7 +119,7 @@ interface Domain {
     //   })
 
       // Optionally redirect to domain detail page or domains list
-      router.push(`/CraftClub/EDITOR/Activities/ArtDomain`)
+      router.push(`/TechClub/EDITOR/Activities/ArtDomain`)
     } catch (error) {
     //   toast({
     //     title: "Error",

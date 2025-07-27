@@ -76,7 +76,7 @@ interface Legacy {
 
       try {
         // Replace with your actual fetch endpoint for getting a single legacy item
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftLEGACY/${legacyId}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techLEGACY/${legacyId}`)
         if (!response.ok) {
           throw new Error("Failed to fetch legacy")
         }
@@ -136,7 +136,7 @@ interface Legacy {
     setUpdating(true)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclub-legacy-update/${legacyId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-legacy-update/${legacyId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -156,7 +156,7 @@ interface Legacy {
       // })
 
       // Optionally redirect to legacy detail page or legacy list
-      router.push(`/CraftClub/EDITOR/Activities/AddLEGACY`)
+      router.push(`/TechClub/EDITOR/Activities/AddLEGACY`)
     } catch (error) {
       // toast({
       //   title: "Error",

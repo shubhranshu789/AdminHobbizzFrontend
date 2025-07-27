@@ -50,7 +50,7 @@ const HallOfFameForm = () => {
         }
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftLEGACY`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techLEGACY`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
@@ -73,7 +73,7 @@ const HallOfFameForm = () => {
     const fetchItems = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftLEGACYgetallpost`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techLEGACYgetallpost`);
             const data = await res.json();
             if (res.ok) setItems(data.data || []);
             else toast.error(data.message || "Error fetching data");
@@ -85,10 +85,10 @@ const HallOfFameForm = () => {
     };
 
     const handleClickSubmitId = (id: any) => {
-        router.push(`/CraftClub/EDITOR/Activities/AddLEGACY/ViewParticularHeritage?id=${id}`);
+        router.push(`/TechClub/EDITOR/Activities/AddLEGACY/ViewParticularHeritage?id=${id}`);
     };
     const gotoUpdate = (id: any) => {
-        router.push(`/CraftClub/EDITOR/Activities/AddLEGACY/Update?id=${id}`);
+        router.push(`/TechClub/EDITOR/Activities/AddLEGACY/Update?id=${id}`);
     };
 
     const handleDelete = async (id: any) => {
@@ -97,7 +97,7 @@ const HallOfFameForm = () => {
 
         try {
             // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-news/${id}`, {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclub-legacy/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-legacy/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -172,10 +172,11 @@ const HallOfFameForm = () => {
                                 <option value="Select" disabled>
                                     Select category
                                 </option>
-                                <option value="Traditional Art">Traditional Art</option>
-                                <option value="Modern Art">Modern Art</option>
-                                <option value="Sculpture">Sculpture</option>
-                                <option value="Photography">Photography</option>
+                                <option value="Software">Software</option>
+                                <option value="Hardware">Hardware</option>
+                                <option value="Robotics">Robotics</option>
+                                <option value="AI/ML">AI/ML</option>
+                                <option value="Cybersecurity">Cybersecurity</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>

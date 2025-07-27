@@ -42,7 +42,7 @@ function ViewParticularHeritageInner() {
       }
 
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftLEGACY/${id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techLEGACY/${id}`)
 
         if (!response.ok) {
           throw new Error("Failed to fetch heritage data")

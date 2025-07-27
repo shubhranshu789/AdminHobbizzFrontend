@@ -47,7 +47,7 @@ export default function WrappedPage() {
     setError(null)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/hall-of-fame`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techhall-of-fame`)
       if (!response.ok) {
         throw new Error("Failed to fetch Hall of Fame data")
       }

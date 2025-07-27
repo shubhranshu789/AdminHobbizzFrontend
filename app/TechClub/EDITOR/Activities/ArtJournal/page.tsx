@@ -44,10 +44,10 @@ const ClubNewsForm = () => {
 
 
   const handleClickSubmitId = (id: any) => {
-    router.push(`/CraftClub/EDITOR/Activities/ArtJournal/ArtClubParticularJournal?id=${id}`);
+    router.push(`/TechClub/EDITOR/Activities/ArtJournal/ArtClubParticularJournal?id=${id}`);
   };
   const gotoUpdate = (id: any) => {
-    router.push(`/CraftClub/EDITOR/Activities/ArtJournal/UpdateJournal?id=${id}`);
+    router.push(`/TechClub/EDITOR/Activities/ArtJournal/UpdateJournal?id=${id}`);
   };
 
 
@@ -80,7 +80,7 @@ const ClubNewsForm = () => {
     };
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclubjournal`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclubjournal`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newsData),
@@ -112,7 +112,7 @@ const ClubNewsForm = () => {
   const fetchNews = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclubjpurnalviewallpost`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclubjpurnalviewallpost`);
       const data = await res.json();
 
       if (res.ok) {
@@ -135,7 +135,7 @@ const ClubNewsForm = () => {
 
     try {
       // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/club-journal/${id}`, {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclub-journal/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-journal/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

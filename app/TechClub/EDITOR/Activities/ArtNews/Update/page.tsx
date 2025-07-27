@@ -76,7 +76,7 @@ interface News {
 
       try {
         // Replace with your actual fetch endpoint for getting a single news item
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftartNews/${newsId}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techartNews/${newsId}`)
         if (!response.ok) {
           throw new Error("Failed to fetch news")
         }
@@ -137,7 +137,7 @@ interface News {
     setUpdating(true)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclub-news-update/${newsId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-news-update/${newsId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -157,7 +157,7 @@ interface News {
       // })
 
       // Optionally redirect to news detail page or news list
-      router.push(`/CraftClub/EDITOR/Activities/ArtNews`)
+      router.push(`/TechClub/EDITOR/Activities/ArtNews`)
     } catch (error) {
       // toast({
       //   title: "Error",

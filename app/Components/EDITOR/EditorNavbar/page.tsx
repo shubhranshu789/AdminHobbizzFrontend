@@ -61,7 +61,7 @@ function page() {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/Components/Auth/SignIn');
+    router.push('/');
     // window.location.reload();
   }
 

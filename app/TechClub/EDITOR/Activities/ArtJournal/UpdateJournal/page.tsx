@@ -66,13 +66,13 @@ function UpdateJournalinner() {
         //   description: "No journal ID provided",
         //   variant: "destructive",
         // })
-        router.push("/CraftClub/EDITOR/Activities/ArtJournal")
+        router.push("/TechClub/EDITOR/Activities/ArtJournal")
         return
       }
 
       try {
         // Replace with your actual fetch endpoint for getting a single journal
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftJournal/${journalId}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techJournal/${journalId}`)
         if (!response.ok) {
           throw new Error("Failed to fetch journal")
         }
@@ -133,7 +133,7 @@ function UpdateJournalinner() {
     setUpdating(true)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftclub-journal-update/${journalId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-journal-update/${journalId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -153,7 +153,7 @@ function UpdateJournalinner() {
       // })
 
       // Optionally redirect to journal detail page or journals list
-      router.push(`/CraftClub/EDITOR/Activities/ArtJournal`)
+      router.push(`/TechClub/EDITOR/Activities/ArtJournal`)
     } catch (error) {
       // toast({
       //   title: "Error",

@@ -22,32 +22,32 @@ function page() {
   // };
 
   const gotoAddActivity = () => {
-    router.push('/CraftClub/EDITOR/Activities/ArtJournal');
+    router.push('/TechClub/EDITOR/Activities/ArtJournal');
   }
 
 
   const gotohome = () => {
-    router.push('/CraftClub/EDITOR/EditorDashboard');
+    router.push('/TechClub/EDITOR/EditorDashboard');
   }
 
   const gotoaddnews = () => {
-    router.push('/CraftClub/EDITOR/Activities/ArtNews');
+    router.push('/TechClub/EDITOR/Activities/ArtNews');
   }
   const gotoadddomain = () => {
-    router.push('/CraftClub/EDITOR/Activities/ArtDomain');
+    router.push('/TechClub/EDITOR/Activities/ArtDomain');
   }
 
   const gotoaddgallery = () => {
-    router.push('/CraftClub/EDITOR/Activities/ArtGallery');
+    router.push('/TechClub/EDITOR/Activities/ArtGallery');
   }
   const gotoaddheritage = () => {
-    router.push('/CraftClub/EDITOR/Activities/AddHeritage');
+    router.push('/TechClub/EDITOR/Activities/AddHeritage');
   }
   const gotoaddcalendar = () => {
-    router.push('/CraftClub/EDITOR/Activities/Calendar');
+    router.push('/TechClub/EDITOR/Activities/Calendar');
   }
   const gotoaddLegacy = () => {
-    router.push('/CraftClub/EDITOR/Activities/AddLEGACY');
+    router.push('/TechClub/EDITOR/Activities/AddLEGACY');
   }
 
 //   const gotoabout = () => {
@@ -61,7 +61,7 @@ function page() {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/CraftClub/Auth/SignIn');
+    router.push('/TechClub/Auth/SignIn');
     // window.location.reload();
   }
 
