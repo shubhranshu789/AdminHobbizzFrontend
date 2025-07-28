@@ -58,8 +58,8 @@ useEffect(() => {
   const storedUser = localStorage.getItem("user");
   if (storedUser) {
     const parsedUser = JSON.parse(storedUser);
-    if (parsedUser.clubName) {
-      setClub(parsedUser.clubName);
+    if (parsedUser.club) {
+      setClub(parsedUser.club);
     }
   }
 }, []);

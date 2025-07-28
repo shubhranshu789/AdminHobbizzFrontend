@@ -46,7 +46,7 @@ export default function DistrictPage() {
   const [districtStates, setDistrictStates] = useState<Record<string, DistrictState>>({})
   const [dialogOpen, setDialogOpen] = useState(false)
   const [userInfo, setUserInfo] = useState<UserInfo>({
-    clubName: "artclub",
+    clubName: "photoclub",
     loading: false,
     error: null,
   })

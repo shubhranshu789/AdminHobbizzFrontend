@@ -70,7 +70,7 @@ export default function ManageSchool() {
       setError(null)
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/get-school?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/get-school-photo?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}`,
       )
 
       if (!response.ok) {

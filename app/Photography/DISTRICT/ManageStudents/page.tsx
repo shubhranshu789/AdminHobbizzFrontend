@@ -85,13 +85,13 @@ export default function Students() {
       // Fetch all data concurrently
       const [studentsRes, captainRes, correspondentRes] = await Promise.all([
         fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/get-students?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/get-students-photo?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
         ),
         fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/get-captain?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/get-captain-photo?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
         ),
         fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/get-correspondent?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/get-correspondent-photo?club=${encodeURIComponent(userdata.club)}&district=${encodeURIComponent(userdata.district)}&school=${encodeURIComponent(userdata.school)}`,
         ),
       ])
 
@@ -132,7 +132,7 @@ export default function Students() {
     try {
       setMakingCaptain(studentId)
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/make-captain`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/make-captain-photo`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

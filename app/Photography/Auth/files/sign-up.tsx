@@ -818,7 +818,7 @@ export default function CompleteRegistrationForm() {
             <p className="text-sm text-gray-600">
               Already have an account?
               <span 
-                onClick={() => { router.push("/Components/Auth/SignIn") }} 
+                onClick={() => { router.push("/Photography/Auth/SignIn") }} 
                 style={{ cursor: 'pointer' }} className="text-blue-600 hover:text-blue-700 font-medium">
                 Sign in
               </span>
