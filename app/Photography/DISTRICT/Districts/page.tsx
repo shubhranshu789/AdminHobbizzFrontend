@@ -287,7 +287,7 @@ export default function DistrictPage() {
                     className="w-half"
                     size="lg"
                     onClick={() => {
-                      router.push(`../../../Components/DISTRICT/AssignHead?district=${encodeURIComponent(selectedDistrict)}`)
+                      router.push(`../../../Photography/DISTRICT/AssignHead?district=${encodeURIComponent(selectedDistrict)}`)
                     }}
                   >
                     Assign Head
