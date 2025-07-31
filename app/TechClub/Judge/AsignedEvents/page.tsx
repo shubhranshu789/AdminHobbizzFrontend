@@ -36,7 +36,7 @@ export default function AssignedEventsPage() {
 
         const fetchEvents = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/competitions/judge/${judgeId}`);
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techcompetitions/judge/${judgeId}`);
                 const data = await res.json();
                 setEvents(data.competitions);
             } catch (err) {
@@ -49,7 +49,7 @@ export default function AssignedEventsPage() {
 
 
     const gotoParticularEvent = (id: any) => {
-        router.push(`/Components/Judge/AsignedEvents/ParticularEvent?id=${id}`);
+        router.push(`/TechClub/Judge/AsignedEvents/ParticularEvent?id=${id}`);
     };
 
     return (

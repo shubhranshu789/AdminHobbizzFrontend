@@ -561,7 +561,7 @@ export default function SignUp() {
           ip: ip,
           state: formData.state,
           district: formData.district,
-          club: formData.clubName
+          clubName: formData.clubName
           // school: formData.school,
         }),
       })
@@ -577,7 +577,7 @@ export default function SignUp() {
       }
 
       console.log(data)
-      router.push("/Components/Auth/SignIn")
+      router.push("/Photography/Auth/SignIn")
 
     } catch (error) {
       console.error("Network error:", error)

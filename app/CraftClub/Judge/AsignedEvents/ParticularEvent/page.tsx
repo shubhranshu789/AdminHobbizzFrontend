@@ -87,7 +87,7 @@ function CompetitionPageInner() {
             }
 
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCompitition/${competitionId}`)
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftgetCompitition/${competitionId}`)
 
                 if (!response.ok) {
                     throw new Error("Failed to fetch competition")
@@ -162,7 +162,7 @@ function CompetitionPageInner() {
         }
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/assign-mark`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/craftassign-mark`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

@@ -240,7 +240,7 @@ function ParticularCompitionInner() {
     try {
       // Replace with your actual contest ID
       // const contestId = "685828ce20a1a9e01b628608"
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}/newresult`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${id}/tech-results`)
 
       if (!response.ok) {
         throw new Error("Failed to fetch results")

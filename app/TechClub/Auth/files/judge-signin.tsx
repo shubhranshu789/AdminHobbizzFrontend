@@ -84,8 +84,8 @@ export default function SignIn() {
 
 
         //sending data to server
-        // fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHJUDGE-signin`, {
-        fetch(`https://localhost:5000/TECHJUDGE-signin`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHJUDGE-signin`, {
+        // fetch(`https://localhost:5000/TECHJUDGE-signin`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

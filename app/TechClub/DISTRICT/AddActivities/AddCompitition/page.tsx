@@ -105,8 +105,8 @@ export default function ActivityForm() {
 
 
     if (url) {
-    //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/create-compitition`, {
-        fetch(`http://localhost:5000/create-compitition`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/create-compitition`, {
+        // fetch(`http://localhost:5000/create-compitition`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",

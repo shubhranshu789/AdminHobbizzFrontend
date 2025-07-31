@@ -136,8 +136,8 @@ interface Heritage {
     setUpdating(true)
 
     try {
-      // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-heritage-update/${heritageId}`, {
-      const response = await fetch(`http://localhost:5000/techclub-heritage-update/${heritageId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techclub-heritage-update/${heritageId}`, {
+      // const response = await fetch(`http://localhost:5000/techclub-heritage-update/${heritageId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

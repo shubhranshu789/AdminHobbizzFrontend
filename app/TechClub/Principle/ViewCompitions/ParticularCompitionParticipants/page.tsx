@@ -62,8 +62,10 @@ function PrincipleParticularCompitionParticipantsInner() {
 
 
   const [participants, setParticipants] = useState<Participant[]>([]);
-const [loading, setLoading] = useState<boolean>(true);
-const [openImage, setOpenImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [openImage, setOpenImage] = useState<string | null>(null);
+
+  const fallbackImg = "/AllPics/ClubPics/1.JPG";
 
 
 
@@ -131,7 +133,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
     const fetchParticipants = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event-participants-compi/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/techevent-participants-compi/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -273,31 +275,31 @@ const [openImage, setOpenImage] = useState<string | null>(null);
   };
 
 
-//   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
-//     try {
-//       const res = await fetch(
-//         `${process.env.NEXT_PUBLIC_API_URL}/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
-//         {
-//           method: "PUT",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//         }
-//       );
+  //   const handleApproval = async (activityId: any, uploadId: any, isApproved: boolean) => {
+  //     try {
+  //       const res = await fetch(
+  //         `${process.env.NEXT_PUBLIC_API_URL}/activity/${isApproved ? "approve" : "disapprove"}-upload/${activityId}/${uploadId}`,
+  //         {
+  //           method: "PUT",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
 
-//       const data = await res.json();
-//       if (res.ok) {
-//         alert(`Upload ${isApproved ? "approved" : "disapproved"} successfully.`);
-//         // Optional: Refresh list
-//       } else {
-//         console.error("Error:", data.error);
-//         alert("Failed to update.");
-//       }
-//     } catch (err) {
-//       console.error("Request error:", err);
-//       alert("Server error.");
-//     }
-//   };
+  //       const data = await res.json();
+  //       if (res.ok) {
+  //         alert(`Upload ${isApproved ? "approved" : "disapproved"} successfully.`);
+  //         // Optional: Refresh list
+  //       } else {
+  //         console.error("Error:", data.error);
+  //         alert("Failed to update.");
+  //       }
+  //     } catch (err) {
+  //       console.error("Request error:", err);
+  //       alert("Server error.");
+  //     }
+  //   };
 
 
 
@@ -486,54 +488,34 @@ const [openImage, setOpenImage] = useState<string | null>(null);
                       </li>
                     ))} */}
 
-                    {participants.map((upload, index) => (
-                      <li key={index} className="flex gap-4 items-start">
-                        <div className="w-32 h-32 rounded-lg overflow-hidden border border-gray-300">
-                          <img
-                            src={upload.pic}
-                            alt="Upload"
-                            className="w-full h-full object-cover cursor-pointer"
-                            onClick={() => setOpenImage(upload.pic)}
-                          />
-                        </div>
-
-                        
-                        <div className="flex-1 space-y-1">
-                          <p className="text-base font-semibold">{upload.name}</p>
-                          <p className="text-sm text-muted-foreground">{upload.email}</p>
-
-                          {/* {upload.isApproved !== null && (
-                            <span
-                              className={`inline-block px-2 py-1 text-xs rounded-full font-semibold ${upload.isApproved
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
-                                }`}
-                            >
-                              {upload.isApproved ? "Approved" : "Disapproved"}
-                            </span>
-                          )} */}
-
-                          {/* <div className="flex gap-3 pt-2">
-                            <button
-                              onClick={() => handleApproval(event?._id, upload.uploadId, true)}
-                              className="px-4 py-1 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md"
-                            >
-                              Approve
-                            </button>
-                            <button
-                              onClick={() => handleApproval(event?._id, upload.uploadId, false)}
-                              className="px-4 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-md"
-                            >
-                              Disapprove
-                            </button>
-                          </div> */}
-                        </div>
-
-
-
-                      </li>
-                    ))}
-
+                    <ul>
+                      {participants.map((upload, index) => (
+                        <li key={index} className="flex gap-4 items-start">
+                          <div className="w-32 h-32 rounded-lg overflow-hidden border border-gray-300">
+                            {upload.pic ? (
+                              <img
+                                src={upload.pic}
+                                alt="Upload"
+                                className="w-full h-full object-cover cursor-pointer"
+                                onClick={() => setOpenImage(upload.pic)}
+                                onError={e => { e.currentTarget.src = "/fallback-image.png"; }}
+                              />
+                            ) : (
+                              // Optionally, render a fallback image or placeholder, or nothing
+                              <img
+                                src="/fallback-image.png"
+                                alt="No upload"
+                                className="w-full h-full object-cover"
+                              />
+                            )}
+                          </div>
+                          <div className="flex-1 space-y-1">
+                            <p className="text-base font-semibold">{upload.name}</p>
+                            <p className="text-sm text-muted-foreground">{upload.email}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
 
 
 
@@ -596,7 +578,7 @@ const [openImage, setOpenImage] = useState<string | null>(null);
 
 
 
-      
+
 
 
 

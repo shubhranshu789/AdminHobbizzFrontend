@@ -549,8 +549,8 @@ export default function SignUp() {
     )
 
     try {
-      // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/CRAFTJUDGE-signup`, {
-      const response = await fetch(`http://localhost:5000/CRAFTJUDGE-signup`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/TECHJUDGE-signup`, {
+      // const response = await fetch(`http://localhost:5000/TECHJUDGE-signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -562,7 +562,7 @@ export default function SignUp() {
           ip: ip,
           state: formData.state,
           district: formData.district,
-          club: formData.clubName
+          clubName: formData.clubName
           // school: formData.school,
         }),
       })

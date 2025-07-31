@@ -72,7 +72,7 @@ function Navbar() {
       { name: "Home", icon: HomeIcon, action: () => router.push("/Photography/home") },
       { name: "Local Events", icon: Flag, action: () => router.push("/Photography/DISTRICT/LocalEventsDisplayPage") },
       { name: "Participate", icon: School, action: () => router.push("/Photography/ParticipateInActivity") },
-      { name: "Apply for Club", icon: Bell, action: () => router.push("/Photography/CABINATE/JoinClub") },
+      { name: "Apply for Club", icon: Bell, action: () => router.push("/Photography/CABINATE/JoinClub/photo") },
     ],
     head: [
       { name: "Home", icon: HomeIcon, action: () => router.push("/Photography/home") },

@@ -22,26 +22,26 @@ function page() {
   // };
 
   const gotoAddActivity = () => {
-    router.push('/Components/DISTRICT/AddActivities/AllActivities');
+    router.push('/TechClub/DISTRICT/AddActivities/AllActivities');
   }
 
 
   const gotohome = () => {
-    router.push('/Components/Judge/JudgeDashBoard');
+    router.push('/TechClub/Judge/JudgeDashBoard');
   }
 
   const manageDistrict = () => {
-    router.push('/Components/DISTRICT/Districts');
+    router.push('/TechClub/DISTRICT/Districts');
   }
   const manageRoles = () => {
-    router.push('/Components/DISTRICT/ManageRoles');
+    router.push('/TechClub/DISTRICT/ManageRoles');
   }
 //   const gotoabout = () => {
-//     // router.push('../../Components/ParticipateInActivity');
+//     // router.push('../../TechClub/ParticipateInActivity');
 //   }
 
 const gotoAssignedEvents = () => {
-    router.push('/Components/Judge/AsignedEvents');
+    router.push('/TechClub/Judge/AsignedEvents');
   }
 
 
@@ -51,7 +51,7 @@ const gotoAssignedEvents = () => {
 
   const logout = () => {
     localStorage.clear()
-    router.push('/Components/Auth/SignIn');
+    router.push('/');
     // window.location.reload();
   }
 

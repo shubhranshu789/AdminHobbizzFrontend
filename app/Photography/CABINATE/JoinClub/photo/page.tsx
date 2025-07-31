@@ -222,10 +222,10 @@ export default function ArtClubPage() {
       <Navbar/>
       <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
         <div style={{ padding: "20px", marginTop: "60px" }} className="container py-6">
-          <Link href="/Photography/CABINATE/JoinClub" className="mb-4 inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900">
+          {/* <Link href="/Photography/CABINATE/JoinClub" className="mb-4 inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900">
             <ChevronLeft className="h-4 w-4" />
             Back to clubs
-          </Link>
+          </Link> */}
 
           <div className="relative mb-8 overflow-hidden rounded-xl">
             <img
