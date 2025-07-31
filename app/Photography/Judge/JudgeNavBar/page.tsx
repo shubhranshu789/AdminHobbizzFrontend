@@ -41,7 +41,7 @@ function page() {
 //   }
 
 const gotoAssignedEvents = () => {
-    router.push('/Components/Judge/AsignedEvents');
+    router.push('/Photography/Judge/AsignedEvents');
   }
 
 
