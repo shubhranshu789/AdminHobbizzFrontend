@@ -73,7 +73,8 @@ useEffect(() => {
     const fetchMemberRequests = async () => {
       
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/head-request?district=${district}`, {
+        //const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/head-request?district=${district}`, {
+        const response = await fetch(`http://localhost:5000/${clubName}/head-request?district=${district}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +105,8 @@ useEffect(() => {
     setProcessingIds((prev) => new Set(prev).add(userId));
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/approve-head/?district=${district}&userid=${userId}`, {
+      //const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${clubName}/approve-head/?district=${district}&userid=${userId}`, {
+      const response = await fetch(`http://localhost:5000/${clubName}/approve-head/?district=${district}&userid=${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

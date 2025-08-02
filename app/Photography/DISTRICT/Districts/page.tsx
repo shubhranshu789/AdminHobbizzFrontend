@@ -86,7 +86,8 @@ export default function DistrictPage() {
         const timeoutId = setTimeout(() => controller.abort(), 10000) // 10s timeout
 
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/${userInfo.clubName}/info?district=${encodeURIComponent(districtName)}`,
+          //`${process.env.NEXT_PUBLIC_API_URL}/${userInfo.clubName}/info?district=${encodeURIComponent(districtName)}`,
+          `http://localhost:5000/${userInfo.clubName}/info?district=${encodeURIComponent(districtName)}`,
           {
             signal: controller.signal,
             headers: {
