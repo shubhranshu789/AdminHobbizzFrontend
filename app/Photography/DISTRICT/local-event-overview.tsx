@@ -52,7 +52,7 @@ function LocalEventOverviewContent() {
         setError(null)
 
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/event-details?event_id=${encodeURIComponent(event_id)}&club=${"Photoclub"}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/event-details?event_id=${encodeURIComponent(event_id)}&club=${"photoclub"}`,
         )
 
         if (!response.ok) {
