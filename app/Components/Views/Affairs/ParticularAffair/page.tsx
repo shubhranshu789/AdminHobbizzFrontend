@@ -79,7 +79,7 @@ function Page() {
       }
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL_USER}/getactivity/${id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/getactivity/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -351,7 +351,7 @@ function Page() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button
+              {/* <Button
                 onClick={() => {
                   if (!event?._id) return;
 
@@ -362,7 +362,7 @@ function Page() {
                 className="w-full"
               >
                 {isRegistered ? "Unregister" : "Register for Event"}
-              </Button>
+              </Button> */}
 
 
 

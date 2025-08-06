@@ -31,7 +31,7 @@ const Gallery = () => {
   // Fetch all images
   const fetchImages = async () => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL_USER}/viewgallerypost`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/viewgallerypost`);
       setImages(res.data || []);
     } catch (err) {
       console.error("Error fetching images:", err);
